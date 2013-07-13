@@ -71,8 +71,6 @@ public class TaskViewListItem extends BaseAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Log.d("count", Integer.toString(position));
 				
 				if (t.hasChildren()) {
 					
@@ -93,9 +91,6 @@ public class TaskViewListItem extends BaseAdapter {
 					TextView completion = (TextView) header.findViewById(R.id.hcompletion);
 					completion.setText(Integer.toString(task.completion()));
 					
-					TaskView tv = (TaskView)act;
-					
-					//Log.d("count", Integer.toString(t.completion()));
 				}
 			}
 		});
