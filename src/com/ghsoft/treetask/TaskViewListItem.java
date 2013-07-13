@@ -76,7 +76,10 @@ public class TaskViewListItem extends BaseAdapter {
 					
 					Intent i = new Intent(context, TaskView.class);
 					i.putExtra("task", t);
+					act.finish();
 					act.startActivity(i);
+					act.overridePendingTransition(R.anim.slidefrom, R.anim.shortzoom);
+					
 					
 				} else {
 					TaskLeaf tl = (TaskLeaf)t;

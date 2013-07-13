@@ -67,9 +67,12 @@ public class MainViewFragment extends Fragment {
 		taskList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
+				
 				Intent i = new Intent(getActivity(), TaskView.class);
 				i.putExtra("task", t);
+				getActivity().finish();
 				startActivity(i);
+				getActivity().overridePendingTransition(R.anim.zoom, R.anim.slide);
 				
 
 			}

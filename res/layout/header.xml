@@ -5,6 +5,13 @@
     android:background="@drawable/background"
     android:orientation="vertical" >
     
+    <TextView
+        android:id="@+id/path"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="path"
+        android:textColor="#ffffff"
+        android:textSize="10dp" />
     
     <TextView
         android:id="@+id/hname"

@@ -37,6 +37,26 @@ public abstract class Task implements Serializable {
 		return description;
 	}
 	
+	public Task getParent() {
+		return parent;
+	}
+	
+	public void setParent(Task p) {
+		this.parent = p;
+	}
+	
+	public boolean isHead() {
+		return parent == null;
+	}
+	
+	public String getPath() {
+		if (!isHead()) {
+			return parent.getPath() + " > " + this.name;  
+		}
+		return this.name;
+		
+	}
+	
 	
 	
 
