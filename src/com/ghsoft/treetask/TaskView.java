@@ -3,9 +3,9 @@ package com.ghsoft.treetask;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.treetask.R;
@@ -29,12 +29,15 @@ public class TaskView extends Activity {
 		TextView name = (TextView) header.findViewById(R.id.hname);
 		TextView path = (TextView) header.findViewById(R.id.path);
 		TextView description = (TextView) header.findViewById(R.id.hdescription);
-		TextView completion = (TextView) header.findViewById(R.id.hcompletion);
+		
+		ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
 		
 		name.setText(task.getName());
 		path.setText(task.getPath());
 		description.setText(task.getDescription());
-		completion.setText(Integer.toString(task.completion()));
+		
+		completion.setMax(100);
+		completion.setProgress(task.completion());
 		
 		
 		taskList = (ListView) findViewById(R.id.taskList);
