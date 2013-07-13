@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class MainListItem extends BaseAdapter {
+public class TaskViewListItem extends BaseAdapter {
 	private LayoutInflater inflater;
 	Context context;
 	Activity act;
@@ -18,7 +18,7 @@ public class MainListItem extends BaseAdapter {
 	String uname, pword;
 	TaskNode task;
 
-	public MainListItem(Activity act, Context context, TaskNode task) {
+	public TaskViewListItem(Activity act, Context context, TaskNode task) {
 		// Caches the LayoutInflater for quicker use
 		this.inflater = LayoutInflater.from(context);
 		// Sets the events data
@@ -26,8 +26,8 @@ public class MainListItem extends BaseAdapter {
 	}
 
 
-	public String getItem(int position) throws IndexOutOfBoundsException {
-		return "test";
+	public Task getItem(int position) throws IndexOutOfBoundsException {
+		return task.getChildren().get(position);
 	}
 
 	public long getItemId(int position) throws IndexOutOfBoundsException {
@@ -38,7 +38,7 @@ public class MainListItem extends BaseAdapter {
 	}
 
 	public int getViewTypeCount() {
-		return 1;
+		return task.numChildren();
 	}
 	
 	@Override
@@ -49,15 +49,17 @@ public class MainListItem extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
+		Task t = task.getChildren().get(position);
+		
 		convertView = this.inflater.inflate(R.layout.mainlistitem, null);
 
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
 		completion = (TextView) convertView.findViewById(R.id.completion);
 		
-		name.setText(task.getName());
-		description.setText(task.getDescription());
-		completion.setText(Integer.toString(task.completion()));
+		name.setText(t.getName());
+		description.setText(t.getDescription());
+		completion.setText(Integer.toString(t.completion()));
 
 		return convertView;
 	}

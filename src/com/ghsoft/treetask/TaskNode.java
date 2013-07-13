@@ -1,8 +1,9 @@
 package com.ghsoft.treetask;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TaskNode extends Task {
+public class TaskNode extends Task implements Serializable {
 	
 	private ArrayList<Task> children;
 	

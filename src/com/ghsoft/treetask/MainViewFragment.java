@@ -52,6 +52,7 @@ public class MainViewFragment extends Fragment {
 			public void onItemClick(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
 				Intent i = new Intent(getActivity(), TaskView.class);
+				i.putExtra("task", t);
 				startActivity(i);
 				
 

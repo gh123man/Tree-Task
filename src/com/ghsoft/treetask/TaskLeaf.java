@@ -1,6 +1,8 @@
 package com.ghsoft.treetask;
 
-public class TaskLeaf extends Task {
+import java.io.Serializable;
+
+public class TaskLeaf extends Task implements Serializable {
 	
 	private boolean complete;
 

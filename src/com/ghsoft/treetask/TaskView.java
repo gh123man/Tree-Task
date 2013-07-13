@@ -19,18 +19,23 @@ public class TaskView extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.taskview);
 		
+		Object sTask = getIntent().getSerializableExtra("task");
+		
+		TaskNode task = (TaskNode)sTask;
+		
 		
 		View header = getLayoutInflater().inflate(R.layout.header, null); 
 
 		
 		taskList = (ListView) findViewById(R.id.taskList);
 		
-		//MainListItem adapter = new MainListItem(getActivity(), getActivity()
-		//		.getApplicationContext(), t);
-
-		//taskList.setAdapter(ListAdapter);
-		
 		taskList.addHeaderView(header); 
+		
+		TaskViewListItem adapter = new TaskViewListItem(this, getApplicationContext(), task);
+
+		taskList.setAdapter(adapter);
+		
+		
 		
 		taskList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1,

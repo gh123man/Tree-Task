@@ -1,8 +1,9 @@
 package com.ghsoft.treetask;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Task {
+public abstract class Task implements Serializable {
 	
 	private String name, description;
 	private static final int maxNameLen = 80;
