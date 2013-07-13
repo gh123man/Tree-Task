@@ -23,5 +23,9 @@ public class TaskLeaf extends Task implements Serializable {
 	public void setFinished(boolean set) {
 		this.complete = set;
 	}
+	
+	public boolean getFinished() {
+		return complete;
+	}
 
 }

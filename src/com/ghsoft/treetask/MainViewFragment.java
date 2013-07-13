@@ -25,14 +25,25 @@ public class MainViewFragment extends Fragment {
 		t = new TaskNode();
 		t.setDescription("blah blah blah blha");
 		t.setName("test Task");
-		t.addSubTask(new TaskLeaf());
-		t.addSubTask(new TaskLeaf());
-		t.addSubTask(new TaskLeaf());
+		
+		TaskNode c = new TaskNode();
+		c.setDescription("blah blah blah blha");
+		c.setName("test Task");
 		
 		TaskLeaf a = new TaskLeaf();
-		a.setFinished(true);
+		a.setFinished(false);
+		a.setName("a");
 		
+		c.addSubTask(a);
+		
+		TaskLeaf b = new TaskLeaf();
+		b.setFinished(true);
+		b.setName("b");
+		
+		t.addSubTask(c);
+		t.addSubTask(b);
 		t.addSubTask(a);
+		
 	}
 
 	@Override

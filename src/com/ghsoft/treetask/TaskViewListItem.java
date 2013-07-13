@@ -15,7 +15,6 @@ public class TaskViewListItem extends BaseAdapter {
 	Context context;
 	Activity act;
 	TextView name, description, completion;
-	String uname, pword;
 	TaskNode task;
 
 	public TaskViewListItem(Activity act, Context context, TaskNode task) {
@@ -43,15 +42,14 @@ public class TaskViewListItem extends BaseAdapter {
 	
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 1;
+		return task.numChildren();
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		Task t = task.getChildren().get(position);
 		
-		convertView = this.inflater.inflate(R.layout.mainlistitem, null);
+		convertView = this.inflater.inflate(R.layout.taskviewlistitem, null);
 
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
