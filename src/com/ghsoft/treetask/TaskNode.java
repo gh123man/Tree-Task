@@ -7,9 +7,11 @@ public class TaskNode extends Task implements Serializable {
 	
 	private ArrayList<Task> children;
 	
-	
-	public TaskNode() {
+	public TaskNode(Task parent) {
+		super(parent);
+		
 		this.children = new ArrayList<Task>();
+		
 	}
 	
 	@Override

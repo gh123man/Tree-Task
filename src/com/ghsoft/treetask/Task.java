@@ -8,9 +8,10 @@ public abstract class Task implements Serializable {
 	private String name, description;
 	private static final int maxNameLen = 80;
 	private static final int maxDescriptionLen = 500;
+	private Task parent;
 	
-	public Task() {
-		
+	public Task(Task parent) {
+		this.parent = parent;
 	}
 
 	public abstract int completion();

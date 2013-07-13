@@ -22,21 +22,26 @@ public class MainViewFragment extends Fragment {
 	public TaskNode t;
 
 	public MainViewFragment() {
-		t = new TaskNode();
+		t = new TaskNode(null);
 		t.setDescription("blah blah blah blha");
 		t.setName("test Task");
 		
-		TaskNode c = new TaskNode();
+		TaskNode c = new TaskNode(t);
 		c.setDescription("blah blah blah blha");
 		c.setName("test Task");
 		
-		TaskLeaf a = new TaskLeaf();
+		TaskLeaf d = new TaskLeaf(t);
+		d.setFinished(false);
+		d.setName("a");
+		
+		c.addSubTask(d);
+		
+		
+		TaskLeaf a = new TaskLeaf(t);
 		a.setFinished(false);
 		a.setName("a");
 		
-		c.addSubTask(a);
-		
-		TaskLeaf b = new TaskLeaf();
+		TaskLeaf b = new TaskLeaf(t);
 		b.setFinished(true);
 		b.setName("b");
 		

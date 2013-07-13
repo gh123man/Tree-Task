@@ -6,7 +6,8 @@ public class TaskLeaf extends Task implements Serializable {
 	
 	private boolean complete;
 
-	public TaskLeaf() {
+	public TaskLeaf(Task parent) {
+		super(parent);
 		this.complete = false;
 	}
 
