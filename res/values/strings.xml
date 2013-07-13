@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Tree Task</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Tasks</string>
+    <string name="title_section2">Archive</string>
+
+</resources>
