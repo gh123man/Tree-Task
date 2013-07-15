@@ -10,13 +10,14 @@ public class TaskLeaf extends Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private boolean complete;
 
-	public TaskLeaf(Task parent) {
+	public TaskLeaf(TaskNode parent) {
 		super(parent);
 		this.complete = false;
+		parent.addSubTask(this);
 	}
 	
 	public static TaskLeaf fromNode (TaskNode from) {
-		TaskLeaf tl = new TaskLeaf(from.getParent());
+		TaskLeaf tl = new TaskLeaf((TaskNode)from.getParent());
 		tl.setName(from.getName());
 		tl.setDescription(from.getDescription());
 		return tl;

@@ -16,24 +16,22 @@ public class TaskHead implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private TaskNode task;
-	private boolean archived;
 	String taskID;
 
 	public TaskHead() {
-		this.archived = false;
 		taskID = UUID.randomUUID().toString();
 	}
 
 	public void setTreeHead(TaskNode t) {
 		this.task = t;
 	}
-
-	public void markkArchived() {
-		this.archived = true;
-	}
 	
 	public TaskNode getTask() {
 		return task;
+	}
+	
+	public boolean archived() {
+		return task.completion() == 100;
 	}
 
 	

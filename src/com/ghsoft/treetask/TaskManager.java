@@ -11,12 +11,25 @@ import android.os.Environment;
 
 public class TaskManager {
 
-	private ArrayList<TaskHead> tasks;
-	private ArrayList<TaskHead> archive;
+	private ArrayList<TaskHead> tasks, archive;
 	File sdcard = Environment.getExternalStorageDirectory();
 
 	public TaskManager() {
+		tasks = new ArrayList<TaskHead>();
+		archive = new ArrayList<TaskHead>();
 		
+		TaskHead th = new TaskHead();
+
+		TaskNode t = new TaskNode(th);
+		t.setName("test");
+		t.setDescription("test123");
+
+		TaskLeaf tl = new TaskLeaf(t);
+		tl.setName("asdfasfd");
+		tl.setDescription("fdsa");
+
+		// tasks.add(th);
+
 	}
 
 	public void load() {
@@ -31,7 +44,11 @@ public class TaskManager {
 				ObjectInputStream is = new ObjectInputStream(fis);
 				TaskHead th = (TaskHead) is.readObject();
 				is.close();
-				tasks.add(th);
+				if (th.archived()) {
+					archive.add(th);
+				} else {
+					tasks.add(th);
+				}
 
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -48,11 +65,11 @@ public class TaskManager {
 	public ArrayList<TaskHead> getArchive() {
 		return this.archive;
 	}
-	
+
 	public static void save(final TaskHead th) {
 		new Thread(new Runnable() {
 			public void run() {
-				
+
 				File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/TaskTree");
 				if (!dir.exists()) {
 					try {
@@ -61,18 +78,18 @@ public class TaskManager {
 						System.err.println("Error: " + e.getMessage());
 					}
 				}
-				
+
 				try {
 					FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + "/TaskTree/" + th.taskID);
 					ObjectOutputStream os = new ObjectOutputStream(fos);
 					os.writeObject(th);
 					os.close();
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
-			
+
 		}).start();
 	}
 

@@ -66,6 +66,8 @@ public class TaskView extends Activity {
 				} else {
 					TaskLeaf tl = (TaskLeaf) t;
 					tl.setFinished(!tl.getFinished());
+					
+					TaskManager.save(tl.getHead());
 
 					ProgressBar completion = (ProgressBar) v.findViewById(R.id.completion);
 
@@ -73,6 +75,7 @@ public class TaskView extends Activity {
 
 					completion = (ProgressBar) findViewById(R.id.hcompletion);
 					completion.setProgress(task.completion());
+					
 
 				}
 

@@ -38,7 +38,6 @@ public class Main extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		setTheme(android.R.style.Theme_Holo);
 		
 		PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip); 
 		pts.setDrawFullUnderline(true);
