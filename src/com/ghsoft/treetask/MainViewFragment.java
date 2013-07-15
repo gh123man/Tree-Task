@@ -27,16 +27,14 @@ public class MainViewFragment extends Fragment {
 	private ArrayList<TaskHead> toDisplay;
 
 	public MainViewFragment() {
-
-		tm = new TaskManager();
-
-		tm.load();
-
+		
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView = inflater.inflate(R.layout.mainviewfragment, container, false);
+		
+		tm = (TaskManager) getArguments().get("tm");
 
 		toDisplay = new ArrayList<TaskHead>();
 		if (getArguments().getInt(ARG_SECTION_NUMBER) == TASKS) {

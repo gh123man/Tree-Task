@@ -107,8 +107,14 @@ public class Main extends FragmentActivity {
 			// getItem is called to instantiate the fragment for the given page.
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
+			TaskManager tm = new TaskManager();
+			tm.load();
+			
 			Fragment fragment = new MainViewFragment();
 			Bundle args = new Bundle();
+			
+			args.putSerializable("tm", tm);
+			
 			args.putInt(MainViewFragment.ARG_SECTION_NUMBER, position + 1);
 			fragment.setArguments(args);
 			return fragment;

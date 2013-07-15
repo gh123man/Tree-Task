@@ -5,12 +5,17 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import android.os.Environment;
 
-public class TaskManager {
+public class TaskManager implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<TaskHead> tasks, archive;
 	File sdcard = Environment.getExternalStorageDirectory();
 
