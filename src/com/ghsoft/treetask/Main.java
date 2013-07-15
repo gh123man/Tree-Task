@@ -1,9 +1,11 @@
 package com.ghsoft.treetask;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
-import com.ghsoft.treetask.R;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -11,11 +13,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 public class Main extends FragmentActivity {
 
@@ -38,25 +38,57 @@ public class Main extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
-		PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip); 
+
+		PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
 		pts.setDrawFullUnderline(true);
-		
+
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(
-				getSupportFragmentManager());
+		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
-		
-		mViewPager.setAdapter(mSectionsPagerAdapter);
 
+		mViewPager.setAdapter(mSectionsPagerAdapter);
+		
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.newTask:
+			
+			TaskHead th = new TaskHead();
+			TaskNode tn = new TaskNode(th);
+			
+			DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss a");
+			Date date = new Date();
+			
+			tn.setName(dateFormat.format(date));
+			
+			Intent i = new Intent(Main.this, NewTask.class);
+			i.putExtra("task", tn);
+			finish();
+			startActivity(i);
+			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			
+			
+			
+			break;
+
+		default:
+			break;
+		}
+
 		return true;
 	}
 
@@ -100,7 +132,5 @@ public class Main extends FragmentActivity {
 			return null;
 		}
 	}
-
-	
 
 }

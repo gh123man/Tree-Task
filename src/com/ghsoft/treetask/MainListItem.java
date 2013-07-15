@@ -27,8 +27,8 @@ public class MainListItem extends BaseAdapter {
 		this.tasks = tasks;
 	}
 
-	public String getItem(int position) throws IndexOutOfBoundsException {
-		return "test";
+	public TaskHead getItem(int position) throws IndexOutOfBoundsException {
+		return tasks.get(position);
 	}
 
 	public long getItemId(int position) throws IndexOutOfBoundsException {
@@ -45,7 +45,7 @@ public class MainListItem extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 1;
+		return tasks.size();
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {

@@ -81,13 +81,21 @@ public class NewTask extends Activity {
 
 	@Override
 	public void onBackPressed() {
+		Intent i;
 		
-		Intent i = new Intent(NewTask.this, TaskView.class);
 		if (task.numChildren() < 1) {
-			i.putExtra("task", task.getParent());
+			if (task.getParent() == null) {
+				i = new Intent(NewTask.this, Main.class);
+			} else {
+				i = new Intent(NewTask.this, TaskView.class);
+				i.putExtra("task", task.getParent());
+			}
+			
 		} else {
+			i = new Intent(NewTask.this, TaskView.class);
 			i.putExtra("task", task);
 		}
+		
 		finish();
 		startActivity(i);
 		overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);

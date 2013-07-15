@@ -18,18 +18,6 @@ public class TaskManager {
 		tasks = new ArrayList<TaskHead>();
 		archive = new ArrayList<TaskHead>();
 		
-		TaskHead th = new TaskHead();
-
-		TaskNode t = new TaskNode(th);
-		t.setName("test");
-		t.setDescription("test123");
-
-		TaskLeaf tl = new TaskLeaf(t);
-		tl.setName("asdfasfd");
-		tl.setDescription("fdsa");
-
-		// tasks.add(th);
-
 	}
 
 	public void load() {
@@ -39,7 +27,6 @@ public class TaskManager {
 			FileInputStream fis;
 
 			try {
-				System.err.println(child.toString());
 				fis = new FileInputStream(child);
 				ObjectInputStream is = new ObjectInputStream(fis);
 				TaskHead th = (TaskHead) is.readObject();
@@ -75,7 +62,7 @@ public class TaskManager {
 					try {
 						dir.mkdir();
 					} catch (Exception e) {
-						System.err.println("Error: " + e.getMessage());
+						e.printStackTrace();
 					}
 				}
 
