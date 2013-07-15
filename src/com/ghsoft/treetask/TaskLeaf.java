@@ -4,11 +4,22 @@ import java.io.Serializable;
 
 public class TaskLeaf extends Task implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private boolean complete;
 
 	public TaskLeaf(Task parent) {
 		super(parent);
 		this.complete = false;
+	}
+	
+	public static TaskLeaf fromNode (TaskNode from) {
+		TaskLeaf tl = new TaskLeaf(from.getParent());
+		tl.setName(from.getName());
+		tl.setDescription(from.getDescription());
+		return tl;
 	}
 
 	@Override

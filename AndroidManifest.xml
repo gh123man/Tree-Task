@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.treetask"
+    package="com.ghsoft.treetask"
     android:versionCode="1"
     android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="17" />
+    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> 
 
     <application
         android:allowBackup="true"
@@ -23,6 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.ghsoft.treetask.TaskView" android:theme="@style/AppBaseTheme"></activity>
+        <activity android:theme="@style/AppBaseTheme" android:name="com.ghsoft.treetask.NewTask"></activity>
     </application>
 
 </manifest>

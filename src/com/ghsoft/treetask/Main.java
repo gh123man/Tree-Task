@@ -2,7 +2,7 @@ package com.ghsoft.treetask;
 
 import java.util.Locale;
 
-import com.example.treetask.R;
+import com.ghsoft.treetask.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -38,6 +38,7 @@ public class Main extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		setTheme(android.R.style.Theme_Holo);
 		
 		PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip); 
 		pts.setDrawFullUnderline(true);

@@ -1,7 +1,5 @@
 package com.ghsoft.treetask;
 
-import com.example.treetask.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +10,14 @@ import android.widget.BaseAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.ghsoft.treetask.R;
+
 public class TaskViewListItem extends BaseAdapter {
 	private LayoutInflater inflater;
 	Context context;
 	Activity act;
-	TextView name, description, completion;
+	TextView name, description;
+	ProgressBar completion;
 	TaskNode task;
 	View header;
 
@@ -32,7 +33,7 @@ public class TaskViewListItem extends BaseAdapter {
 
 
 	public Task getItem(int position) throws IndexOutOfBoundsException {
-		return task.getChildren().get(position);
+		return task.getChild(position);
 	}
 
 	public long getItemId(int position) throws IndexOutOfBoundsException {
@@ -54,50 +55,21 @@ public class TaskViewListItem extends BaseAdapter {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		
 		
-		final Task t = task.getChildren().get(position);
+		final Task t = task.getChild(position);
 		
 		convertView = this.inflater.inflate(R.layout.taskviewlistitem, null);
 		
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
-		completion = (TextView) convertView.findViewById(R.id.completion);
+		completion = (ProgressBar) convertView.findViewById(R.id.completion);
 		
 		name.setText(t.getName());
 		description.setText(t.getDescription());
-		completion.setText(Integer.toString(t.completion()));
+		
+		completion.setMax(100);
+		completion.setProgress(t.completion());
 		
 		
-		convertView.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				
-				if (t.hasChildren()) {
-					
-					Intent i = new Intent(context, TaskView.class);
-					i.putExtra("task", t);
-					act.finish();
-					act.startActivity(i);
-					act.overridePendingTransition(R.anim.slidefrom, R.anim.shortzoom);
-					
-					
-				} else {
-					TaskLeaf tl = (TaskLeaf)t;
-					tl.setFinished(!tl.getFinished());
-					
-					completion = (TextView) v.findViewById(R.id.completion);
-					
-					completion.setText(Integer.toString(t.completion()));
-					
-					TaskViewListItem.this.notifyDataSetChanged();
-					
-					ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
-					completion.setProgress(task.completion());
-					
-				}
-			}
-		});
-
 		return convertView;
 	}
 

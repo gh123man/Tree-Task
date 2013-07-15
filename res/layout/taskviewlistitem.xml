@@ -3,36 +3,42 @@
     android:layout_width="fill_parent"
     android:layout_height="80dp"
     android:minHeight="80dp"
-    android:background="@drawable/background"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingBottom="5dp" >
 
-    <TextView
-        android:id="@+id/name"
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
-        android:text="title"
-        android:textColor="#ffffff"
-        android:textSize="30dp" />
+        android:layout_height="80dp"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/background"
+        android:minHeight="50dp"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="description"
-        android:textColor="#bbbbbb"
-        android:textSize="18dp" />
-    
-    <TextView
-        android:id="@+id/completion"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:text="completion"
-        android:textColor="#bbbbbb"
-        android:textSize="18dp" />
-    
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:text="title"
+            android:textColor="#ffffff"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:text="description"
+            android:textColor="#bbbbbb"
+            android:textSize="18dp" />
+
+        <ProgressBar
+            android:id="@+id/completion"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
 </RelativeLayout>
