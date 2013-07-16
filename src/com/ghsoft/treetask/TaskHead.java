@@ -16,7 +16,7 @@ public class TaskHead implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private TaskNode task;
-	String taskID;
+	final String taskID;
 
 	public TaskHead() {
 		taskID = UUID.randomUUID().toString();

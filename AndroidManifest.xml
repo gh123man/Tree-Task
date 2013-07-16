@@ -24,8 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ghsoft.treetask.TaskView" android:theme="@style/AppBaseTheme"></activity>
-        <activity android:theme="@style/AppBaseTheme" android:name="com.ghsoft.treetask.NewTask"></activity>
+        <activity android:name="com.ghsoft.treetask.TaskView"></activity>
+        <activity android:name="com.ghsoft.treetask.NewTask"></activity>
+        <activity android:name="com.ghsoft.treetask.EditTask"></activity>
     </application>
 
 </manifest>

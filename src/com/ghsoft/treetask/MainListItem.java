@@ -60,7 +60,7 @@ public class MainListItem extends BaseAdapter {
 		description.setText(tasks.get(position).getTask().getDescription());
 		completion.setMax(100);
 		completion.setProgress(tasks.get(position).getTask().completion());
-
+		
 		return convertView;
 	}
 

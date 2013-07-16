@@ -1,5 +1,9 @@
 package com.ghsoft.treetask;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -7,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +21,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TaskView extends Activity {
 
@@ -82,6 +88,33 @@ public class TaskView extends Activity {
 			}
 		});
 
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.taskview, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.edit:
+			
+			Intent i = new Intent(TaskView.this, EditTask.class);
+			i.putExtra("task", task);
+			finish();
+			startActivity(i);
+			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			
+			break;
+
+		default:
+			break;
+		}
+
+		return true;
 	}
 
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
@@ -156,7 +189,6 @@ public class TaskView extends Activity {
 		if (task.isHead()) {
 
 			Intent i = new Intent(TaskView.this, Main.class);
-			i.putExtra("task", task.getParent());
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.backslide, R.anim.backzoom);
