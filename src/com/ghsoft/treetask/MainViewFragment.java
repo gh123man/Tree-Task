@@ -99,12 +99,14 @@ public class MainViewFragment extends Fragment {
 			builder.setMessage("Are you sure you want to Delete this story?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					
+					Intent i = new Intent(getActivity(), Main.class);
 					
 					ProgressBar completion = (ProgressBar) info.targetView.findViewById(R.id.completion);
 					
 					if (completion.getProgress() == 100) {
 						
 						TaskManager.delete(tm.getArchive().get(info.position).taskID);
+						i.putExtra("page", 1);
 						
 						
 					} else {
@@ -113,7 +115,7 @@ public class MainViewFragment extends Fragment {
 
 					}
 					
-					Intent i = new Intent(getActivity(), Main.class);
+					
 					getActivity().finish();
 					startActivity(i);
 					getActivity().overridePendingTransition(0, 0);

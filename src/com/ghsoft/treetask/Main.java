@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -33,12 +34,19 @@ public class Main extends FragmentActivity {
 	 * The {@link ViewPager} that will host the section contents.
 	 */
 	ViewPager mViewPager;
+	int page;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
+		page = 0;
+
+		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("page")) {
+			page = getIntent().getExtras().getInt("page");
+		}
+		
 		PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
 		pts.setDrawFullUnderline(true);
 
@@ -49,7 +57,9 @@ public class Main extends FragmentActivity {
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 
 		mViewPager.setAdapter(mSectionsPagerAdapter);
-		
+
+		mViewPager.setCurrentItem(page);
+
 	}
 
 	@Override
@@ -66,23 +76,21 @@ public class Main extends FragmentActivity {
 			Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.newTask:
-			
+
 			TaskHead th = new TaskHead();
 			TaskNode tn = new TaskNode(th);
-			
+
 			DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss a");
 			Date date = new Date();
-			
+
 			tn.setName(dateFormat.format(date));
-			
+
 			Intent i = new Intent(Main.this, NewTask.class);
 			i.putExtra("task", tn);
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
-			
-			
-			
+
 			break;
 
 		default:
@@ -109,12 +117,12 @@ public class Main extends FragmentActivity {
 			// below) with the page number as its lone argument.
 			TaskManager tm = new TaskManager();
 			tm.load();
-			
+
 			Fragment fragment = new MainViewFragment();
 			Bundle args = new Bundle();
-			
+
 			args.putSerializable("tm", tm);
-			
+
 			args.putInt(MainViewFragment.ARG_SECTION_NUMBER, position + 1);
 			fragment.setArguments(args);
 			return fragment;
