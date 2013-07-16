@@ -79,6 +79,10 @@ public class TaskNode extends Task implements Serializable {
 	public void deleteChild(int i) {
 		children.remove(i);
 	}
+	
+	public void deleteChild(Task t) {
+		children.remove(t);
+	}
 
 	public void addSubTask(Task t) {
 		children.add(t);

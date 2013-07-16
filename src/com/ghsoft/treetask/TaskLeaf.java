@@ -13,7 +13,6 @@ public class TaskLeaf extends Task implements Serializable {
 	public TaskLeaf(TaskNode parent) {
 		super(parent);
 		this.complete = false;
-		parent.addSubTask(this);
 	}
 	
 	public static TaskLeaf fromNode (TaskNode from) {

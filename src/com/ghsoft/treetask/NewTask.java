@@ -52,7 +52,9 @@ public class NewTask extends Activity {
 				if (t.setName(name.getText().toString())) {
 					if (t.setDescription(description.getText().toString())) {
 						
-
+						final TaskNode tn = (TaskNode)task;
+						tn.addSubTask(t);
+						
 						TaskManager.save(task.getHead());
 						
 						Intent i = new Intent(NewTask.this, TaskView.class);
@@ -73,10 +75,6 @@ public class NewTask extends Activity {
 			}
 		});
 		
-		
-		
-		
-		
 	}
 
 	@Override
@@ -92,6 +90,7 @@ public class NewTask extends Activity {
 			}
 			
 		} else {
+			
 			i = new Intent(NewTask.this, TaskView.class);
 			i.putExtra("task", task);
 		}

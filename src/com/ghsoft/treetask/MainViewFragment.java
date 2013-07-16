@@ -102,7 +102,7 @@ public class MainViewFragment extends Fragment {
 					Intent i = new Intent(getActivity(), Main.class);
 					
 					ProgressBar completion = (ProgressBar) info.targetView.findViewById(R.id.completion);
-					
+
 					if (completion.getProgress() == 100) {
 						
 						TaskManager.delete(tm.getArchive().get(info.position).taskID);
