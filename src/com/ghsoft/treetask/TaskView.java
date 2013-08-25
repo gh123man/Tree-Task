@@ -134,53 +134,67 @@ public class TaskView extends Activity {
 		final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
 		switch (item.getItemId()) {
-		case R.id.addSubTask:
-
-			TaskLeaf tl = (TaskLeaf) task.getChild(info.position);
-			TaskNode tn = TaskNode.fromLeaf(tl);
-			task.replaceChild(info.position, tn);
-
-			Intent i = new Intent(TaskView.this, NewTask.class);
-			i.putExtra("task", tn);
-			finish();
-			startActivity(i);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
-
-			return true;
-
-		case R.id.delete:
-
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Are you sure you want to Delete this story?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int id) {
-					task.deleteChild(info.position);
-
-					if (task.numChildren() < 1) {
-						Intent i = new Intent(TaskView.this, TaskView.class);
-						i.putExtra("task", task.getParent());
-						finish();
-						startActivity(i);
-						overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
-					} else {
-
-						adapter.notifyDataSetChanged();
-						ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
-						completion.setProgress(task.completion());
+			
+		
+			case R.id.addSubTask:
+	
+				TaskLeaf tl = (TaskLeaf) task.getChild(info.position);
+				TaskNode tn = TaskNode.fromLeaf(tl);
+				task.replaceChild(info.position, tn);
+	
+				Intent i = new Intent(TaskView.this, NewTask.class);
+				i.putExtra("task", tn);
+				finish();
+				startActivity(i);
+				overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+				return true;
+				
+			case R.id.editSubTask:
+	
+				Task taskleaf = (TaskLeaf) task.getChild(info.position);
+				
+				Intent i1 = new Intent(TaskView.this, EditTask.class);
+				i1.putExtra("task", taskleaf);
+				i1.putExtra("fromListView", true);
+				finish();
+				startActivity(i1);
+				overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+	
+				return true;
+				
+			case R.id.delete:
+	
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setMessage("Are you sure you want to Delete this story?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						task.deleteChild(info.position);
+	
+						if (task.numChildren() < 1) {
+							Intent i = new Intent(TaskView.this, TaskView.class);
+							i.putExtra("task", task.getParent());
+							finish();
+							startActivity(i);
+							overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+						} else {
+	
+							adapter.notifyDataSetChanged();
+							ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
+							completion.setProgress(task.completion());
+						}
+	
 					}
-
-				}
-			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
-				public void onClick(DialogInterface dialog, int id) {
-					dialog.cancel();
-				}
-			});
-			AlertDialog alert = builder.create();
-			alert.show();
-
-			return true;
-
-		default:
-			return super.onContextItemSelected(item);
+				}).setNegativeButton("No", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+	
+				return true;
+	
+			default:
+				return super.onContextItemSelected(item);
 		}
 	}
 

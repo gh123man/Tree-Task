@@ -1,14 +1,8 @@
 package com.ghsoft.treetask;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,6 +50,7 @@ public class NewTask extends Activity {
 						tn.addSubTask(t);
 						
 						TaskManager.save(task.getHead());
+						
 						
 						Intent i = new Intent(NewTask.this, TaskView.class);
 						i.putExtra("task", task);

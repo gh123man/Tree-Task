@@ -12,7 +12,8 @@ public class EditTask extends Activity {
 
 	EditText name, description;
 	Button submit;
-	TaskNode task;
+	Task task;
+	boolean fromList;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -21,8 +22,9 @@ public class EditTask extends Activity {
 		setTitle("Edit task");
 
 		Object sTask = getIntent().getSerializableExtra("task");
+		fromList = getIntent().getBooleanExtra("fromListView", false);
 
-		task = (TaskNode) sTask;
+		task = (Task)sTask;
 
 		name = (EditText) findViewById(R.id.name);
 		description = (EditText) findViewById(R.id.description);
@@ -47,7 +49,13 @@ public class EditTask extends Activity {
 						TaskManager.save(task.getHead());
 
 						Intent i = new Intent(EditTask.this, TaskView.class);
-						i.putExtra("task", task);
+						
+						if (fromList) {
+							i.putExtra("task", task.getParent());
+						} else {
+							i.putExtra("task", task);
+						}
+						
 						finish();
 						startActivity(i);
 						overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
@@ -69,7 +77,13 @@ public class EditTask extends Activity {
 		Intent i;
 
 		i = new Intent(EditTask.this, TaskView.class);
-		i.putExtra("task", task);
+		
+		if (fromList) {
+			i.putExtra("task", task.getParent());
+		} else {
+			i.putExtra("task", task);
+		}
+		
 		finish();
 		startActivity(i);
 		overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
