@@ -109,7 +109,6 @@ public class TaskView extends Activity {
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 			
 			break;
-		
 
 		default:
 			break;
@@ -171,11 +170,25 @@ public class TaskView extends Activity {
 						task.deleteChild(info.position);
 	
 						if (task.numChildren() < 1) {
-							Intent i = new Intent(TaskView.this, TaskView.class);
-							i.putExtra("task", task.getParent());
-							finish();
-							startActivity(i);
-							overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+							
+							if (task.getParent() != null) {
+								
+								Intent i = new Intent(TaskView.this, TaskView.class);
+								i.putExtra("task", task.getParent());
+								finish();
+								startActivity(i);
+								overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+								
+							} else {
+								
+								TaskManager.delete(task.getHead().taskID);
+								Intent i = new Intent(TaskView.this, Main.class);
+								finish();
+								startActivity(i);
+								overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+								
+							}
+							
 						} else {
 	
 							adapter.notifyDataSetChanged();
