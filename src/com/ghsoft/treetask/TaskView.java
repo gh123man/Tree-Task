@@ -109,6 +109,7 @@ public class TaskView extends Activity {
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 			
 			break;
+		
 
 		default:
 			break;
@@ -151,7 +152,7 @@ public class TaskView extends Activity {
 				
 			case R.id.editSubTask:
 	
-				Task taskleaf = (TaskLeaf) task.getChild(info.position);
+				Task taskleaf = task.getChild(info.position);
 				
 				Intent i1 = new Intent(TaskView.this, EditTask.class);
 				i1.putExtra("task", taskleaf);

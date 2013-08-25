@@ -4,7 +4,7 @@
         android:id="@+id/edit"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@drawable/plus_icon"/>
+        android:title="Edit"/>
     
 
 </menu>

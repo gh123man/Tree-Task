@@ -75,18 +75,9 @@ public class Main extends FragmentActivity {
 		case R.id.action_settings:
 			Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
 			break;
+			
 		case R.id.newTask:
-
-			TaskHead th = new TaskHead();
-			TaskNode tn = new TaskNode(th);
-
-			DateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy hh:mm:ss a");
-			Date date = new Date();
-
-			tn.setName(dateFormat.format(date));
-
-			Intent i = new Intent(Main.this, NewTask.class);
-			i.putExtra("task", tn);
+			Intent i = new Intent(Main.this, NewTaskTree.class);
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
