@@ -1,7 +1,6 @@
 package com.ghsoft.treetask;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public abstract class Task implements Serializable {
 
@@ -46,11 +45,17 @@ public abstract class Task implements Serializable {
 	}
 
 	public String getName() {
-		return name;
+		if (name == null) 
+			return "";
+		else
+			return name;
 	}
 
 	public String getDescription() {
-		return description;
+		if (description == null) 
+			return "";
+		else
+			return description;
 	}
 
 	public Task getParent() {

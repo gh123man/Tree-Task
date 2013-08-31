@@ -39,6 +39,19 @@ public class TaskManager implements Serializable {
 
 	public void load() {
 		File dir = new File(sdcard.getAbsolutePath() + "/TaskTree/");
+		if (!dir.exists()) {
+			try {
+
+				boolean success = dir.mkdir();
+				if (success) {
+				} else {
+					System.exit(0);
+				}
+			} catch (Exception e) {
+				System.err.println("Error: " + e.getMessage());
+			}
+		}
+		
 		for (File child : dir.listFiles()) {
 
 			FileInputStream fis;
