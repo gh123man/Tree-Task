@@ -2,9 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="80dp"
+    android:background="@drawable/transselect"
     android:minHeight="80dp"
     android:orientation="vertical"
-    android:background="@drawable/transselect"
     android:paddingBottom="2dp" >
 
     <LinearLayout
@@ -14,6 +14,14 @@
         android:background="@drawable/select"
         android:minHeight="50dp"
         android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/subcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textColor="#fff"
+            android:textSize="10dp" />
 
         <TextView
             android:id="@+id/name"
@@ -35,7 +43,7 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingTop="5dp" >
 
             <TextView

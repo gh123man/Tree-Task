@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -13,10 +14,11 @@ public class TaskViewListItem extends BaseAdapter {
 	private LayoutInflater inflater;
 	Context context;
 	Activity act;
-	TextView name, description, percent;
+	TextView name, description, percent, subcount;
 	ProgressBar completion;
 	TaskNode task;
 	View header;
+	ImageView check;
 
 	public TaskViewListItem(Activity act, Context context, TaskNode task, View header) {
 		// Caches the LayoutInflater for quicker use
@@ -54,12 +56,27 @@ public class TaskViewListItem extends BaseAdapter {
 		
 		final Task t = task.getChild(position);
 		
-		convertView = this.inflater.inflate(R.layout.taskviewlistitem, null);
+		if (t.hasChildren()) {
+			
+			convertView = this.inflater.inflate(R.layout.taskviewlistitem, null);
+			layoutHasChildren(convertView, t);
+			
+		} else {
+			
+			convertView = this.inflater.inflate(R.layout.taskviewlistitemnochildren, null);
+			layoutNoChildren(convertView, t);
+			
+		}
 		
+		return convertView;
+	}
+
+	private void layoutHasChildren(View convertView, Task t) {
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
 		completion = (ProgressBar) convertView.findViewById(R.id.completion);
 		percent = (TextView) convertView.findViewById(R.id.percent);
+		subcount = (TextView) convertView.findViewById(R.id.subcount);
 		
 		name.setText(t.getName());
 		description.setText(t.getDescription());
@@ -68,10 +85,21 @@ public class TaskViewListItem extends BaseAdapter {
 		completion.setProgress(t.completion());
 		percent.setText(t.completion() + "%");
 		
-		
-		return convertView;
+		subcount.setText(t.subTaskCount() + " subtask(s)");
 	}
-
+	
+	private void layoutNoChildren(View convertView, Task t) {
+		name = (TextView) convertView.findViewById(R.id.name);
+		description = (TextView) convertView.findViewById(R.id.description);
+		check = (ImageView) convertView.findViewById(R.id.check);
+		
+		name.setText(t.getName());
+		description.setText(t.getDescription());
+		
+		if (t.completion() == 100) 
+			check.setVisibility(View.VISIBLE);
+		
+	}
 
 	
 }

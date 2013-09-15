@@ -7,6 +7,14 @@
     android:orientation="vertical" >
 
     <TextView
+        android:id="@+id/subcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:textColor="#fff"
+        android:textSize="10dp" />
+
+    <TextView
         android:id="@+id/name"
         android:layout_width="fill_parent"
         android:layout_height="40dp"
@@ -24,13 +32,11 @@
         android:textColor="#bbbbbb"
         android:textSize="18dp" />
 
-    
-
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:paddingTop="5dp" >
-        
+
         <TextView
             android:id="@+id/percent"
             android:layout_width="wrap_content"

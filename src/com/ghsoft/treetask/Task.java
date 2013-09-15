@@ -26,7 +26,11 @@ public abstract class Task implements Serializable {
 
 	public abstract int completion();
 
-	public abstract boolean hasChildren();
+	public boolean hasChildren() {
+		return subTaskCount() != 0;
+	}
+	
+	public abstract int subTaskCount();
 
 	public boolean setName(String name) {
 		if (name.length() <= maxNameLen) {

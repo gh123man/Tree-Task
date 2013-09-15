@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -70,18 +71,18 @@ public class TaskView extends Activity {
 					
 					TaskManager.save(tl.getHead());
 
-					ProgressBar completion = (ProgressBar) v.findViewById(R.id.completion);
-					TextView percent = (TextView) v.findViewById(R.id.percent);
+					ProgressBar completion = (ProgressBar) findViewById(R.id.hcompletion);
+					TextView percent = (TextView) findViewById(R.id.hpercent);
+					ImageView check = (ImageView) v.findViewById(R.id.check);
 					
-					completion.setProgress(t.completion());
-					percent.setText(t.completion() + "%");
-					
-					completion = (ProgressBar) findViewById(R.id.hcompletion);
 					completion.setProgress(task.completion());
 					
-					percent = (TextView) findViewById(R.id.hpercent);
 					percent.setText(task.completion() + "%");
 					
+					if (t.completion() == 100) 
+						check.setVisibility(View.VISIBLE);
+					else
+						check.setVisibility(View.INVISIBLE);
 					
 
 				}

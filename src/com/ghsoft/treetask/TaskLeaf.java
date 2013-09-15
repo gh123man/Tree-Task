@@ -28,8 +28,8 @@ public class TaskLeaf extends Task implements Serializable {
 	}
 
 	@Override
-	public boolean hasChildren() {
-		return false;
+	public int subTaskCount() {
+		return 0;
 	}
 	
 	public void setFinished(boolean set) {

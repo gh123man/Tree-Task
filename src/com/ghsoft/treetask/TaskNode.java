@@ -32,8 +32,14 @@ public class TaskNode extends Task implements Serializable {
 	}
 
 	@Override
-	public boolean hasChildren() {
-		return true;
+	public int subTaskCount() {
+		int out = numChildren();
+		
+		for (Task child : children) {
+			out += child.subTaskCount();
+		}
+		
+		return out;
 	}
 
 	@Override
