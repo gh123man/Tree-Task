@@ -19,4 +19,7 @@
 
 <resources>
     <color name="pressed_treetask">#CC353535</color>
+    <color name="select">#336635</color>
+    <color name="nselect">#303030</color>
+    <color name="transparent">#00000000</color>
 </resources>

@@ -13,7 +13,7 @@ public class TaskViewListItem extends BaseAdapter {
 	private LayoutInflater inflater;
 	Context context;
 	Activity act;
-	TextView name, description;
+	TextView name, description, percent;
 	ProgressBar completion;
 	TaskNode task;
 	View header;
@@ -59,12 +59,14 @@ public class TaskViewListItem extends BaseAdapter {
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
 		completion = (ProgressBar) convertView.findViewById(R.id.completion);
+		percent = (TextView) convertView.findViewById(R.id.percent);
 		
 		name.setText(t.getName());
 		description.setText(t.getDescription());
 		
 		completion.setMax(100);
 		completion.setProgress(t.completion());
+		percent.setText(t.completion() + "%");
 		
 		
 		return convertView;

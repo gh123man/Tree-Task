@@ -15,7 +15,7 @@ public class MainListItem extends BaseAdapter {
 	private LayoutInflater inflater;
 	Context context;
 	Activity act;
-	TextView name, description;
+	TextView name, description, percent;
 	ProgressBar completion;
 	String uname, pword;
 	ArrayList<TaskHead> tasks;
@@ -55,11 +55,13 @@ public class MainListItem extends BaseAdapter {
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
 		completion = (ProgressBar) convertView.findViewById(R.id.completion);
+		percent = (TextView) convertView.findViewById(R.id.percent);
 
 		name.setText(tasks.get(position).getTask().getName());
 		description.setText(tasks.get(position).getTask().getDescription());
 		completion.setMax(100);
 		completion.setProgress(tasks.get(position).getTask().completion());
+		percent.setText(tasks.get(position).getTask().completion() + "%");
 		
 		return convertView;
 	}

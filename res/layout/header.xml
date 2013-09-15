@@ -8,8 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="1dp"
-        android:background="#202020"
+        android:background="#303030"
         android:orientation="vertical" >
 
         <TextView
@@ -45,7 +44,19 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:paddingTop="5dp" >
+
+            <TextView
+                android:id="@+id/hpercent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="3dp"
+                android:paddingRight="205dp"
+                android:textColor="#fff"
+                android:textSize="15dp" />
 
             <ProgressBar
                 android:id="@+id/hcompletion"

@@ -8,9 +8,9 @@
             android:pivotY="87%" >
             <shape
                 android:shape="rectangle" >
-                <stroke android:color="#222" android:width="10dp"/>
+                <stroke android:color="#333" android:width="10dp"/>
                 <solid
-                    android:color="#222" />
+                    android:color="#333" />
             </shape>
         </rotate>
     </item>

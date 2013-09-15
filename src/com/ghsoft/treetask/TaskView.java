@@ -71,11 +71,17 @@ public class TaskView extends Activity {
 					TaskManager.save(tl.getHead());
 
 					ProgressBar completion = (ProgressBar) v.findViewById(R.id.completion);
-
+					TextView percent = (TextView) v.findViewById(R.id.percent);
+					
 					completion.setProgress(t.completion());
-
+					percent.setText(t.completion() + "%");
+					
 					completion = (ProgressBar) findViewById(R.id.hcompletion);
 					completion.setProgress(task.completion());
+					
+					percent = (TextView) findViewById(R.id.hpercent);
+					percent.setText(task.completion() + "%");
+					
 					
 
 				}
@@ -234,6 +240,7 @@ public class TaskView extends Activity {
 		TextView name = (TextView) header.findViewById(R.id.hname);
 		TextView path = (TextView) header.findViewById(R.id.path);
 		TextView description = (TextView) header.findViewById(R.id.hdescription);
+		TextView percent = (TextView) header.findViewById(R.id.hpercent);
 
 		ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
 
@@ -243,6 +250,8 @@ public class TaskView extends Activity {
 
 		completion.setMax(100);
 		completion.setProgress(task.completion());
+		percent.setText(task.completion() + "%");
+		
 		return header;
 	}
 
