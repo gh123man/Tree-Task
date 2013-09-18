@@ -50,9 +50,7 @@
                 android:textColor="#ffffff"
                 android:layout_marginRight="20dp" >
 
-                <requestFocus />
             </EditText>
-
 
             <Button
                 android:id="@+id/submit"

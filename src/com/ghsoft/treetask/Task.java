@@ -8,8 +8,8 @@ public abstract class Task implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public static final int maxNameLen = 30;
-	public static final int maxDescriptionLen = 500;
+	public static final int maxNameLen = 3000;
+	public static final int maxDescriptionLen = 50000;
 	private String name, description;
 	private Task parent;
 	private TaskHead head;
@@ -85,5 +85,5 @@ public abstract class Task implements Serializable {
 	public TaskHead getHead() {
 		return head;
 	}
-
+	
 }

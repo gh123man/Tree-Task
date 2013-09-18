@@ -7,6 +7,7 @@
     <ListView
         android:id="@+id/taskList"
         android:layout_width="fill_parent"
+        android:background="#101010"
         android:divider="#202020"
         android:dividerHeight="2px"
         android:layout_height="fill_parent">

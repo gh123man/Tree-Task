@@ -27,7 +27,7 @@
         <TextView
             android:id="@+id/hname"
             android:layout_width="fill_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:text="title"
             android:textColor="#ffffff"
             android:textSize="30dp" />

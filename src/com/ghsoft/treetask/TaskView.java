@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -33,17 +32,15 @@ public class TaskView extends Activity {
 		Object sTask = getIntent().getSerializableExtra("task");
 
 		task = (TaskNode) sTask;
-
+		
 		setTitle(task.getName());
 
 		taskList = (ListView) findViewById(R.id.taskList);
 
 		header = header();
-		View footer = footer();
 
 		taskList.addHeaderView(header, null, false);
-		taskList.addFooterView(footer, null, false);
-
+		
 		adapter = new TaskViewListItem(this, getApplicationContext(), task, header);
 
 		taskList.setAdapter(adapter);
@@ -101,15 +98,23 @@ public class TaskView extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent i;
 		switch (item.getItemId()) {
 		case R.id.edit:
 			
-			Intent i = new Intent(TaskView.this, EditTask.class);
+			i = new Intent(TaskView.this, EditTask.class);
 			i.putExtra("task", task);
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 			
+		case R.id.newTask:
+			i = new Intent(TaskView.this, NewTask.class);
+			i.putExtra("task", task);
+			finish();
+			startActivity(i);
+			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+
 			break;
 
 		default:
@@ -167,10 +172,11 @@ public class TaskView extends Activity {
 			case R.id.delete:
 	
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setMessage("Are you sure you want to Delete this story?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						task.deleteChild(info.position);
-	
+						TaskManager.save(task.getHead());
+						
 						if (task.numChildren() < 1) {
 							
 							if (task.getParent() != null) {
@@ -254,27 +260,6 @@ public class TaskView extends Activity {
 		percent.setText(task.completion() + "%");
 		
 		return header;
-	}
-
-	private View footer() {
-		View footer = getLayoutInflater().inflate(R.layout.footer, null);
-
-		Button newTask = (Button) footer.findViewById(R.id.newTask);
-
-		newTask.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent i = new Intent(TaskView.this, NewTask.class);
-				i.putExtra("task", task);
-				finish();
-				startActivity(i);
-				overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
-
-			}
-		});
-
-		return footer;
 	}
 
 }

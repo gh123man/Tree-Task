@@ -1,9 +1,11 @@
 package com.ghsoft.treetask;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,7 +36,8 @@ public class NewTaskTree extends Activity {
 		name = (EditText)findViewById(R.id.name);
 		submit = (Button)findViewById(R.id.submit);
 		
-		
+		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+
 		submit.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -50,6 +53,8 @@ public class NewTaskTree extends Activity {
 					Toast.makeText(NewTaskTree.this, "You must supply a tree name", Toast.LENGTH_LONG).show();
 					return;
 				}
+				
+				hideInput();
 				
 				if (task.setName(treeName.getText().toString())) {
 					if (t.setName(name.getText().toString())) {
@@ -77,6 +82,11 @@ public class NewTaskTree extends Activity {
 			}
 		});
 		
+	}
+	
+	private void hideInput() {
+		InputMethodManager inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+	    inputManager.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
 	}
 
 	@Override
