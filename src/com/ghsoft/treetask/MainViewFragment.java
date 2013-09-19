@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -17,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 public class MainViewFragment extends Fragment {
 
@@ -39,18 +40,20 @@ public class MainViewFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.mainviewfragment, container, false);
+		View rootView;
 
 		tm = (TaskManager) getArguments().get("tm");
 
 		toDisplay = new ArrayList<TaskHead>();
 		if (getArguments().getInt(ARG_SECTION_NUMBER) == TASKS) {
+			rootView = inflater.inflate(R.layout.mainviewfragment, container, false);
 			toDisplay = tm.getTasks();
-		} else if (getArguments().getInt(ARG_SECTION_NUMBER) == ARCHIVE) {
+			taskList = (ListView) rootView.findViewById(R.id.taskList);
+		} else {
+			rootView = inflater.inflate(R.layout.mainviewfragmentarchive, container, false);
 			toDisplay = tm.getArchive();
+			taskList = (ListView) rootView.findViewById(R.id.taskListArchive);
 		}
-
-		taskList = (ListView) rootView.findViewById(R.id.taskList);
 
 		if (toDisplay.size() > 0) {
 			adapter = new MainListItem(getActivity(), getActivity().getApplicationContext(), toDisplay);
@@ -62,9 +65,12 @@ public class MainViewFragment extends Fragment {
 
 		taskList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-
+				
+				ViewPager a = (ViewPager) arg1.getParent().getParent().getParent().getParent();
+				
 				Intent i = new Intent(getActivity(), TaskView.class);
 				i.putExtra("task", toDisplay.get(position).getTask());
+				i.putExtra("page", a.getCurrentItem());
 				getActivity().finish();
 				startActivity(i);
 				getActivity().overridePendingTransition(R.anim.zoom, R.anim.slide);
@@ -72,62 +78,74 @@ public class MainViewFragment extends Fragment {
 			}
 		});
 
-		// dummyTextView.setText(Integer.toString(getArguments().getInt(
-		// ARG_SECTION_NUMBER)));
-
 		return rootView;
 	}
 
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
+		ViewPager a = (ViewPager) v.getParent().getParent().getParent();
+
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getActivity().getMenuInflater();
-		//AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-		inflater.inflate(R.menu.mainviewmenu, menu);
+		
+		if (a.getCurrentItem() == 0)
+			inflater.inflate(R.menu.mainviewmenu, menu);
+		else
+			inflater.inflate(R.menu.mainviewmenuarchive, menu);
 
 	}
 
 	public boolean onContextItemSelected(MenuItem item) {
 		final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
+		AlertDialog.Builder builder;
+		AlertDialog alert;
 		switch (item.getItemId()) {
 
-		case R.id.delete:
+		case R.id.deleteTask:
 
-			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			builder = new AlertDialog.Builder(getActivity());
 			builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
-					
-					Intent i = new Intent(getActivity(), Main.class);
-					
-					ProgressBar completion = (ProgressBar) info.targetView.findViewById(R.id.completion);
 
-					if (completion.getProgress() == 100) {
-						
-						TaskManager.delete(tm.getArchive().get(info.position).taskID);
-						i.putExtra("page", 1);
-						
-						
-					} else {
+					TaskManager.delete(tm.getTasks().get(info.position).taskID);
 
-						TaskManager.delete(tm.getTasks().get(info.position).taskID);
-
-					}
+					ListView list = (ListView) getActivity().findViewById(R.id.taskList);
+					MainListItem adapter = ((MainListItem)list.getAdapter());
+					adapter.getData().remove(info.position);
+					adapter.notifyDataSetChanged();
 					
-					
-					getActivity().finish();
-					startActivity(i);
-					getActivity().overridePendingTransition(0, 0);
 				}
 			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					dialog.cancel();
 				}
 			});
-			AlertDialog alert = builder.create();
+			alert = builder.create();
 			alert.show();
 
 			return true;
 
+		case R.id.deleteArchive:
+
+			builder = new AlertDialog.Builder(getActivity());
+			builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+
+					TaskManager.delete(tm.getArchive().get(info.position).taskID);
+
+					ListView list = (ListView) getActivity().findViewById(R.id.taskListArchive);
+					MainListItem adapter = ((MainListItem)list.getAdapter());
+					adapter.getData().remove(info.position);
+					adapter.notifyDataSetChanged();
+				}
+			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+			alert = builder.create();
+			alert.show();
+
+			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}

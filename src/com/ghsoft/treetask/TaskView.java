@@ -24,6 +24,7 @@ public class TaskView extends Activity {
 	TaskNode task;
 	TaskViewListItem adapter;
 	View header;
+	
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -107,6 +108,7 @@ public class TaskView extends Activity {
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			break;
 			
 		case R.id.newTask:
 			i = new Intent(TaskView.this, NewTask.class);
@@ -225,6 +227,10 @@ public class TaskView extends Activity {
 		if (task.isHead()) {
 
 			Intent i = new Intent(TaskView.this, Main.class);
+			if (task.completion() == 100) 
+				i.putExtra("page", 1);
+			else
+				i.putExtra("page", 0);
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.backslide, R.anim.backzoom);

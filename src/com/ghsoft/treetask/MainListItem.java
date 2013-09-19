@@ -47,6 +47,10 @@ public class MainListItem extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return tasks.size();
 	}
+	
+	public ArrayList<TaskHead> getData() {
+		return tasks;
+	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 

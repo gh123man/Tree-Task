@@ -10,6 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -55,6 +57,17 @@ public class Main extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
 		mViewPager.setCurrentItem(page);
+		
+		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+			
+		    public void onPageScrollStateChanged(int state) {}
+		    
+		    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+
+		    public void onPageSelected(int position) {
+		        page = position;
+		    }
+		});
 
 	}
 
@@ -69,7 +82,7 @@ public class Main extends FragmentActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.action_settings:
-			Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
 			break;
 			
 		case R.id.newTask:
