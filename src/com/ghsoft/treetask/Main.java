@@ -81,9 +81,9 @@ public class Main extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.action_settings:
+		//case R.id.action_settings:
 			//Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
-			break;
+		//	break;
 			
 		case R.id.newTask:
 			Intent i = new Intent(Main.this, NewTaskTree.class);
@@ -147,4 +147,13 @@ public class Main extends FragmentActivity {
 		}
 	}
 
+	@Override
+	public void onBackPressed() {
+		if (mViewPager.getCurrentItem() == 1) {
+			mViewPager.setCurrentItem(0, true);
+		} else {
+			finish();
+		}
+	}
+	
 }

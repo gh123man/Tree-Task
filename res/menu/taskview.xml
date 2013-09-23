@@ -2,15 +2,18 @@
 
     <item
         android:id="@+id/newTask"
+        android:icon="@drawable/plus_icon"
         android:orderInCategory="100"
-        android:showAsAction="always"
-        android:icon="@drawable/plus_icon"/>
-    
+        android:showAsAction="always"/>
     <item
         android:id="@+id/edit"
         android:orderInCategory="100"
         android:showAsAction="always"
         android:title="Edit"/>
-    
+    <item
+        android:id="@+id/treeView"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="tree"/>
 
 </menu>

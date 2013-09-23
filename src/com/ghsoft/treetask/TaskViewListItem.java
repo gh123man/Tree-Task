@@ -2,6 +2,7 @@ package com.ghsoft.treetask;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,6 +87,12 @@ public class TaskViewListItem extends BaseAdapter {
 		percent.setText(t.completion() + "%");
 		
 		subcount.setText(t.subTaskCount() + " subtask(s)");
+		
+		if (t.completion() == 100) {
+			name.setTextColor(Color.parseColor("#505050"));
+			description.setTextColor(Color.parseColor("#505050"));
+		}
+		
 	}
 	
 	private void layoutNoChildren(View convertView, Task t) {
@@ -96,8 +103,12 @@ public class TaskViewListItem extends BaseAdapter {
 		name.setText(t.getName());
 		description.setText(t.getDescription());
 		
-		if (t.completion() == 100) 
+		if (t.completion() == 100) {
 			check.setVisibility(View.VISIBLE);
+			name.setTextColor(Color.parseColor("#505050"));
+			description.setTextColor(Color.parseColor("#505050"));
+		}
+			
 		
 	}
 

@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -24,7 +28,6 @@ public class TaskView extends Activity {
 	TaskNode task;
 	TaskViewListItem adapter;
 	View header;
-	
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,7 +36,7 @@ public class TaskView extends Activity {
 		Object sTask = getIntent().getSerializableExtra("task");
 
 		task = (TaskNode) sTask;
-		
+
 		setTitle(task.getName());
 
 		taskList = (ListView) findViewById(R.id.taskList);
@@ -41,7 +44,7 @@ public class TaskView extends Activity {
 		header = header();
 
 		taskList.addHeaderView(header, null, false);
-		
+
 		adapter = new TaskViewListItem(this, getApplicationContext(), task, header);
 
 		taskList.setAdapter(adapter);
@@ -66,22 +69,30 @@ public class TaskView extends Activity {
 				} else {
 					TaskLeaf tl = (TaskLeaf) t;
 					tl.setFinished(!tl.getFinished());
-					
+
 					TaskManager.save(tl.getHead());
 
 					ProgressBar completion = (ProgressBar) findViewById(R.id.hcompletion);
+
 					TextView percent = (TextView) findViewById(R.id.hpercent);
 					ImageView check = (ImageView) v.findViewById(R.id.check);
-					
+
 					completion.setProgress(task.completion());
-					
+
 					percent.setText(task.completion() + "%");
-					
-					if (t.completion() == 100) 
+
+					TextView name = (TextView) v.findViewById(R.id.name);
+					TextView description = (TextView) v.findViewById(R.id.description);
+
+					if (t.completion() == 100) {
 						check.setVisibility(View.VISIBLE);
-					else
+						name.setTextColor(Color.parseColor("#505050"));
+						description.setTextColor(Color.parseColor("#505050"));
+					} else {
 						check.setVisibility(View.INVISIBLE);
-					
+						name.setTextColor(Color.parseColor("#ffffff"));
+						description.setTextColor(Color.parseColor("#bbbbbb"));
+					}
 
 				}
 
@@ -89,7 +100,7 @@ public class TaskView extends Activity {
 		});
 
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
@@ -102,14 +113,14 @@ public class TaskView extends Activity {
 		Intent i;
 		switch (item.getItemId()) {
 		case R.id.edit:
-			
+
 			i = new Intent(TaskView.this, EditTask.class);
 			i.putExtra("task", task);
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 			break;
-			
+
 		case R.id.newTask:
 			i = new Intent(TaskView.this, NewTask.class);
 			i.putExtra("task", task);
@@ -118,6 +129,16 @@ public class TaskView extends Activity {
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 
 			break;
+			
+		case R.id.treeView:
+			i = new Intent(TaskView.this, TreeView.class);
+			i.putExtra("task", task);
+			finish();
+			startActivity(i);
+			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+
+			break;
+
 
 		default:
 			break;
@@ -143,82 +164,81 @@ public class TaskView extends Activity {
 		final AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
 
 		switch (item.getItemId()) {
-			
-		
-			case R.id.addSubTask:
-	
-				TaskLeaf tl = (TaskLeaf) task.getChild(info.position);
-				TaskNode tn = TaskNode.fromLeaf(tl);
-				task.replaceChild(info.position, tn);
-	
-				Intent i = new Intent(TaskView.this, NewTask.class);
-				i.putExtra("task", tn);
-				finish();
-				startActivity(i);
-				overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
-				return true;
-				
-			case R.id.editSubTask:
-	
-				Task taskleaf = task.getChild(info.position);
-				
-				Intent i1 = new Intent(TaskView.this, EditTask.class);
-				i1.putExtra("task", taskleaf);
-				i1.putExtra("fromListView", true);
-				finish();
-				startActivity(i1);
-				overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
-	
-				return true;
-				
-			case R.id.delete:
-	
-				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						task.deleteChild(info.position);
-						TaskManager.save(task.getHead());
-						
-						if (task.numChildren() < 1) {
-							
-							if (task.getParent() != null) {
-								
-								Intent i = new Intent(TaskView.this, TaskView.class);
-								i.putExtra("task", task.getParent());
-								finish();
-								startActivity(i);
-								overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
-								
-							} else {
-								
-								TaskManager.delete(task.getHead().taskID);
-								Intent i = new Intent(TaskView.this, Main.class);
-								finish();
-								startActivity(i);
-								overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
-								
-							}
-							
+
+		case R.id.addSubTask:
+
+			TaskLeaf tl = (TaskLeaf) task.getChild(info.position);
+			TaskNode tn = TaskNode.fromLeaf(tl);
+			task.replaceChild(info.position, tn);
+
+			Intent i = new Intent(TaskView.this, NewTask.class);
+			i.putExtra("task", tn);
+			finish();
+			startActivity(i);
+			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			return true;
+
+		case R.id.editSubTask:
+
+			Task taskleaf = task.getChild(info.position);
+
+			Intent i1 = new Intent(TaskView.this, EditTask.class);
+			i1.putExtra("task", taskleaf);
+			i1.putExtra("fromListView", true);
+			finish();
+			startActivity(i1);
+			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+
+			return true;
+
+		case R.id.delete:
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					task.deleteChild(info.position);
+					TaskManager.save(task.getHead());
+
+					if (task.numChildren() < 1) {
+
+						if (task.getParent() != null) {
+
+							Intent i = new Intent(TaskView.this, TaskView.class);
+							i.putExtra("task", task.getParent());
+							finish();
+							startActivity(i);
+							overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+
 						} else {
-	
-							adapter.notifyDataSetChanged();
-							ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
-							completion.setProgress(task.completion());
+
+							TaskManager.delete(task.getHead().taskID);
+							Intent i = new Intent(TaskView.this, Main.class);
+							finish();
+							startActivity(i);
+							overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+
 						}
-	
+
+					} else {
+
+						adapter.notifyDataSetChanged();
+						ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
+						completion.setProgress(task.completion());
 					}
-				}).setNegativeButton("No", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						dialog.cancel();
-					}
-				});
-				AlertDialog alert = builder.create();
-				alert.show();
-	
-				return true;
-	
-			default:
-				return super.onContextItemSelected(item);
+
+				}
+			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
+				public void onClick(DialogInterface dialog, int id) {
+					dialog.cancel();
+				}
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
+
+			return true;
+
+		default:
+			return super.onContextItemSelected(item);
 		}
 	}
 
@@ -227,7 +247,7 @@ public class TaskView extends Activity {
 		if (task.isHead()) {
 
 			Intent i = new Intent(TaskView.this, Main.class);
-			if (task.completion() == 100) 
+			if (task.completion() == 100)
 				i.putExtra("page", 1);
 			else
 				i.putExtra("page", 0);
@@ -264,7 +284,7 @@ public class TaskView extends Activity {
 		completion.setMax(100);
 		completion.setProgress(task.completion());
 		percent.setText(task.completion() + "%");
-		
+
 		return header;
 	}
 

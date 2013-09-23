@@ -1,0 +1,79 @@
+html {
+    background: #111
+}
+
+body { 
+    font-family:Arial;
+    color: #fff;
+    font-size: 200%;
+} 
+
+ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; 
+}
+
+a {
+    font-family: Arial;
+}
+.node {
+    display: inline-block;
+    width: 220px;
+    max-width: 350px;
+    padding-bottom: 4px;
+    background: #303030;
+    padding-right: 5px;
+    margin-top: 1px;
+    padding-left: 2px;
+    margin-bottom: 1px;
+}
+
+.triangle {
+	width: 0; 
+	height: 0; 
+	border-left: 18px solid transparent;
+	border-right: 18px solid transparent;
+	border-bottom: 19px solid #303030;
+}
+
+.tri {
+    padding-top: 1px;
+    padding-left: 30px;
+    padding-bottom: 1px;
+}
+
+.taskName {
+
+}
+
+.progText {
+    float: right;
+    padding-left: 10px;
+    padding-top: 4px;
+    padding-right: 3px;
+    font-size: 9pt;
+}
+.progress {
+    background: #007A00;
+    height: 100%;
+    
+}
+
+.progressBackground {
+    margin-top: 5px;
+    width: 150px;
+    height: 13px;
+    background: #000;
+    float: right;
+    
+}
+
+.taskDescription {
+    font-size: 9pt;
+    color: #bbbbbb;
+}
+
+.children {
+    padding-left: 30px;
+}
