@@ -144,7 +144,7 @@ public class TaskView extends Activity {
 			i.putExtra("task", task);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slidedownto, R.anim.shortzoom);
 
 			break;
 

@@ -64,6 +64,7 @@ public class HtmlTreeBuilder {
 		else
 			out += "<div class='taskName'>";
 		out += t.getName();
+		out += "<br>";
 		out += "</div>";
 
 		if (t.completion() == 100)
@@ -110,6 +111,7 @@ public class HtmlTreeBuilder {
 
 		String out = "";
 		out += "<div>";
+		out += "<a href='" + getFullUrl(t.getParent()) + "'>";
 		out += "<div class='node'>";
 
 		if (t.completion() == 100)
@@ -118,6 +120,7 @@ public class HtmlTreeBuilder {
 			out += "<div class='taskName'>";
 
 		out += t.getName();
+		out += "<br>";
 		out += "</div>";
 
 		if (t.completion() == 100)
@@ -128,6 +131,7 @@ public class HtmlTreeBuilder {
 		out += "</div>";
 
 		out += "</div>";
+		out += "</a>";
 		out += "</div>";
 
 		return out;

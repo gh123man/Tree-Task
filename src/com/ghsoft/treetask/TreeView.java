@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -64,7 +63,7 @@ public class TreeView extends Activity {
 		i.putExtra("task", task);
 		finish();
 		startActivity(i);
-		overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+		overridePendingTransition(R.anim.backshortzoom, R.anim.slideupfrom);
 
 	}
 

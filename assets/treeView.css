@@ -47,7 +47,6 @@ a {
 }
 
 .taskName {
-
 }
 
 .taskNameFinished {
@@ -83,6 +82,7 @@ a {
     height: 13px;
     background: #000;
     float: right;
+    margin-bottom: 3px;
     
 }
 
