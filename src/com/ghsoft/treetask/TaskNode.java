@@ -77,6 +77,10 @@ public class TaskNode extends Task implements Serializable {
 
 		return children.get(i);
 	}
+	
+	public  ArrayList<Task> getChildren() {
+		return children;
+	}
 
 	public void setChild(int i, Task t) {
 		children.set(i, t);

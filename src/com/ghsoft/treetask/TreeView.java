@@ -1,30 +1,17 @@
 package com.ghsoft.treetask;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.ContextMenu.ContextMenuInfo;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.util.Log;
 import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
+import android.webkit.WebViewClient;
 
 public class TreeView extends Activity {
 
 	TaskNode task;
 	WebView treeDisplay;
-	
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -35,19 +22,40 @@ public class TreeView extends Activity {
 		task = (TaskNode) sTask;
 
 		setTitle(task.getName());
-		
+
 		treeDisplay = (WebView) findViewById(R.id.treeDisplay);
-		
+		treeDisplay.setBackgroundColor(Color.argb(1, 0, 0, 0));
+
 		HtmlTreeBuilder builder = new HtmlTreeBuilder(task);
-		
-		
-		
+
 		String data = builder.getHtml();
-		
+
 		treeDisplay.loadDataWithBaseURL("file:///android_asset/", data, "text/html", "UTF-8", "");
 
+		treeDisplay.setWebViewClient(new WebViewClient() {
+			// Override URL
+			public boolean shouldOverrideUrlLoading(WebView view, String url) {
+				String[] parts = url.split(",");
+
+				TaskNode h = (TaskNode) task.getHead().getTask();
+				for (int i = 1; i < parts.length; i++) {
+					h = (TaskNode) h.getChild((Integer.parseInt(parts[i])));
+				}
+
+				
+				Intent i = new Intent(TreeView.this, TaskView.class);
+				i.putExtra("task", h);
+				i.putExtra("treeView", task);
+				finish();
+				startActivity(i);
+				overridePendingTransition(R.anim.slidefrom, R.anim.shortzoom);
+
+				return true;
+			}
+		});
+
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 
@@ -56,7 +64,6 @@ public class TreeView extends Activity {
 		finish();
 		startActivity(i);
 		overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
-
 
 	}
 

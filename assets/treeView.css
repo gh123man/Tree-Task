@@ -16,11 +16,14 @@ ul, li {
 
 a {
     font-family: Arial;
+    text-decoration: inherit;
+    color: inherit;
 }
 .node {
     display: inline-block;
     width: 220px;
     max-width: 350px;
+    min-height: 40px;
     padding-bottom: 4px;
     background: #303030;
     padding-right: 5px;
@@ -39,12 +42,26 @@ a {
 
 .tri {
     padding-top: 1px;
-    padding-left: 30px;
+    padding-left: 40px;
     padding-bottom: 1px;
 }
 
 .taskName {
 
+}
+
+.taskNameFinished {
+    color: #505050;
+}
+
+.taskDescription {
+    font-size: 9pt;
+    color: #bbbbbb;
+}
+
+.taskDescriptionFinished {
+    font-size: 9pt;
+    color: #505050;
 }
 
 .progText {
@@ -69,11 +86,13 @@ a {
     
 }
 
-.taskDescription {
-    font-size: 9pt;
-    color: #bbbbbb;
+.children {
+    padding-left: 40px;
 }
 
-.children {
-    padding-left: 30px;
+.wrapper {
+    border-left: 1px solid #333;
 }
+
+
+

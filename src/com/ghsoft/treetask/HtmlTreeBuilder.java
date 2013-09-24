@@ -1,13 +1,33 @@
 package com.ghsoft.treetask;
 
-import java.util.UUID;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 
 public class HtmlTreeBuilder {
 
 	private Task task;
+	private SecureRandom random;
 
 	public HtmlTreeBuilder(Task task) {
 		this.task = task;
+		this.random = new SecureRandom();
+	}
+
+	private String getUrl(Task t) {
+		String out = "";
+
+		if (!t.isHead()) {
+			TaskNode tn = (TaskNode) t.getParent();
+			out += getUrl(tn);
+			int index = tn.getChildren().indexOf(t);
+			out += "," + String.valueOf(index);
+			return out;
+		}
+		return "";
+	}
+
+	private String getFullUrl(Task t) {
+		return "root" + getUrl(t);
 	}
 
 	public String getHtml() {
@@ -17,7 +37,7 @@ public class HtmlTreeBuilder {
 		out += "<!DOCTYPE html><html><body>";
 
 		out += "<link rel='stylesheet' type='text/css' href='treeView.css'>";
-
+		
 		out += "<div>";
 		out += drawNode((TaskNode) task);
 
@@ -32,18 +52,24 @@ public class HtmlTreeBuilder {
 
 		String out = "";
 
-		String rndID = UUID.randomUUID().toString();
+		String rndID = new BigInteger(130, random).toString(32);
+		rndID = rndID.replaceAll("[0-9]", "");
 
-		String perc = "20%";
+		out += "<div class='wrapper'>";
 
-		out += "<div>";
-
+		out += "<a href='" + getFullUrl(t) + "'>";
 		out += "<div class='node'>";
-		out += "<div class='taskName'>";
+		if (t.completion() == 100)
+			out += "<div class='taskNameFinished'>";
+		else
+			out += "<div class='taskName'>";
 		out += t.getName();
 		out += "</div>";
 
-		out += "<div class='taskDescription'>";
+		if (t.completion() == 100)
+			out += "<div class='taskDescriptionFinished'>";
+		else
+			out += "<div class='taskDescription'>";
 		out += t.getDescription();
 		out += "</div>";
 
@@ -58,8 +84,9 @@ public class HtmlTreeBuilder {
 		out += "</div>";
 		out += "<div class='progText'>";
 		out += t.completion() + "%";
-		out += " </div>";
-		out += " </div>";
+		out += "</div>";
+		out += "</div>";
+		out += "</a>";
 
 		out += triangle;
 
@@ -84,11 +111,19 @@ public class HtmlTreeBuilder {
 		String out = "";
 		out += "<div>";
 		out += "<div class='node'>";
-		out += "<div class='taskName'>";
+
+		if (t.completion() == 100)
+			out += "<div class='taskNameFinished'>";
+		else
+			out += "<div class='taskName'>";
+
 		out += t.getName();
 		out += "</div>";
 
-		out += "<div class='taskDescription'>";
+		if (t.completion() == 100)
+			out += "<div class='taskDescriptionFinished'>";
+		else
+			out += "<div class='taskDescription'>";
 		out += t.getDescription();
 		out += "</div>";
 
@@ -97,26 +132,6 @@ public class HtmlTreeBuilder {
 
 		return out;
 	}
-
-	/*
-	 * 
-	 * <div>
-	 * 
-	 * 
-	 * <div class="node"> <div class="taskName"> taskname </div> </div>
-	 * 
-	 * 
-	 * <div class="tri"> <div class="triangle"> </div> </div>
-	 * 
-	 * 
-	 * 
-	 * <div class="children">
-	 * 
-	 * 
-	 * </div>
-	 * 
-	 * </div>
-	 */
 
 	private static String buildTree(Task tree) {
 

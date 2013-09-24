@@ -28,10 +28,17 @@ public class TaskView extends Activity {
 	TaskNode task;
 	TaskViewListItem adapter;
 	View header;
+	Task treeView;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.taskview);
+
+		treeView = null;
+
+		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("treeView")) {
+			treeView = (Task)getIntent().getExtras().getSerializable("treeView");
+		}
 
 		Object sTask = getIntent().getSerializableExtra("task");
 
@@ -129,7 +136,7 @@ public class TaskView extends Activity {
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 
 			break;
-			
+
 		case R.id.treeView:
 			i = new Intent(TaskView.this, TreeView.class);
 			i.putExtra("task", task);
@@ -138,7 +145,6 @@ public class TaskView extends Activity {
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 
 			break;
-
 
 		default:
 			break;
@@ -244,25 +250,36 @@ public class TaskView extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		if (task.isHead()) {
 
-			Intent i = new Intent(TaskView.this, Main.class);
-			if (task.completion() == 100)
-				i.putExtra("page", 1);
-			else
-				i.putExtra("page", 0);
-			finish();
-			startActivity(i);
-			overridePendingTransition(R.anim.backslide, R.anim.backzoom);
-
-		} else {
-
-			Intent i = new Intent(TaskView.this, TaskView.class);
-			i.putExtra("task", task.getParent());
+		if (treeView != null) {
+			TaskManager.save(task.getHead());
+			Intent i = new Intent(TaskView.this, TreeView.class);
+			i.putExtra("task", treeView);
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+			
+		} else {
+			if (task.isHead()) {
 
+				Intent i = new Intent(TaskView.this, Main.class);
+				if (task.completion() == 100)
+					i.putExtra("page", 1);
+				else
+					i.putExtra("page", 0);
+				finish();
+				startActivity(i);
+				overridePendingTransition(R.anim.backslide, R.anim.backzoom);
+
+			} else {
+
+				Intent i = new Intent(TaskView.this, TaskView.class);
+				i.putExtra("task", task.getParent());
+				finish();
+				startActivity(i);
+				overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+
+			}
 		}
 
 	}

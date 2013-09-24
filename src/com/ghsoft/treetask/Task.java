@@ -79,7 +79,6 @@ public abstract class Task implements Serializable {
 			return parent.getPath() + " > " + this.name;
 		}
 		return this.name;
-
 	}
 
 	public TaskHead getHead() {
