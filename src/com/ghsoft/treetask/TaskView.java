@@ -29,6 +29,7 @@ public class TaskView extends Activity {
 	TaskViewListItem adapter;
 	View header;
 	Task treeView;
+	int parentCount;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class TaskView extends Activity {
 
 		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("treeView")) {
 			treeView = (Task)getIntent().getExtras().getSerializable("treeView");
+			parentCount = getIntent().getExtras().getInt("parentCount");
 		}
 
 		Object sTask = getIntent().getSerializableExtra("task");
@@ -254,7 +256,14 @@ public class TaskView extends Activity {
 		if (treeView != null) {
 			TaskManager.save(task.getHead());
 			Intent i = new Intent(TaskView.this, TreeView.class);
-			i.putExtra("task", treeView);
+			
+			Task t = task;
+			while (parentCount > 0) {
+				t = task.getParent();
+				parentCount--;
+			}
+			
+			i.putExtra("task", t);
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
