@@ -21,7 +21,7 @@ public class NewTaskTree extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newtasktree);
 		
-		setTitle("New Task Tree");
+		setTitle("New Tree");
 		
 		TaskHead th = new TaskHead();
 		final TaskNode task = new TaskNode(th);
