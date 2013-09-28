@@ -1,4 +1,4 @@
-package com.ghsoft.treetask;
+package com.ghsoft.treetaskapp;
 
 import java.util.Locale;
 
@@ -11,10 +11,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import com.ghsoft.treetask.R;
+import com.ghsoft.treetask.TaskManager;
 
 public class Main extends FragmentActivity {
 

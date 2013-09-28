@@ -1,4 +1,4 @@
-package com.ghsoft.treetask;
+package com.ghsoft.treetaskapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,21 +6,24 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.ghsoft.treetask.R;
+import com.ghsoft.treetask.Task;
+import com.ghsoft.treetask.TaskLeaf;
+import com.ghsoft.treetask.TaskManager;
+import com.ghsoft.treetask.TaskNode;
 
 public class TaskView extends Activity {
 

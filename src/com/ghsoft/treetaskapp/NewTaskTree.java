@@ -1,4 +1,4 @@
-package com.ghsoft.treetask;
+package com.ghsoft.treetaskapp;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +9,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.ghsoft.treetask.R;
+import com.ghsoft.treetask.Task;
+import com.ghsoft.treetask.TaskHead;
+import com.ghsoft.treetask.TaskLeaf;
+import com.ghsoft.treetask.TaskManager;
+import com.ghsoft.treetask.TaskNode;
 
 public class NewTaskTree extends Activity {
 

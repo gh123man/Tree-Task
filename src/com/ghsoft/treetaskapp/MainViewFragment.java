@@ -1,4 +1,4 @@
-package com.ghsoft.treetask;
+package com.ghsoft.treetaskapp;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -19,6 +18,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
+import com.ghsoft.treetask.R;
+import com.ghsoft.treetask.TaskHead;
+import com.ghsoft.treetask.TaskManager;
 
 public class MainViewFragment extends Fragment {
 

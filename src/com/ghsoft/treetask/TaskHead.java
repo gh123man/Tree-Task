@@ -10,7 +10,7 @@ public class TaskHead implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private TaskNode task;
-	final String taskID;
+	public final String taskID;
 
 	public TaskHead() {
 		taskID = UUID.randomUUID().toString();

@@ -1,4 +1,4 @@
-package com.ghsoft.treetask;
+package com.ghsoft.treetaskapp;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.ghsoft.treetask.R;
+import com.ghsoft.treetask.TaskNode;
 
 public class TreeView extends Activity {
 

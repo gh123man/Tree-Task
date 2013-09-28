@@ -16,18 +16,18 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.Treetask" >
         <activity
-            android:name="com.ghsoft.treetask.Main">
+            android:name="com.ghsoft.treetaskapp.Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ghsoft.treetask.TaskView"></activity>
-        <activity android:name="com.ghsoft.treetask.NewTaskTree"></activity>
-        <activity android:name="com.ghsoft.treetask.NewTask"></activity>
-        <activity android:name="com.ghsoft.treetask.EditTask"></activity>
-        <activity android:name="com.ghsoft.treetask.TreeView"></activity>
+        <activity android:name="com.ghsoft.treetaskapp.TaskView"></activity>
+        <activity android:name="com.ghsoft.treetaskapp.NewTaskTreeskTree"></activity>
+        <activity android:name="com.ghsoft.treetaskapp.NewTaskask"></activity>
+        <activity android:name="com.ghsoft.treetaskapp.EditTaskitTask"></activity>
+        <activity android:name="com.ghsoft.treetaskapp.TreeViewask.TreeView"></activity>
     </application>
 
 </manifest>

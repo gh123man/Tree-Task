@@ -1,7 +1,11 @@
-package com.ghsoft.treetask;
+package com.ghsoft.treetaskapp;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+
+import com.ghsoft.treetask.Task;
+import com.ghsoft.treetask.TaskLeaf;
+import com.ghsoft.treetask.TaskNode;
 
 public class HtmlTreeBuilder {
 
@@ -137,13 +141,6 @@ public class HtmlTreeBuilder {
 		return out;
 	}
 
-	private static String buildTree(Task tree) {
-
-		String out = "";
-
-		return out;
-
-	}
 
 	private static String triangle = "<div class='tri'><div class='triangle'></div></div>";
 

@@ -1,4 +1,4 @@
-package com.ghsoft.treetask;
+package com.ghsoft.treetaskapp;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.ghsoft.treetask.R;
+import com.ghsoft.treetask.Task;
+import com.ghsoft.treetask.TaskNode;
 
 public class TaskViewListItem extends BaseAdapter {
 	private LayoutInflater inflater;
