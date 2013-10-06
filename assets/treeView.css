@@ -27,9 +27,9 @@ a {
     padding-bottom: 4px;
     background: #303030;
     padding-right: 5px;
-    margin-top: 1px;
+    padding-top: 1px;
     padding-left: 2px;
-    margin-bottom: 1px;
+    margin-bottom: 2px;
 }
 
 .triangle {
@@ -38,6 +38,8 @@ a {
 	border-left: 18px solid transparent;
 	border-right: 18px solid transparent;
 	border-bottom: 19px solid #303030;
+	margin-top: -1px;
+	margin-bottom: 1px;
 }
 
 .tri {

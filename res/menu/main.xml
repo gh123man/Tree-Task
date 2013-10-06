@@ -4,6 +4,6 @@
         android:id="@+id/newTask"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:icon="@drawable/plus_icon"/>
+        android:icon="@drawable/content_new"/>
 
 </menu>

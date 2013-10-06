@@ -1,11 +1,8 @@
-package com.ghsoft.treetaskapp;
+package com.ghsoft.treetask;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-import com.ghsoft.treetask.Task;
-import com.ghsoft.treetask.TaskLeaf;
-import com.ghsoft.treetask.TaskNode;
 
 public class HtmlTreeBuilder {
 

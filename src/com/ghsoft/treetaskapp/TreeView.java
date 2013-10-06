@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.ghsoft.treetask.HtmlTreeBuilder;
 import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.TaskNode;
 
@@ -28,7 +29,7 @@ public class TreeView extends Activity {
 		treeDisplay = (WebView) findViewById(R.id.treeDisplay);
 		treeDisplay.setBackgroundColor(Color.argb(1, 0, 0, 0));
 
-		HtmlTreeBuilder builder = new HtmlTreeBuilder(task);
+		HtmlTreeBuilder builder = new HtmlTreeBuilder(task.getHead().getTask());
 
 		String data = builder.getHtml();
 

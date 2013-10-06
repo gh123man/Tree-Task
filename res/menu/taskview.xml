@@ -1,19 +1,29 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/treeView"
-        android:icon="@drawable/tree_icon"
-        android:orderInCategory="100"
-        android:showAsAction="always"/>
-    <item
-        android:id="@+id/newTask"
-        android:icon="@drawable/plus_icon"
-        android:orderInCategory="100"
-        android:showAsAction="always"/>
-    <item
-        android:id="@+id/edit"
+        android:id="@+id/share"
+        android:icon="@drawable/social_share"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="Edit"/>
+        android:title="share Tree"/>
+    
+    <item
+        android:id="@+id/treeView"
+        android:icon="@drawable/treeview"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="Tree View"/>
+    <item
+        android:id="@+id/newTask"
+        android:icon="@drawable/content_new"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="New Task"/>
+    <item
+        android:id="@+id/edit"
+        android:icon="@drawable/content_edit"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:title="Edit Tree"/>
 
 </menu>

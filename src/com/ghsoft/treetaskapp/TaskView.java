@@ -24,6 +24,7 @@ import com.ghsoft.treetask.Task;
 import com.ghsoft.treetask.TaskLeaf;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
+import com.ghsoft.treetask.TextTreeBuilder;
 
 public class TaskView extends Activity {
 
@@ -41,7 +42,7 @@ public class TaskView extends Activity {
 		treeView = null;
 
 		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("treeView")) {
-			treeView = (Task)getIntent().getExtras().getSerializable("treeView");
+			treeView = (Task) getIntent().getExtras().getSerializable("treeView");
 			parentCount = getIntent().getExtras().getInt("parentCount");
 		}
 
@@ -149,6 +150,17 @@ public class TaskView extends Activity {
 			startActivity(i);
 			overridePendingTransition(R.anim.slidedownto, R.anim.shortzoom);
 
+			break;
+
+		case R.id.share:
+			Intent sendIntent = new Intent();
+			sendIntent.setAction(Intent.ACTION_SEND);
+			
+			TextTreeBuilder tb = new TextTreeBuilder(task);
+			
+			sendIntent.putExtra(Intent.EXTRA_TEXT, tb.getText());
+			sendIntent.setType("text/plain");
+			startActivity(sendIntent);
 			break;
 
 		default:
@@ -259,18 +271,18 @@ public class TaskView extends Activity {
 		if (treeView != null) {
 			TaskManager.save(task.getHead());
 			Intent i = new Intent(TaskView.this, TreeView.class);
-			
+
 			Task t = task;
 			while (parentCount > 0) {
 				t = task.getParent();
 				parentCount--;
 			}
-			
+
 			i.putExtra("task", t);
 			finish();
 			startActivity(i);
 			overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
-			
+
 		} else {
 			if (task.isHead()) {
 
