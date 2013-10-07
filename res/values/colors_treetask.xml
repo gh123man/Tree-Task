@@ -22,4 +22,5 @@
     <color name="select">#336635</color>
     <color name="nselect">#303030</color>
     <color name="transparent">#00000000</color>
+    <color name="darkgrey">#333333</color>
 </resources>

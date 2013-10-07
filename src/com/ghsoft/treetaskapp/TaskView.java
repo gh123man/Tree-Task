@@ -1,5 +1,6 @@
 package com.ghsoft.treetaskapp;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -24,7 +25,6 @@ import com.ghsoft.treetask.Task;
 import com.ghsoft.treetask.TaskLeaf;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
-import com.ghsoft.treetask.TextTreeBuilder;
 
 public class TaskView extends Activity {
 
@@ -153,22 +153,20 @@ public class TaskView extends Activity {
 			break;
 
 		case R.id.share:
-			Intent sendIntent = new Intent();
-			sendIntent.setAction(Intent.ACTION_SEND);
 			
-			TextTreeBuilder tb = new TextTreeBuilder(task);
-			
-			sendIntent.putExtra(Intent.EXTRA_TEXT, tb.getText());
-			sendIntent.setType("text/plain");
-			startActivity(sendIntent);
+			i = new Intent(TaskView.this, ExportView.class);
+			i.putExtra("task", task);
+			startActivity(i);
+			overridePendingTransition(R.anim.slidedownto, R.anim.shortzoom);
 			break;
 
 		default:
 			break;
 		}
-
+		
 		return true;
 	}
+
 
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
