@@ -1,5 +1,7 @@
 package com.ghsoft.treetaskapp;
 
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,15 +9,21 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.widget.AbsListView;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -33,7 +41,10 @@ public class TaskView extends Activity {
 	TaskViewListItem adapter;
 	View header;
 	Task treeView;
-	int parentCount;
+	int parentCount, lastY, currentScroll, headerHeight;
+	LinearLayout floatingProgBarHeader;
+	private Dictionary<Integer, Integer> listViewItemHeights = new Hashtable<Integer, Integer>();
+	boolean titleDefualt;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,7 +61,7 @@ public class TaskView extends Activity {
 
 		task = (TaskNode) sTask;
 
-		setTitle(task.getName());
+		setTitleCheck(true);
 
 		taskList = (ListView) findViewById(R.id.taskList);
 
@@ -61,8 +72,30 @@ public class TaskView extends Activity {
 		adapter = new TaskViewListItem(this, getApplicationContext(), task, header);
 
 		taskList.setAdapter(adapter);
+		
+		taskList.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
 		registerForContextMenu(taskList);
+
+		floatingProgBarHeader = (LinearLayout) findViewById(R.id.progBarFloat);
+
+		setOffset();
+
+		taskList.setOnScrollListener(new OnScrollListener() {
+
+			@Override
+			public void onScrollStateChanged(AbsListView view, int scrollState) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+				// TODO Auto-generated method stub
+				Log.e("adsf", "" + getScroll() + " " + headerHeight);
+				placeFloatingView();
+			}
+		});
 
 		taskList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
@@ -106,12 +139,79 @@ public class TaskView extends Activity {
 						name.setTextColor(Color.parseColor("#ffffff"));
 						description.setTextColor(Color.parseColor("#bbbbbb"));
 					}
+					
+					placeFloatingViewWhenReady();
 
 				}
 
 			}
 		});
 
+	}
+	
+	private void placeFloatingView() {
+		if (getScroll() < headerHeight) {
+			floatingProgBarHeader.setTop(-1 * getScroll() - 6);
+		} else {
+			floatingProgBarHeader.setTop(-1 * headerHeight);
+		}
+	}
+	
+	private void setTitleCheck(boolean setDefault) {
+		if (setDefault) {
+			if (!titleDefualt) 
+				setTitle("Tree Task");
+		} else {
+			if (titleDefualt) 
+				setTitle(task.getName());
+		}
+	}
+
+	private int getScroll() {
+		int scrollY = 0;
+		View c = taskList.getChildAt(0); // this is the first visible row
+		if (c != null) {
+			scrollY = -c.getTop();
+			listViewItemHeights.put(taskList.getFirstVisiblePosition(), c.getHeight());
+			for (int i = 0; i < taskList.getFirstVisiblePosition(); ++i) {
+				if (listViewItemHeights.get(i) != null) // (this is a sanity
+														// check)
+					scrollY += listViewItemHeights.get(i); // add all heights of
+															// the views that
+															// are gone
+			}
+		}
+		return scrollY;
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		placeFloatingViewWhenReady();
+	}
+	
+	private void placeFloatingViewWhenReady() {
+		ViewTreeObserver vto = header.getViewTreeObserver();
+		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				placeFloatingView();
+
+			}
+		});
+	}
+
+	private void setOffset() {
+		ViewTreeObserver vto = header.getViewTreeObserver();
+		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				Log.e("onetwo", "" + header.getHeight());
+				headerHeight = header.getMeasuredHeight() - 120;
+				floatingProgBarHeader.setY(headerHeight);
+
+			}
+		});
 	}
 
 	@Override
@@ -153,7 +253,7 @@ public class TaskView extends Activity {
 			break;
 
 		case R.id.share:
-			
+
 			i = new Intent(TaskView.this, ExportView.class);
 			i.putExtra("task", task);
 			startActivity(i);
@@ -163,10 +263,9 @@ public class TaskView extends Activity {
 		default:
 			break;
 		}
-		
+
 		return true;
 	}
-
 
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -312,9 +411,9 @@ public class TaskView extends Activity {
 		TextView name = (TextView) header.findViewById(R.id.hname);
 		TextView path = (TextView) header.findViewById(R.id.path);
 		TextView description = (TextView) header.findViewById(R.id.hdescription);
-		TextView percent = (TextView) header.findViewById(R.id.hpercent);
+		TextView percent = (TextView) findViewById(R.id.hpercent);
 
-		ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
+		ProgressBar completion = (ProgressBar) findViewById(R.id.hcompletion);
 
 		name.setText(task.getName());
 		path.setText(task.getPath());
