@@ -9,7 +9,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -41,16 +40,18 @@ public class TaskView extends Activity {
 	TaskViewListItem adapter;
 	View header;
 	Task treeView;
-	int parentCount, lastY, currentScroll, headerHeight;
+	int parentCount, lastY, currentScroll, headerHeight, baseScrollHeight, triangleHeight;
 	LinearLayout floatingProgBarHeader;
-	private Dictionary<Integer, Integer> listViewItemHeights = new Hashtable<Integer, Integer>();
-	boolean titleDefualt;
+	private Dictionary<Integer, Integer> listViewItemHeights;
+	boolean titleDefualt, setScrollHeight, offsetSet;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.taskview);
-
+		setScrollHeight = false;
+		offsetSet = false;
 		treeView = null;
+		listViewItemHeights = new Hashtable<Integer, Integer>();
 
 		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("treeView")) {
 			treeView = (Task) getIntent().getExtras().getSerializable("treeView");
@@ -72,7 +73,7 @@ public class TaskView extends Activity {
 		adapter = new TaskViewListItem(this, getApplicationContext(), task, header);
 
 		taskList.setAdapter(adapter);
-		
+
 		taskList.setOverScrollMode(View.OVER_SCROLL_NEVER);
 
 		registerForContextMenu(taskList);
@@ -80,6 +81,18 @@ public class TaskView extends Activity {
 		floatingProgBarHeader = (LinearLayout) findViewById(R.id.progBarFloat);
 
 		setOffset();
+
+		ViewTreeObserver vto = taskList.getViewTreeObserver();
+		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				if (!setScrollHeight) {
+					baseScrollHeight = getScroll();
+					setScrollHeight = true;
+				}
+
+			}
+		});
 
 		taskList.setOnScrollListener(new OnScrollListener() {
 
@@ -92,7 +105,6 @@ public class TaskView extends Activity {
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
 				// TODO Auto-generated method stub
-				Log.e("adsf", "" + getScroll() + " " + headerHeight);
 				placeFloatingView();
 			}
 		});
@@ -119,8 +131,8 @@ public class TaskView extends Activity {
 					TaskManager.save(tl.getHead());
 
 					ProgressBar completion = (ProgressBar) findViewById(R.id.hcompletion);
+					final TextView percent = (TextView) findViewById(R.id.hpercent);
 
-					TextView percent = (TextView) findViewById(R.id.hpercent);
 					ImageView check = (ImageView) v.findViewById(R.id.check);
 
 					completion.setProgress(task.completion());
@@ -139,31 +151,34 @@ public class TaskView extends Activity {
 						name.setTextColor(Color.parseColor("#ffffff"));
 						description.setTextColor(Color.parseColor("#bbbbbb"));
 					}
-					
-					placeFloatingViewWhenReady();
-
 				}
 
 			}
 		});
 
 	}
-	
+
 	private void placeFloatingView() {
-		if (getScroll() < headerHeight) {
-			floatingProgBarHeader.setTop(-1 * getScroll() - 6);
+		if (getScroll() < headerHeight + baseScrollHeight) {
+			setTitleCheck(true);
+			floatingProgBarHeader.setTop(-1 * getScroll() + baseScrollHeight);
 		} else {
+			setTitleCheck(false);
 			floatingProgBarHeader.setTop(-1 * headerHeight);
 		}
 	}
-	
+
 	private void setTitleCheck(boolean setDefault) {
 		if (setDefault) {
-			if (!titleDefualt) 
+			if (!titleDefualt) {
 				setTitle("Tree Task");
+				titleDefualt = true;
+			}
 		} else {
-			if (titleDefualt) 
+			if (titleDefualt) {
 				setTitle(task.getName());
+				titleDefualt = false;
+			}
 		}
 	}
 
@@ -187,41 +202,64 @@ public class TaskView extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		placeFloatingViewWhenReady();
+		taskList.setSelection(0);
+		listViewItemHeights = new Hashtable<Integer, Integer>();
+
 	}
-	
+
 	@Override
 	public void onRestart() {
 		super.onRestart();
 		Intent intent = getIntent();
 		finish();
 		startActivity(intent);
-		overridePendingTransition(0,0);
-		
-	}
-	
-	private void placeFloatingViewWhenReady() {
-		ViewTreeObserver vto = header.getViewTreeObserver();
-		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-			@Override
-			public void onGlobalLayout() {
-				placeFloatingView();
+		overridePendingTransition(0, 0);
 
-			}
-		});
 	}
 
 	private void setOffset() {
-		ViewTreeObserver vto = header.getViewTreeObserver();
+		final View v = findViewById(R.id.triangle);
+		ViewTreeObserver vto = v.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
 			@Override
 			public void onGlobalLayout() {
-				Log.e("onetwo", "" + header.getHeight());
-				headerHeight = header.getMeasuredHeight() - 120;
-				floatingProgBarHeader.setY(headerHeight);
+				triangleHeight = v.getMeasuredHeight();
 
+				ViewTreeObserver vto1 = header.getViewTreeObserver();
+				vto1.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+					@Override
+					public void onGlobalLayout() {
+						if (!offsetSet) {
+							headerHeight = header.getMeasuredHeight() - triangleHeight;
+							floatingProgBarHeader.setY(headerHeight);
+							offsetSet = true;
+						}
+					}
+				});
 			}
 		});
+
+	}
+
+	private View header() {
+		View header = getLayoutInflater().inflate(R.layout.header, null);
+
+		TextView name = (TextView) header.findViewById(R.id.hname);
+		TextView path = (TextView) header.findViewById(R.id.path);
+		TextView description = (TextView) header.findViewById(R.id.hdescription);
+		TextView percent = (TextView) findViewById(R.id.hpercent);
+
+		ProgressBar completion = (ProgressBar) findViewById(R.id.hcompletion);
+
+		name.setText(task.getName());
+		path.setText(task.getPath());
+		description.setText(task.getDescription());
+
+		completion.setMax(100);
+		completion.setProgress(task.completion());
+		percent.setText(task.completion() + "%");
+
+		return header;
 	}
 
 	@Override
@@ -413,27 +451,6 @@ public class TaskView extends Activity {
 			}
 		}
 
-	}
-
-	private View header() {
-		View header = getLayoutInflater().inflate(R.layout.header, null);
-
-		TextView name = (TextView) header.findViewById(R.id.hname);
-		TextView path = (TextView) header.findViewById(R.id.path);
-		TextView description = (TextView) header.findViewById(R.id.hdescription);
-		TextView percent = (TextView) findViewById(R.id.hpercent);
-
-		ProgressBar completion = (ProgressBar) findViewById(R.id.hcompletion);
-
-		name.setText(task.getName());
-		path.setText(task.getPath());
-		description.setText(task.getDescription());
-
-		completion.setMax(100);
-		completion.setProgress(task.completion());
-		percent.setText(task.completion() + "%");
-
-		return header;
 	}
 
 }
