@@ -190,6 +190,16 @@ public class TaskView extends Activity {
 		placeFloatingViewWhenReady();
 	}
 	
+	@Override
+	public void onRestart() {
+		super.onRestart();
+		Intent intent = getIntent();
+		finish();
+		startActivity(intent);
+		overridePendingTransition(0,0);
+		
+	}
+	
 	private void placeFloatingViewWhenReady() {
 		ViewTreeObserver vto = header.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
