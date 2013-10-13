@@ -9,6 +9,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -51,6 +54,7 @@ public class TaskView extends Activity {
 		setScrollHeight = false;
 		offsetSet = false;
 		treeView = null;
+
 		listViewItemHeights = new Hashtable<Integer, Integer>();
 
 		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("treeView")) {
@@ -81,6 +85,7 @@ public class TaskView extends Activity {
 		floatingProgBarHeader = (LinearLayout) findViewById(R.id.progBarFloat);
 
 		setOffset();
+		placeFloatingViewWhenReady();
 
 		ViewTreeObserver vto = taskList.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -151,6 +156,7 @@ public class TaskView extends Activity {
 						name.setTextColor(Color.parseColor("#ffffff"));
 						description.setTextColor(Color.parseColor("#bbbbbb"));
 					}
+					log();
 				}
 
 			}
@@ -182,18 +188,26 @@ public class TaskView extends Activity {
 		}
 	}
 
+	private void log() {
+		Log.e("parentCount", "" + parentCount);
+		Log.e("lastY", "" + lastY);
+		Log.e("currentScroll", "" + currentScroll);
+		Log.e("headerHeight", "" + headerHeight);
+		Log.e("baseScrollHeight", "" + baseScrollHeight);
+		Log.e("triangleHeight", "" + triangleHeight);
+		Log.e("0", "");
+
+	}
+
 	private int getScroll() {
 		int scrollY = 0;
-		View c = taskList.getChildAt(0); // this is the first visible row
+		View c = taskList.getChildAt(0);
 		if (c != null) {
 			scrollY = -c.getTop();
 			listViewItemHeights.put(taskList.getFirstVisiblePosition(), c.getHeight());
 			for (int i = 0; i < taskList.getFirstVisiblePosition(); ++i) {
-				if (listViewItemHeights.get(i) != null) // (this is a sanity
-														// check)
-					scrollY += listViewItemHeights.get(i); // add all heights of
-															// the views that
-															// are gone
+				if (listViewItemHeights.get(i) != null)
+					scrollY += listViewItemHeights.get(i);
 			}
 		}
 		return scrollY;
@@ -215,6 +229,17 @@ public class TaskView extends Activity {
 		startActivity(intent);
 		overridePendingTransition(0, 0);
 
+	}
+
+	private void placeFloatingViewWhenReady() {
+		View v = findViewById(R.id.progBarFloat);
+		ViewTreeObserver vto = v.getViewTreeObserver();
+		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			@Override
+			public void onGlobalLayout() {
+				placeFloatingView();
+			}
+		});
 	}
 
 	private void setOffset() {
