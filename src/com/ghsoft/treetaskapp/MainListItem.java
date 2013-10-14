@@ -2,7 +2,6 @@ package com.ghsoft.treetaskapp;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +15,11 @@ import com.ghsoft.treetask.TaskHead;
 
 public class MainListItem extends BaseAdapter {
 	private LayoutInflater inflater;
-	Context context;
-	Activity act;
-	TextView name, description, percent, subcount;
-	ProgressBar completion;
-	String uname, pword;
-	ArrayList<TaskHead> tasks;
+	private TextView name, description, percent, subcount;
+	private ProgressBar completion;
+	private ArrayList<TaskHead> tasks;
 
-	public MainListItem(Activity act, Context context, ArrayList<TaskHead> tasks) {
+	public MainListItem(Context context, ArrayList<TaskHead> tasks) {
 		// Caches the LayoutInflater for quicker use
 		this.inflater = LayoutInflater.from(context);
 		// Sets the events data
@@ -50,7 +46,7 @@ public class MainListItem extends BaseAdapter {
 		// TODO Auto-generated method stub
 		return tasks.size();
 	}
-	
+
 	public ArrayList<TaskHead> getData() {
 		return tasks;
 	}
@@ -64,16 +60,15 @@ public class MainListItem extends BaseAdapter {
 		completion = (ProgressBar) convertView.findViewById(R.id.completion);
 		percent = (TextView) convertView.findViewById(R.id.percent);
 		subcount = (TextView) convertView.findViewById(R.id.subcount);
-		
+
 		name.setText(tasks.get(position).getTask().getName());
 		description.setText(tasks.get(position).getTask().getDescription());
 		completion.setMax(100);
 		completion.setProgress(tasks.get(position).getTask().completion());
 		percent.setText(tasks.get(position).getTask().completion() + "%");
 		subcount.setText(tasks.get(position).getTask().subTaskCount() + " subtask(s)");
-		
-		
+
 		return convertView;
 	}
-	
+
 }

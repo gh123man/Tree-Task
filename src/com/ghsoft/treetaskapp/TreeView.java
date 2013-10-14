@@ -13,8 +13,8 @@ import com.ghsoft.treetask.TaskNode;
 
 public class TreeView extends Activity {
 
-	TaskNode task;
-	WebView treeDisplay;
+	private TaskNode task;
+	private WebView treeDisplay;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,12 +44,11 @@ public class TreeView extends Activity {
 				for (int i = 1; i < parts.length; i++) {
 					h = (TaskNode) h.getChild((Integer.parseInt(parts[i])));
 				}
-				
-				
+
 				Intent i = new Intent(TreeView.this, TaskView.class);
 				i.putExtra("task", h);
 				i.putExtra("treeView", task);
-				i.putExtra("parentCount", parts.length-1);
+				i.putExtra("parentCount", parts.length - 1);
 				finish();
 				startActivity(i);
 				overridePendingTransition(R.anim.slidefrom, R.anim.shortzoom);

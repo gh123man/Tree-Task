@@ -14,10 +14,10 @@ import com.ghsoft.treetask.TaskManager;
 
 public class EditTask extends Activity {
 
-	EditText name, description;
-	Button submit;
-	Task task;
-	boolean fromList;
+	private EditText name, description;
+	private Button submit;
+	private Task task;
+	private boolean fromList;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,7 +28,7 @@ public class EditTask extends Activity {
 		Object sTask = getIntent().getSerializableExtra("task");
 		fromList = getIntent().getBooleanExtra("fromListView", false);
 
-		task = (Task)sTask;
+		task = (Task) sTask;
 
 		name = (EditText) findViewById(R.id.name);
 		description = (EditText) findViewById(R.id.description);
@@ -36,7 +36,7 @@ public class EditTask extends Activity {
 
 		name.setText(task.getName());
 		description.setText(task.getDescription());
-		
+
 		submit.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -46,20 +46,20 @@ public class EditTask extends Activity {
 					Toast.makeText(EditTask.this, "You must supply a name", Toast.LENGTH_LONG).show();
 					return;
 				}
-				
+
 				if (task.setName(name.getText().toString())) {
 					if (task.setDescription(description.getText().toString())) {
 
 						TaskManager.save(task.getHead());
 
 						Intent i = new Intent(EditTask.this, TaskView.class);
-						
+
 						if (fromList) {
 							i.putExtra("task", task.getParent());
 						} else {
 							i.putExtra("task", task);
 						}
-						
+
 						finish();
 						startActivity(i);
 						overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
@@ -75,19 +75,19 @@ public class EditTask extends Activity {
 		});
 
 	}
-	
+
 	@Override
 	public void onBackPressed() {
 		Intent i;
 
 		i = new Intent(EditTask.this, TaskView.class);
-		
+
 		if (fromList) {
 			i.putExtra("task", task.getParent());
 		} else {
 			i.putExtra("task", task);
 		}
-		
+
 		finish();
 		startActivity(i);
 		overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);

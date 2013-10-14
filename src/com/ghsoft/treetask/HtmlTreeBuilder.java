@@ -3,7 +3,6 @@ package com.ghsoft.treetask;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
-
 public class HtmlTreeBuilder {
 
 	private Task task;
@@ -38,7 +37,7 @@ public class HtmlTreeBuilder {
 		out += "<!DOCTYPE html><html><body>";
 
 		out += "<link rel='stylesheet' type='text/css' href='treeView.css'>";
-		
+
 		out += "<div>";
 		out += drawNode((TaskNode) task);
 
@@ -137,7 +136,6 @@ public class HtmlTreeBuilder {
 
 		return out;
 	}
-
 
 	private static String triangle = "<div class='tri'><div class='triangle'></div></div>";
 

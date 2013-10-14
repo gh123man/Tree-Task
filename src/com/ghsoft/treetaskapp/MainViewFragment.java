@@ -30,7 +30,7 @@ public class MainViewFragment extends Fragment {
 	 */
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	private static final int TASKS = 1;
-	private static final int ARCHIVE = 2;
+	// private static final int ARCHIVE = 2;
 	private ListView taskList;
 	public TaskManager tm;
 	private ArrayList<TaskHead> toDisplay;
@@ -59,7 +59,7 @@ public class MainViewFragment extends Fragment {
 		}
 
 		if (toDisplay.size() > 0) {
-			adapter = new MainListItem(getActivity(), getActivity().getApplicationContext(), toDisplay);
+			adapter = new MainListItem(getActivity().getApplicationContext(), toDisplay);
 
 			taskList.setAdapter(adapter);
 		}
@@ -68,9 +68,9 @@ public class MainViewFragment extends Fragment {
 
 		taskList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-				
+
 				ViewPager a = (ViewPager) arg1.getParent().getParent().getParent().getParent();
-				
+
 				Intent i = new Intent(getActivity(), TaskView.class);
 				i.putExtra("task", toDisplay.get(position).getTask());
 				i.putExtra("page", a.getCurrentItem());
@@ -89,7 +89,7 @@ public class MainViewFragment extends Fragment {
 
 		super.onCreateContextMenu(menu, v, menuInfo);
 		MenuInflater inflater = getActivity().getMenuInflater();
-		
+
 		if (a.getCurrentItem() == 0)
 			inflater.inflate(R.menu.mainviewmenu, menu);
 		else
@@ -112,10 +112,10 @@ public class MainViewFragment extends Fragment {
 					TaskManager.delete(tm.getTasks().get(info.position).taskID);
 
 					ListView list = (ListView) getActivity().findViewById(R.id.taskList);
-					MainListItem adapter = ((MainListItem)list.getAdapter());
+					MainListItem adapter = ((MainListItem) list.getAdapter());
 					adapter.getData().remove(info.position);
 					adapter.notifyDataSetChanged();
-					
+
 				}
 			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
@@ -136,7 +136,7 @@ public class MainViewFragment extends Fragment {
 					TaskManager.delete(tm.getArchive().get(info.position).taskID);
 
 					ListView list = (ListView) getActivity().findViewById(R.id.taskListArchive);
-					MainListItem adapter = ((MainListItem)list.getAdapter());
+					MainListItem adapter = ((MainListItem) list.getAdapter());
 					adapter.getData().remove(info.position);
 					adapter.notifyDataSetChanged();
 				}

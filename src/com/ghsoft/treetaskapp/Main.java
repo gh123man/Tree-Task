@@ -19,21 +19,9 @@ import com.ghsoft.treetask.TaskManager;
 
 public class Main extends FragmentActivity {
 
-	/**
-	 * The {@link android.support.v4.view.PagerAdapter} that will provide
-	 * fragments for each of the sections. We use a
-	 * {@link android.support.v4.app.FragmentPagerAdapter} derivative, which
-	 * will keep every loaded fragment in memory. If this becomes too memory
-	 * intensive, it may be best to switch to a
-	 * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-	 */
-	SectionsPagerAdapter mSectionsPagerAdapter;
-
-	/**
-	 * The {@link ViewPager} that will host the section contents.
-	 */
-	ViewPager mViewPager;
-	int page;
+	private SectionsPagerAdapter mSectionsPagerAdapter;
+	private ViewPager mViewPager;
+	private int page;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +33,7 @@ public class Main extends FragmentActivity {
 		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("page")) {
 			page = getIntent().getExtras().getInt("page");
 		}
-		
+
 		PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
 		pts.setDrawFullUnderline(true);
 
@@ -58,16 +46,18 @@ public class Main extends FragmentActivity {
 		mViewPager.setAdapter(mSectionsPagerAdapter);
 
 		mViewPager.setCurrentItem(page);
-		
-		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
-			
-		    public void onPageScrollStateChanged(int state) {}
-		    
-		    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
-		    public void onPageSelected(int position) {
-		        page = position;
-		    }
+		mViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+
+			public void onPageScrollStateChanged(int state) {
+			}
+
+			public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+			}
+
+			public void onPageSelected(int position) {
+				page = position;
+			}
 		});
 
 	}
@@ -82,10 +72,11 @@ public class Main extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		//case R.id.action_settings:
-			//Toast.makeText(this, "Menu Item 1 selected", Toast.LENGTH_SHORT).show();
-		//	break;
-			
+		// case R.id.action_settings:
+		// Toast.makeText(this, "Menu Item 1 selected",
+		// Toast.LENGTH_SHORT).show();
+		// break;
+
 		case R.id.newTask:
 			Intent i = new Intent(Main.this, NewTaskTree.class);
 			finish();
@@ -156,5 +147,5 @@ public class Main extends FragmentActivity {
 			finish();
 		}
 	}
-	
+
 }

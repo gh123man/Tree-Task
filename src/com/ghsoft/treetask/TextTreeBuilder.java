@@ -1,6 +1,5 @@
 package com.ghsoft.treetask;
 
-
 public class TextTreeBuilder {
 
 	private Task task;
@@ -14,11 +13,11 @@ public class TextTreeBuilder {
 		this.useDescription = true;
 		this.useProg = true;
 	}
-	
-	public void setTask (Task t) {
+
+	public void setTask(Task t) {
 		this.task = t;
 	}
-	
+
 	public void setTabs(boolean tabs) {
 		this.useTabs = tabs;
 	}
@@ -26,19 +25,19 @@ public class TextTreeBuilder {
 	public void setHead(boolean useHead) {
 		this.useHead = useHead;
 	}
-	
+
 	public void setNums(boolean nums) {
 		this.useNums = nums;
 	}
-	
+
 	public void setUseDescription(boolean des) {
 		this.useDescription = des;
 	}
-	
+
 	public void setUseProgress(boolean prog) {
 		this.useProg = prog;
 	}
-	
+
 	public String getText() {
 		String out = "";
 		String tabs = "";
@@ -57,19 +56,18 @@ public class TextTreeBuilder {
 		int index = 0;
 		String out = "";
 
-		
 		out += tabs + (uri != "" ? uri + ": " : "") + t.getName() + (useProg ? " - " + t.completion() + "%" : "");
-		
+
 		if (t.getDescription().length() > 0 && useDescription) {
 			out += "\n";
 			out += tabs + t.getDescription();
 		}
-		
+
 		out += "\n";
 		out += "\n";
 		String nextURI = "";
 		tabs += useTabs ? "\t" : "";
-		
+
 		for (int i = 0; i < t.numChildren(); i++) {
 			index++;
 			nextURI = useNums ? uri + "." + index : "";
@@ -78,9 +76,8 @@ public class TextTreeBuilder {
 			} else {
 				out += drawLeaf(nextURI, tabs, (TaskLeaf) t.getChild(i));
 			}
-			
-		}
 
+		}
 
 		return out;
 	}
@@ -88,7 +85,7 @@ public class TextTreeBuilder {
 	private String drawLeaf(String uri, String tabs, TaskLeaf t) {
 
 		String out = "";
-		
+
 		out += tabs + (uri != "" ? uri + ": " : "") + t.getName() + (useProg ? " - " + t.completion() + "%" : "");
 		if (t.getDescription().length() > 0 && useDescription) {
 			out += "\n";
@@ -96,9 +93,8 @@ public class TextTreeBuilder {
 		}
 		out += "\n";
 		out += "\n";
-		
+
 		return out;
 	}
-
 
 }

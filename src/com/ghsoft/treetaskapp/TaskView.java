@@ -3,6 +3,7 @@ package com.ghsoft.treetaskapp;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -11,7 +12,6 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -38,15 +38,17 @@ import com.ghsoft.treetask.TaskNode;
 
 public class TaskView extends Activity {
 
-	ListView taskList;
-	TaskNode task;
-	TaskViewListItem adapter;
-	View header;
-	Task treeView;
-	int parentCount, lastY, currentScroll, headerHeight, baseScrollHeight, triangleHeight;
-	LinearLayout floatingProgBarHeader;
+	private ListView taskList;
+	private TaskNode task;
+	private TaskViewListItem adapter;
+	private View header;
+	private Task treeView;
+	private int parentCount, headerHeight, baseScrollHeight, triangleHeight, setSompletion;
+	private LinearLayout floatingProgBarHeader;
 	private Dictionary<Integer, Integer> listViewItemHeights;
-	boolean titleDefualt, setScrollHeight, offsetSet;
+	private boolean titleDefualt, setScrollHeight, offsetSet;
+	private TextView percent;
+	private ProgressBar completion;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -72,9 +74,11 @@ public class TaskView extends Activity {
 
 		header = header();
 
+		setUpFloatingHead();
+
 		taskList.addHeaderView(header, null, false);
 
-		adapter = new TaskViewListItem(this, getApplicationContext(), task, header);
+		adapter = new TaskViewListItem(getApplicationContext(), task, header);
 
 		taskList.setAdapter(adapter);
 
@@ -118,7 +122,6 @@ public class TaskView extends Activity {
 			public void onItemClick(AdapterView<?> arg0, View v, int position, long arg3) {
 
 				position--;
-
 				Task t = task.getChild(position);
 
 				if (t.hasChildren()) {
@@ -130,38 +133,37 @@ public class TaskView extends Activity {
 					overridePendingTransition(R.anim.slidefrom, R.anim.shortzoom);
 
 				} else {
+
 					TaskLeaf tl = (TaskLeaf) t;
 					tl.setFinished(!tl.getFinished());
-
 					TaskManager.save(tl.getHead());
 
-					ProgressBar completion = (ProgressBar) findViewById(R.id.hcompletion);
-					final TextView percent = (TextView) findViewById(R.id.hpercent);
+					updateFloatingHead();
 
-					ImageView check = (ImageView) v.findViewById(R.id.check);
-
-					completion.setProgress(task.completion());
-
-					percent.setText(task.completion() + "%");
-
-					TextView name = (TextView) v.findViewById(R.id.name);
-					TextView description = (TextView) v.findViewById(R.id.description);
-
-					if (t.completion() == 100) {
-						check.setVisibility(View.VISIBLE);
-						name.setTextColor(Color.parseColor("#505050"));
-						description.setTextColor(Color.parseColor("#505050"));
-					} else {
-						check.setVisibility(View.INVISIBLE);
-						name.setTextColor(Color.parseColor("#ffffff"));
-						description.setTextColor(Color.parseColor("#bbbbbb"));
-					}
-					log();
+					if (t.completion() == 100)
+						setGrey(v, true);
+					else
+						setGrey(v, false);
 				}
 
 			}
 		});
+	}
 
+	public void setGrey(View v, boolean set) {
+		ImageView check = (ImageView) v.findViewById(R.id.check);
+		TextView name = (TextView) v.findViewById(R.id.name);
+		TextView description = (TextView) v.findViewById(R.id.description);
+
+		if (set) {
+			check.setVisibility(View.VISIBLE);
+			name.setTextColor(Color.parseColor("#505050"));
+			description.setTextColor(Color.parseColor("#505050"));
+		} else {
+			check.setVisibility(View.INVISIBLE);
+			name.setTextColor(Color.parseColor("#ffffff"));
+			description.setTextColor(Color.parseColor("#bbbbbb"));
+		}
 	}
 
 	private void placeFloatingView() {
@@ -186,17 +188,6 @@ public class TaskView extends Activity {
 				titleDefualt = false;
 			}
 		}
-	}
-
-	private void log() {
-		Log.e("parentCount", "" + parentCount);
-		Log.e("lastY", "" + lastY);
-		Log.e("currentScroll", "" + currentScroll);
-		Log.e("headerHeight", "" + headerHeight);
-		Log.e("baseScrollHeight", "" + baseScrollHeight);
-		Log.e("triangleHeight", "" + triangleHeight);
-		Log.e("0", "");
-
 	}
 
 	private int getScroll() {
@@ -266,23 +257,45 @@ public class TaskView extends Activity {
 
 	}
 
+	private void setUpFloatingHead() {
+
+		percent = (TextView) findViewById(R.id.hpercent);
+		completion = (ProgressBar) findViewById(R.id.hcompletion);
+		completion.setMax(100);
+
+		updateFloatingHead();
+	}
+
+	private void updateFloatingHead() {
+
+		new Thread(new Runnable() {
+			public void run() {
+				setSompletion = task.completion();
+				handler.sendEmptyMessage(0);
+			}
+
+			@SuppressLint("HandlerLeak")
+			private Handler handler = new Handler() {
+				@Override
+				public void handleMessage(Message msg) {
+					completion.setProgress(setSompletion);
+					percent.setText(setSompletion + "%");
+				}
+			};
+		}).start();
+
+	}
+
 	private View header() {
 		View header = getLayoutInflater().inflate(R.layout.header, null);
 
 		TextView name = (TextView) header.findViewById(R.id.hname);
 		TextView path = (TextView) header.findViewById(R.id.path);
 		TextView description = (TextView) header.findViewById(R.id.hdescription);
-		TextView percent = (TextView) findViewById(R.id.hpercent);
-
-		ProgressBar completion = (ProgressBar) findViewById(R.id.hcompletion);
 
 		name.setText(task.getName());
 		path.setText(task.getPath());
 		description.setText(task.getDescription());
-
-		completion.setMax(100);
-		completion.setProgress(task.completion());
-		percent.setText(task.completion() + "%");
 
 		return header;
 	}
@@ -409,17 +422,16 @@ public class TaskView extends Activity {
 							finish();
 							startActivity(i);
 							overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
-
 						}
 
 					} else {
 
 						adapter.notifyDataSetChanged();
-						ProgressBar completion = (ProgressBar) header.findViewById(R.id.hcompletion);
-						completion.setProgress(task.completion());
-					}
+						updateFloatingHead();
 
+					}
 				}
+
 			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					dialog.cancel();

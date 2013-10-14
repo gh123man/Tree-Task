@@ -3,10 +3,7 @@ package com.ghsoft.treetask;
 import java.io.Serializable;
 
 public class TaskLeaf extends Task implements Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private boolean complete;
 
@@ -14,9 +11,9 @@ public class TaskLeaf extends Task implements Serializable {
 		super(parent);
 		this.complete = false;
 	}
-	
-	public static TaskLeaf fromNode (TaskNode from) {
-		TaskLeaf tl = new TaskLeaf((TaskNode)from.getParent());
+
+	public static TaskLeaf fromNode(TaskNode from) {
+		TaskLeaf tl = new TaskLeaf((TaskNode) from.getParent());
 		tl.setName(from.getName());
 		tl.setDescription(from.getDescription());
 		return tl;
@@ -31,11 +28,11 @@ public class TaskLeaf extends Task implements Serializable {
 	public int subTaskCount() {
 		return 0;
 	}
-	
+
 	public void setFinished(boolean set) {
 		this.complete = set;
 	}
-	
+
 	public boolean getFinished() {
 		return complete;
 	}

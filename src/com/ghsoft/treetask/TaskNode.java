@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 public class TaskNode extends Task implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Task> children;
 
@@ -16,7 +13,7 @@ public class TaskNode extends Task implements Serializable {
 		this.children = new ArrayList<Task>();
 
 	}
-	
+
 	public TaskNode(TaskHead head) {
 		super(head);
 		this.children = new ArrayList<Task>();
@@ -34,11 +31,11 @@ public class TaskNode extends Task implements Serializable {
 	@Override
 	public int subTaskCount() {
 		int out = numChildren();
-		
+
 		for (Task child : children) {
 			out += child.subTaskCount();
 		}
-		
+
 		return out;
 	}
 
@@ -77,8 +74,8 @@ public class TaskNode extends Task implements Serializable {
 
 		return children.get(i);
 	}
-	
-	public  ArrayList<Task> getChildren() {
+
+	public ArrayList<Task> getChildren() {
 		return children;
 	}
 
@@ -89,7 +86,7 @@ public class TaskNode extends Task implements Serializable {
 	public void deleteChild(int i) {
 		children.remove(i);
 	}
-	
+
 	public void deleteChild(Task t) {
 		children.remove(t);
 	}

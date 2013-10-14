@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 public abstract class Task implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public static final int maxNameLen = 3000;
 	public static final int maxDescriptionLen = 50000;
@@ -18,7 +15,7 @@ public abstract class Task implements Serializable {
 		this.parent = parent;
 		this.head = parent.getHead();
 	}
-	
+
 	public Task(TaskHead head) {
 		this.parent = null;
 		this.head = head;
@@ -29,7 +26,7 @@ public abstract class Task implements Serializable {
 	public boolean hasChildren() {
 		return subTaskCount() != 0;
 	}
-	
+
 	public abstract int subTaskCount();
 
 	public boolean setName(String name) {
@@ -49,14 +46,14 @@ public abstract class Task implements Serializable {
 	}
 
 	public String getName() {
-		if (name == null) 
+		if (name == null)
 			return "";
 		else
 			return name;
 	}
 
 	public String getDescription() {
-		if (description == null) 
+		if (description == null)
 			return "";
 		else
 			return description;
@@ -84,5 +81,5 @@ public abstract class Task implements Serializable {
 	public TaskHead getHead() {
 		return head;
 	}
-	
+
 }

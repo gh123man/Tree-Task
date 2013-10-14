@@ -18,9 +18,9 @@ import com.ghsoft.treetask.TaskNode;
 
 public class NewTask extends Activity {
 
-	EditText name, description;
-	Button submit;
-	TaskNode task;
+	private EditText name, description;
+	private Button submit;
+	private TaskNode task;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +48,7 @@ public class NewTask extends Activity {
 					Toast.makeText(NewTask.this, "You must supply a name", Toast.LENGTH_LONG).show();
 					return;
 				}
-				
+
 				hideInput();
 
 				if (t.setName(name.getText().toString())) {
@@ -76,10 +76,10 @@ public class NewTask extends Activity {
 		});
 
 	}
-	
+
 	private void hideInput() {
 		InputMethodManager inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-	    inputManager.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
+		inputManager.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
 	}
 
 	@Override
@@ -105,5 +105,5 @@ public class NewTask extends Activity {
 		overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
 
 	}
-	
+
 }

@@ -54,7 +54,7 @@ public class ExportView extends Activity {
 			rb.setChecked(true);
 
 		}
-		
+
 		setListeners();
 
 	}
@@ -78,8 +78,8 @@ public class ExportView extends Activity {
 
 	}
 
-	public void setListeners() {
-		
+	private void setListeners() {
+
 		nodeOptions.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			public void onCheckedChanged(RadioGroup rGroup, int checkedId) {
 				RadioButton checkedRadioButton = (RadioButton) rGroup.findViewById(checkedId);
@@ -101,7 +101,7 @@ public class ExportView extends Activity {
 				updatePreview();
 			}
 		});
-		
+
 		nums.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -113,7 +113,7 @@ public class ExportView extends Activity {
 				updatePreview();
 			}
 		});
-		
+
 		prog.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -125,7 +125,7 @@ public class ExportView extends Activity {
 				updatePreview();
 			}
 		});
-		
+
 		tabs.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -137,7 +137,7 @@ public class ExportView extends Activity {
 				updatePreview();
 			}
 		});
-		
+
 		des.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

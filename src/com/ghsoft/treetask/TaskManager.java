@@ -12,9 +12,6 @@ import android.os.Environment;
 
 public class TaskManager implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<TaskHead> tasks, archive;
 	private static File sdcard = Environment.getExternalStorageDirectory();
@@ -51,7 +48,7 @@ public class TaskManager implements Serializable {
 				System.err.println("Error: " + e.getMessage());
 			}
 		}
-		
+
 		for (File child : dir.listFiles()) {
 
 			FileInputStream fis;

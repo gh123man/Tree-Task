@@ -6,6 +6,7 @@
 
     <ListView
         android:id="@+id/taskList"
+        android:scrollbars="none"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#101010"
