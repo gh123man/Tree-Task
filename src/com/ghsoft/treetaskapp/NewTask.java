@@ -21,12 +21,15 @@ public class NewTask extends Activity {
 	private EditText name, description;
 	private Button submit;
 	private TaskNode task;
+	private InputMethodManager inputManager;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newtask);
 
 		setTitle("New Task");
+		
+		inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
 		Object sTask = getIntent().getSerializableExtra("task");
 
@@ -36,7 +39,7 @@ public class NewTask extends Activity {
 		description = (EditText) findViewById(R.id.description);
 		submit = (Button) findViewById(R.id.submit);
 
-		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+		showInput();
 
 		submit.setOnClickListener(new View.OnClickListener() {
 
@@ -77,14 +80,24 @@ public class NewTask extends Activity {
 
 	}
 
+	private void showInput() {
+		inputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+	}
+
 	private void hideInput() {
-		InputMethodManager inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 		inputManager.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
 	}
 
 	@Override
+	public void onPause() {
+		super.onPause();
+		hideInput();
+	}
+	
+	@Override
 	public void onBackPressed() {
 		Intent i;
+		hideInput();
 
 		if (task.numChildren() < 1) {
 			if (task.getParent() == null) {

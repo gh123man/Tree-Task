@@ -21,12 +21,15 @@ public class NewTaskTree extends Activity {
 
 	private EditText name, treeName;
 	private Button submit;
+	private InputMethodManager inputManager;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newtasktree);
 
 		setTitle("New Tree");
+
+		inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
 		TaskHead th = new TaskHead();
 		final TaskNode task = new TaskNode(th);
@@ -36,7 +39,7 @@ public class NewTaskTree extends Activity {
 		name = (EditText) findViewById(R.id.name);
 		submit = (Button) findViewById(R.id.submit);
 
-		((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+		showInput();
 
 		submit.setOnClickListener(new View.OnClickListener() {
 
@@ -82,15 +85,24 @@ public class NewTaskTree extends Activity {
 
 	}
 
+	private void showInput() {
+		inputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+	}
+
 	private void hideInput() {
-		InputMethodManager inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 		inputManager.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		hideInput();
 	}
 
 	@Override
 	public void onBackPressed() {
 		Intent i;
-
+		hideInput();
 		i = new Intent(NewTaskTree.this, Main.class);
 		finish();
 		startActivity(i);
