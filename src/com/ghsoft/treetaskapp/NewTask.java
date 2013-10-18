@@ -1,7 +1,6 @@
 package com.ghsoft.treetaskapp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -51,8 +50,6 @@ public class NewTask extends Activity {
 					Toast.makeText(NewTask.this, "You must supply a name", Toast.LENGTH_LONG).show();
 					return;
 				}
-
-				hideInput();
 
 				if (t.setName(name.getText().toString())) {
 					if (t.setDescription(description.getText().toString())) {

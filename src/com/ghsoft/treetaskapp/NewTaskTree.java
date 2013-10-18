@@ -1,7 +1,6 @@
 package com.ghsoft.treetaskapp;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -56,8 +55,6 @@ public class NewTaskTree extends Activity {
 					Toast.makeText(NewTaskTree.this, "You must supply a tree name", Toast.LENGTH_LONG).show();
 					return;
 				}
-
-				hideInput();
 
 				if (task.setName(treeName.getText().toString())) {
 					if (t.setName(name.getText().toString())) {
