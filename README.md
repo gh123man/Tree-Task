@@ -29,6 +29,8 @@ You may find a free, ad supported somewhat-out-of-date version here: https://pla
 
 If you really like my work you may purchace it here for $0.99: https://play.google.com/store/apps/details?id=com.ghsoft.treetask
 
+(Or if you are really sneaky, you will click the releases button on github)
+
 ### Okay, so how can I compile it?
 Easy!
 Clone this repo.
