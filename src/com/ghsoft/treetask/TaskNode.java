@@ -98,5 +98,11 @@ public class TaskNode extends Task implements Serializable {
 	public void replaceChild(int pos, Task t) {
 		children.set(pos, t);
 	}
+	
+	public void moveChild(int from, int to) {
+		Task t = children.get(from);
+		children.remove(from);
+		children.add(to, t);
+	}
 
 }

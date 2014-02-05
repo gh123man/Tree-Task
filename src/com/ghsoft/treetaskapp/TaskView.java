@@ -26,7 +26,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -35,10 +34,11 @@ import com.ghsoft.treetask.Task;
 import com.ghsoft.treetask.TaskLeaf;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
+import com.mobeta.android.dslv.DragSortListView;
 
 public class TaskView extends Activity {
 
-	private ListView taskList;
+	private DragSortListView taskList;
 	private TaskNode task;
 	private TaskViewListItem adapter;
 	private View header;
@@ -49,6 +49,27 @@ public class TaskView extends Activity {
 	private boolean titleDefualt, setScrollHeight, offsetSet;
 	private TextView percent;
 	private ProgressBar completion;
+
+	private DragSortListView.DragScrollProfile ssProfile = new DragSortListView.DragScrollProfile() {
+		@Override
+		public float getSpeed(float w, long t) {
+			if (w > 0.8f) {
+				// Traverse all views in a millisecond
+				return ((float) adapter.getCount()) / 0.001f;
+			} else {
+				return 10.0f * w;
+			}
+		}
+	};
+
+	private DragSortListView.DropListener onDrop = new DragSortListView.DropListener() {
+		@Override
+		public void drop(int from, int to) {
+			adapter.move(from, to);
+			adapter.notifyDataSetChanged();
+			TaskManager.save(task.getHead());
+		}
+	};
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,7 +91,10 @@ public class TaskView extends Activity {
 
 		setTitleCheck(true);
 
-		taskList = (ListView) findViewById(R.id.taskList);
+		taskList = (DragSortListView) findViewById(R.id.taskList);
+		taskList.setDropListener(onDrop);
+		// taskList.setRemoveListener(onRemove);
+		taskList.setDragScrollProfile(ssProfile);
 
 		header = header();
 

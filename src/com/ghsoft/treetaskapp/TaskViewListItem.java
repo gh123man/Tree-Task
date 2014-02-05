@@ -45,6 +45,10 @@ public class TaskViewListItem extends BaseAdapter {
 	public int getCount() {
 		return task.numChildren();
 	}
+	
+	public void move(int from, int to) {
+		task.moveChild(from, to);
+	}
 
 	public View getView(final int position, View convertView, ViewGroup parent) {
 
