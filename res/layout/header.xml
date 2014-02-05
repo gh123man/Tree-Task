@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="6dp"
         android:background="#2d2d2d"
         android:orientation="vertical" >
@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/hdescription"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
@@ -43,6 +43,12 @@
             android:textColor="#bbbbbb"
             android:textSize="18dp" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="#2d2d2d"
+            android:orientation="vertical" >
+        </LinearLayout>
     </LinearLayout>
 
     <RelativeLayout
