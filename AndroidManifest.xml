@@ -24,7 +24,7 @@
         </activity>
         <activity android:name="com.ghsoft.treetaskapp.TaskView" >
         </activity>
-        <activity android:name="com.ghsoft.treetaskapp.NewTaskTree" >
+        <activity android:name="com.ghsoft.treetaskapp.NewTreeTask" >
         </activity>
         <activity android:name="com.ghsoft.treetaskapp.NewTask" >
         </activity>
@@ -33,6 +33,8 @@
         <activity android:name="com.ghsoft.treetaskapp.TreeView" >
         </activity>
         <activity android:name="com.ghsoft.treetaskapp.ExportView" >
+        </activity>
+        <activity android:name="com.ghsoft.treetaskapp.NewTreeView" >
         </activity>
     </application>
 

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.Task;
+import com.ghsoft.treetask.TaskDummy;
 import com.ghsoft.treetask.TaskLeaf;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
@@ -53,6 +54,12 @@ public class NewTask extends Activity {
 
 				if (t.setName(name.getText().toString())) {
 					if (t.setDescription(description.getText().toString())) {
+						
+						Task child = task.getChild(0);
+						
+						if (child instanceof TaskDummy) {
+							task.deleteChild(child);
+						}
 
 						final TaskNode tn = (TaskNode) task;
 						tn.addSubTask(t);
@@ -95,8 +102,14 @@ public class NewTask extends Activity {
 	public void onBackPressed() {
 		Intent i;
 		hideInput();
-
-		if (task.numChildren() < 1) {
+		
+		if (task.getChild(0) instanceof TaskDummy) {
+			
+			i = new Intent(NewTask.this, NewTreeView.class);
+			i.putExtra("task", task);
+			
+		} else if (task.numChildren() < 1) {
+			
 			if (task.getParent() == null) {
 				i = new Intent(NewTask.this, Main.class);
 			} else {
@@ -105,7 +118,7 @@ public class NewTask extends Activity {
 			}
 
 		} else {
-
+			
 			i = new Intent(NewTask.this, TaskView.class);
 			i.putExtra("task", task);
 		}

@@ -20,8 +20,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.ghsoft.treetask.R;
+import com.ghsoft.treetask.Task;
+import com.ghsoft.treetask.TaskDummy;
 import com.ghsoft.treetask.TaskHead;
 import com.ghsoft.treetask.TaskManager;
+import com.ghsoft.treetask.TaskNode;
 
 public class MainViewFragment extends Fragment {
 
@@ -70,8 +73,18 @@ public class MainViewFragment extends Fragment {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
 				ViewPager a = (ViewPager) arg1.getParent().getParent().getParent().getParent();
-
-				Intent i = new Intent(getActivity(), TaskView.class);
+				
+				TaskNode t = toDisplay.get(position).getTask();
+				Task child = t.getChild(0);
+				
+				Intent i = null;
+				
+				if (child instanceof TaskDummy) {
+					i = new Intent(getActivity(), NewTreeView.class);
+				} else {
+					i = new Intent(getActivity(), TaskView.class);
+				}
+				
 				i.putExtra("task", toDisplay.get(position).getTask());
 				i.putExtra("page", a.getCurrentItem());
 				getActivity().finish();

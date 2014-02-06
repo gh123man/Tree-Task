@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.Task;
+import com.ghsoft.treetask.TaskDummy;
 import com.ghsoft.treetask.TaskLeaf;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
@@ -441,11 +442,14 @@ public class TaskView extends Activity {
 
 						} else {
 
-							TaskManager.delete(task.getHead().taskID);
-							Intent i = new Intent(TaskView.this, Main.class);
+							TaskDummy t = new TaskDummy(task);
+							task.addSubTask(t);
+
+							Intent i = new Intent(TaskView.this, NewTreeView.class);
+							i.putExtra("task", task);
 							finish();
 							startActivity(i);
-							overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+							overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
 						}
 
 					} else {

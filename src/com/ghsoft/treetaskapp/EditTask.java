@@ -10,7 +10,9 @@ import android.widget.Toast;
 
 import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.Task;
+import com.ghsoft.treetask.TaskDummy;
 import com.ghsoft.treetask.TaskManager;
+import com.ghsoft.treetask.TaskNode;
 
 public class EditTask extends Activity {
 
@@ -51,8 +53,16 @@ public class EditTask extends Activity {
 					if (task.setDescription(description.getText().toString())) {
 
 						TaskManager.save(task.getHead());
-
-						Intent i = new Intent(EditTask.this, TaskView.class);
+						Intent i = null;
+						
+						if (task instanceof TaskNode) {
+							
+							if (((TaskNode) task).getChild(0) instanceof TaskDummy) {
+								i = new Intent(EditTask.this, NewTreeView.class);
+							} else {
+								i = new Intent(EditTask.this, TaskView.class);
+							}
+						}
 
 						if (fromList) {
 							i.putExtra("task", task.getParent());
@@ -78,10 +88,18 @@ public class EditTask extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		Intent i;
-
-		i = new Intent(EditTask.this, TaskView.class);
-
+		
+		Intent i = null;
+		
+		if (task instanceof TaskNode) {
+			
+			if (((TaskNode) task).getChild(0) instanceof TaskDummy) {
+				i = new Intent(EditTask.this, NewTreeView.class);
+			} else {
+				i = new Intent(EditTask.this, TaskView.class);
+			}
+		}
+		
 		if (fromList) {
 			i.putExtra("task", task.getParent());
 		} else {
