@@ -18,12 +18,19 @@ public class MainListItem extends BaseAdapter {
 	private TextView name, description, percent, subcount;
 	private ProgressBar completion;
 	private ArrayList<TaskHead> tasks;
+	private String type;
+	
 
-	public MainListItem(Context context, ArrayList<TaskHead> tasks) {
+	public MainListItem(Context context, ArrayList<TaskHead> tasks, String type) {
 		// Caches the LayoutInflater for quicker use
 		this.inflater = LayoutInflater.from(context);
 		// Sets the events data
 		this.tasks = tasks;
+		this.type = type;
+	}
+	
+	public String getType() {
+		return type;
 	}
 
 	public TaskHead getItem(int position) throws IndexOutOfBoundsException {

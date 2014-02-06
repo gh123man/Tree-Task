@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -94,7 +95,6 @@ public class TaskView extends Activity {
 
 		taskList = (DragSortListView) findViewById(R.id.taskList);
 		taskList.setDropListener(onDrop);
-		// taskList.setRemoveListener(onRemove);
 		taskList.setDragScrollProfile(ssProfile);
 
 		header = header();
@@ -415,6 +415,7 @@ public class TaskView extends Activity {
 
 			Intent i1 = new Intent(TaskView.this, EditTask.class);
 			i1.putExtra("task", taskleaf);
+			Log.e("test", "" + (null == taskleaf.getParent()));
 			i1.putExtra("fromListView", true);
 			finish();
 			startActivity(i1);

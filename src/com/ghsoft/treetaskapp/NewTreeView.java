@@ -11,23 +11,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ghsoft.treetask.R;
-import com.ghsoft.treetask.Task;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
 
 public class NewTreeView extends Activity {
 
 	private TaskNode task;
-	private Task treeView;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newtreeview);
-		treeView = null;
-
-		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("treeView")) {
-			treeView = (Task) getIntent().getExtras().getSerializable("treeView");
-		}
 
 		Object sTask = getIntent().getSerializableExtra("task");
 

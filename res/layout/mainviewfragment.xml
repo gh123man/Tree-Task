@@ -4,13 +4,17 @@
     android:layout_height="fill_parent"
     tools:context=".Main$DummySectionFragment" >
 
-    <ListView
+    <com.mobeta.android.dslv.DragSortListView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:dslv="http://schemas.android.com/apk/res-auto"
         android:id="@+id/taskList"
         android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
         android:background="#101010"
         android:divider="#202020"
-        android:dividerHeight="2px"
-        android:layout_height="fill_parent">
-    </ListView>
+        android:dividerHeight="0px"
+        dslv:drag_enabled="true"
+        dslv:drag_handle_id="@id/drag_handle" >
+    </com.mobeta.android.dslv.DragSortListView>
 
 </RelativeLayout>

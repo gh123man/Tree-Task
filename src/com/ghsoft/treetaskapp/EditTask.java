@@ -24,14 +24,14 @@ public class EditTask extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edittask);
-
+		
 		setTitle("Edit task");
 
 		Object sTask = getIntent().getSerializableExtra("task");
 		fromList = getIntent().getBooleanExtra("fromListView", false);
 
 		task = (Task) sTask;
-
+		
 		name = (EditText) findViewById(R.id.name);
 		description = (EditText) findViewById(R.id.description);
 		submit = (Button) findViewById(R.id.submit);
@@ -62,6 +62,8 @@ public class EditTask extends Activity {
 							} else {
 								i = new Intent(EditTask.this, TaskView.class);
 							}
+						} else {
+							i = new Intent(EditTask.this, TaskView.class);
 						}
 
 						if (fromList) {

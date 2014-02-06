@@ -7,8 +7,6 @@
     <com.mobeta.android.dslv.DragSortListView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:dslv="http://schemas.android.com/apk/res-auto"
-        dslv:drag_enabled="true"
-        dslv:drag_handle_id="@id/drag_handle"
         android:id="@+id/taskList"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -16,7 +14,9 @@
         android:divider="@null"
         android:dividerHeight="0dp"
         android:paddingTop="2dp"
-        android:scrollbars="none" >
+        android:scrollbars="none"
+        dslv:drag_enabled="true"
+        dslv:drag_handle_id="@id/drag_handle" >
     </com.mobeta.android.dslv.DragSortListView>
 
     <LinearLayout

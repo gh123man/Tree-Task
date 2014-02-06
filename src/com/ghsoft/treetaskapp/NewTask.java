@@ -55,13 +55,16 @@ public class NewTask extends Activity {
 				if (t.setName(name.getText().toString())) {
 					if (t.setDescription(description.getText().toString())) {
 						
-						Task child = task.getChild(0);
 						
-						if (child instanceof TaskDummy) {
-							task.deleteChild(child);
+						if (task.hasChildren()) {
+							Task child = task.getChild(0);
+							
+							if (child instanceof TaskDummy) {
+								task.deleteChild(child);
+							}
 						}
 
-						final TaskNode tn = (TaskNode) task;
+						TaskNode tn = (TaskNode) task;
 						tn.addSubTask(t);
 
 						TaskManager.save(task.getHead());

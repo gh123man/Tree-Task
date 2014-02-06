@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ListView;
 
 import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.Task;
@@ -25,6 +24,7 @@ import com.ghsoft.treetask.TaskDummy;
 import com.ghsoft.treetask.TaskHead;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
+import com.mobeta.android.dslv.DragSortListView;
 
 public class MainViewFragment extends Fragment {
 
@@ -34,15 +34,44 @@ public class MainViewFragment extends Fragment {
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	private static final int TASKS = 1;
 	// private static final int ARCHIVE = 2;
-	private ListView taskList;
+	private DragSortListView taskList;
 	public TaskManager tm;
 	private ArrayList<TaskHead> toDisplay;
 	private MainListItem adapter;
 	public int id;
 
-	public MainViewFragment() {
+	private DragSortListView.DragScrollProfile ssProfile = new DragSortListView.DragScrollProfile() {
+		@Override
+		public float getSpeed(float w, long t) {
+			if (w > 0.8f) {
+				// Traverse all views in a millisecond
+				return ((float) adapter.getCount()) / 0.001f;
+			} else {
+				return 10.0f * w;
+			}
+		}
+	};
 
-	}
+	private DragSortListView.DropListener onDrop = new DragSortListView.DropListener() {
+		@Override
+		public void drop(int from, int to) {
+			TaskHead th = adapter.getData().get(from);
+			
+			adapter.getData().remove(th);
+			adapter.getData().add(to, th);
+			adapter.notifyDataSetChanged();
+			
+			if (adapter.getType().equals("tasks")) {
+				tm.getMetadata().buildTasksOrder(adapter.getData());
+				TaskManager.saveMetaData();
+			} else {
+				tm.getMetadata().buildArchiveOrder(adapter.getData());
+				TaskManager.saveMetaData();
+			}
+			
+		}
+	};
+	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -54,15 +83,20 @@ public class MainViewFragment extends Fragment {
 		if (getArguments().getInt(ARG_SECTION_NUMBER) == TASKS) {
 			rootView = inflater.inflate(R.layout.mainviewfragment, container, false);
 			toDisplay = tm.getTasks();
-			taskList = (ListView) rootView.findViewById(R.id.taskList);
+			taskList = (DragSortListView) rootView.findViewById(R.id.taskList);
+			adapter = new MainListItem(getActivity().getApplicationContext(), toDisplay, "tasks");
 		} else {
 			rootView = inflater.inflate(R.layout.mainviewfragmentarchive, container, false);
 			toDisplay = tm.getArchive();
-			taskList = (ListView) rootView.findViewById(R.id.taskListArchive);
+			taskList = (DragSortListView) rootView.findViewById(R.id.taskListArchive);
+			adapter = new MainListItem(getActivity().getApplicationContext(), toDisplay, "archive");
 		}
+		
+		taskList.setDropListener(onDrop);
+		taskList.setDragScrollProfile(ssProfile);
 
 		if (toDisplay.size() > 0) {
-			adapter = new MainListItem(getActivity().getApplicationContext(), toDisplay);
+			
 
 			taskList.setAdapter(adapter);
 		}
@@ -72,7 +106,7 @@ public class MainViewFragment extends Fragment {
 		taskList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
-				ViewPager a = (ViewPager) arg1.getParent().getParent().getParent().getParent();
+				ViewPager a = (ViewPager) arg1.getParent().getParent().getParent().getParent(); //lol
 				
 				TaskNode t = toDisplay.get(position).getTask();
 				Task child = t.getChild(0);
@@ -96,7 +130,7 @@ public class MainViewFragment extends Fragment {
 
 		return rootView;
 	}
-
+	
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		ViewPager a = (ViewPager) v.getParent().getParent().getParent();
 
@@ -124,9 +158,13 @@ public class MainViewFragment extends Fragment {
 
 					TaskManager.delete(tm.getTasks().get(info.position).taskID);
 
-					ListView list = (ListView) getActivity().findViewById(R.id.taskList);
-					MainListItem adapter = ((MainListItem) list.getAdapter());
+					DragSortListView list = (DragSortListView) getActivity().findViewById(R.id.taskList);
+					MainListItem adapter = ((MainListItem) list.getInputAdapter());
 					adapter.getData().remove(info.position);
+					
+					tm.getMetadata().buildTasksOrder(adapter.getData());
+					TaskManager.saveMetaData();
+					
 					adapter.notifyDataSetChanged();
 
 				}
@@ -145,12 +183,19 @@ public class MainViewFragment extends Fragment {
 			builder = new AlertDialog.Builder(getActivity());
 			builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
-
+					
+					adapter.getType();
+					
+					
 					TaskManager.delete(tm.getArchive().get(info.position).taskID);
 
-					ListView list = (ListView) getActivity().findViewById(R.id.taskListArchive);
-					MainListItem adapter = ((MainListItem) list.getAdapter());
+					DragSortListView list = (DragSortListView) getActivity().findViewById(R.id.taskListArchive);
+					MainListItem adapter = ((MainListItem) list.getInputAdapter());
 					adapter.getData().remove(info.position);
+					
+					tm.getMetadata().buildArchiveOrder(adapter.getData());
+					TaskManager.saveMetaData();
+					
 					adapter.notifyDataSetChanged();
 				}
 			}).setNegativeButton("No", new DialogInterface.OnClickListener() {

@@ -1,66 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="80dp"
-    android:background="@drawable/select"
+    android:background="@drawable/transselect"
     android:minHeight="80dp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingBottom="2dp" >
 
-    <TextView
-        android:id="@+id/subcount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:textColor="#fff"
-        android:layout_marginBottom="-10dp"
-        android:textSize="10dp" />
-
-    <TextView
-        android:id="@+id/name"
-        android:paddingLeft="5dp"
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="title"
-        android:textColor="#ffffff"
-        android:textSize="30dp" />
-
-    <TextView
-        android:id="@+id/description"
-        android:paddingLeft="5dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="description"
-        android:textColor="#bbbbbb"
-        android:textSize="18dp" />
-
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="5dp" >
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/select"
+        android:minHeight="80dp"
+        android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/percent"
+            android:id="@+id/subcount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginBottom="-10dp"
+            android:textColor="#fff"
+            android:textSize="10dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:text="title"
+            android:textColor="#ffffff"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:paddingBottom="3dp"
-            android:paddingRight="205dp"
-            android:textColor="#fff"
-            android:textSize="15dp" />
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="5dp"
+            android:text="description"
+            android:textColor="#bbbbbb"
+            android:textSize="18dp" />
 
-        <ProgressBar
-            android:id="@+id/completion"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:paddingBottom="5dp"
-            android:paddingRight="5dp"
-            android:progressDrawable="@drawable/progbar" />
-    </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="5dp" >
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/percent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="3dp"
+                android:paddingRight="205dp"
+                android:textColor="#fff"
+                android:textSize="15dp" />
+
+            <ProgressBar
+                android:id="@+id/completion"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:paddingBottom="5dp"
+                android:paddingRight="5dp"
+                android:progressDrawable="@drawable/progbar" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@id/drag_handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/dragtab" />
+
+</RelativeLayout>
