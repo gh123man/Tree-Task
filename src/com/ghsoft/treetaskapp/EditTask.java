@@ -100,6 +100,8 @@ public class EditTask extends Activity {
 			} else {
 				i = new Intent(EditTask.this, TaskView.class);
 			}
+		} else {
+			i = new Intent(EditTask.this, TaskView.class);
 		}
 		
 		if (fromList) {
