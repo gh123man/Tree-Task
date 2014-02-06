@@ -184,8 +184,6 @@ public class MainViewFragment extends Fragment {
 			builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					
-					adapter.getType();
-					
 					
 					TaskManager.delete(tm.getArchive().get(info.position).taskID);
 
