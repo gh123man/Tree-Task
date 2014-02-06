@@ -122,15 +122,6 @@ public class TaskManager implements Serializable {
 					e.printStackTrace();
 				}
 
-				try {
-					FileOutputStream fos = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + "/TaskTree/meta.dat");
-					ObjectOutputStream os = new ObjectOutputStream(fos);
-					os.writeObject(metaData);
-					os.close();
-
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 			}
 
 		}).start();
