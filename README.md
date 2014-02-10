@@ -25,7 +25,7 @@ I am a strong believer in open source software and feel that public exposure can
 
 ### Can I try it first?
 Sure! 
-You may find a free, ad supported somewhat-out-of-date version here: https://play.google.com/store/apps/details?id=com.ghsoft.treetaskfreeapp
+You may find a free, ad supported version here: https://play.google.com/store/apps/details?id=com.ghsoft.treetaskfreeapp
 
 If you really like my work you may purchace it here for $0.99: https://play.google.com/store/apps/details?id=com.ghsoft.treetask
 
