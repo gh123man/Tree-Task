@@ -73,7 +73,7 @@ public class MainListItem extends BaseAdapter {
 		completion.setMax(100);
 		completion.setProgress(tasks.get(position).getTask().completion());
 		percent.setText(tasks.get(position).getTask().completion() + "%");
-		subcount.setText(tasks.get(position).getTask().subTaskCount() + " subtask(s)");
+		subcount.setText(String.valueOf(tasks.get(position).getTask().subTaskCount()) + " " + convertView.getResources().getString(R.string.subtasks));
 
 		return convertView;
 	}

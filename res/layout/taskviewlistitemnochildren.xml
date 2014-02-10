@@ -6,7 +6,7 @@
     android:minHeight="80dp"
     android:orientation="vertical"
     android:paddingBottom="2dp" >
-    
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -17,41 +17,41 @@
 
         <TextView
             android:id="@+id/name"
-            android:paddingLeft="5dp"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="title"
+            android:paddingLeft="5dp"
+            android:text="@string/title"
             android:textColor="#ffffff"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/description"
-            android:paddingLeft="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:text="description"
+            android:paddingLeft="5dp"
+            android:text="@string/description"
             android:textColor="#bbbbbb"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/check"
-        android:visibility="invisible"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:paddingRight="10dp"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/wccheck" />
-    
+        android:contentDescription="@string/check"
+        android:paddingRight="10dp"
+        android:src="@drawable/wccheck"
+        android:visibility="invisible" />
+
     <ImageView
         android:id="@id/drag_handle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/drag_tab"
         android:src="@drawable/dragtab" />
 
 </RelativeLayout>

@@ -83,7 +83,7 @@ public class TaskViewListItem extends BaseAdapter {
 		completion.setProgress(t.completion());
 		percent.setText(t.completion() + "%");
 
-		subcount.setText(t.subTaskCount() + " subtask(s)");
+		subcount.setText(t.subTaskCount() + R.string.subtasks);
 
 		if (t.completion() == 100) {
 			name.setTextColor(Color.parseColor("#505050"));

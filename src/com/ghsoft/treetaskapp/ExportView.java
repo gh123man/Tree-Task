@@ -34,7 +34,7 @@ public class ExportView extends Activity {
 
 		Object sTask = getIntent().getSerializableExtra("task");
 		task = (TaskNode) sTask;
-		setTitle("Preview");
+		setTitle(R.string.preview);
 
 		share = (Button) findViewById(R.id.share);
 		preview = (TextView) findViewById(R.id.preview);

@@ -426,7 +426,7 @@ public class TaskView extends Activity {
 		case R.id.delete:
 
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			builder.setMessage(R.string.sure_to_delete).setCancelable(false).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					task.deleteChild(info.position);
 					TaskManager.save(task.getHead());
@@ -461,7 +461,7 @@ public class TaskView extends Activity {
 					}
 				}
 
-			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
+			}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					dialog.cancel();
 				}

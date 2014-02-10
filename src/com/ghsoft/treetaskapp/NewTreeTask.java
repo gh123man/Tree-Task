@@ -25,7 +25,7 @@ public class NewTreeTask extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newtasktree);
 
-		setTitle("New Tree");
+		setTitle(R.string.new_tree);
 
 		inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
@@ -46,7 +46,7 @@ public class NewTreeTask extends Activity {
 				TaskDummy t = new TaskDummy(task);
 
 				if (treeName.getText().toString().length() < 1) {
-					Toast.makeText(NewTreeTask.this, "You must supply a tree name", Toast.LENGTH_LONG).show();
+					Toast.makeText(NewTreeTask.this, R.string.supply_name, Toast.LENGTH_LONG).show();
 					return;
 				}
 				
@@ -62,10 +62,10 @@ public class NewTreeTask extends Activity {
 						overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
 
 					} else {
-						Toast.makeText(NewTreeTask.this, "Task Name must be less than " + Task.maxNameLen + " characters.", Toast.LENGTH_LONG).show();
+						Toast.makeText(NewTreeTask.this, R.string.description_less_than + " " + Task.maxDescriptionLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
 					}
 				} else {
-					Toast.makeText(NewTreeTask.this, "Tree name must be less than " + Task.maxNameLen + " characters.", Toast.LENGTH_LONG).show();
+					Toast.makeText(NewTreeTask.this, R.string.name_less_than + " " + Task.maxNameLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
 				}
 
 			}

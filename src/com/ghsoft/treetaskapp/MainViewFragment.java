@@ -153,7 +153,7 @@ public class MainViewFragment extends Fragment {
 		case R.id.deleteTask:
 
 			builder = new AlertDialog.Builder(getActivity());
-			builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			builder.setMessage(R.string.sure_to_delete).setCancelable(false).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 
 					TaskManager.delete(tm.getTasks().get(info.position).taskID);
@@ -168,7 +168,7 @@ public class MainViewFragment extends Fragment {
 					adapter.notifyDataSetChanged();
 
 				}
-			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
+			}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					dialog.cancel();
 				}
@@ -181,7 +181,7 @@ public class MainViewFragment extends Fragment {
 		case R.id.deleteArchive:
 
 			builder = new AlertDialog.Builder(getActivity());
-			builder.setMessage("Are you sure you want to Delete this Task?").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			builder.setMessage(R.string.sure_to_delete).setCancelable(false).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					
 					
@@ -196,7 +196,7 @@ public class MainViewFragment extends Fragment {
 					
 					adapter.notifyDataSetChanged();
 				}
-			}).setNegativeButton("No", new DialogInterface.OnClickListener() {
+			}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					dialog.cancel();
 				}

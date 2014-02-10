@@ -27,7 +27,7 @@ public class NewTask extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.newtask);
 
-		setTitle("New Task");
+		setTitle(R.string.new_task);
 		
 		inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
@@ -48,7 +48,7 @@ public class NewTask extends Activity {
 				TaskLeaf t = new TaskLeaf(task);
 
 				if (name.getText().toString().length() < 1) {
-					Toast.makeText(NewTask.this, "You must supply a name", Toast.LENGTH_LONG).show();
+					Toast.makeText(NewTask.this, R.string.supply_name, Toast.LENGTH_LONG).show();
 					return;
 				}
 
@@ -76,10 +76,10 @@ public class NewTask extends Activity {
 						overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
 
 					} else {
-						Toast.makeText(NewTask.this, "Description must be less than " + Task.maxDescriptionLen + " characters.", Toast.LENGTH_LONG).show();
+						Toast.makeText(NewTask.this, R.string.description_less_than + " " + Task.maxDescriptionLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
 					}
 				} else {
-					Toast.makeText(NewTask.this, "Name must be less than " + Task.maxNameLen + " characters.", Toast.LENGTH_LONG).show();
+					Toast.makeText(NewTask.this, R.string.name_less_than + " " + Task.maxNameLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
 				}
 
 			}

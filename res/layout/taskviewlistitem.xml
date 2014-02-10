@@ -21,29 +21,27 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:layout_marginBottom="-10dp"
-            android:text="title"
+            android:text="@string/title"
             android:textColor="#fff"
-            android:textSize="10dp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/name"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
-            android:text="title"
+            android:text="@string/title"
             android:textColor="#ffffff"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:paddingLeft="5dp"
-            android:text="description"
+            android:text="@string/description"
             android:textColor="#bbbbbb"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -59,7 +57,7 @@
                 android:paddingBottom="3dp"
                 android:paddingRight="205dp"
                 android:textColor="#fff"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
 
             <ProgressBar
                 android:id="@+id/completion"
@@ -80,6 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+        android:contentDescription="@string/drag_tab"
         android:src="@drawable/dragtab" />
 
 </RelativeLayout>

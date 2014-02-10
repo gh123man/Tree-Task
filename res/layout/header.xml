@@ -15,9 +15,9 @@
             android:id="@+id/path"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="path"
+            android:text="@string/path"
             android:textColor="#ffffff"
-            android:textSize="10dp" />
+            android:textSize="12sp" />
 
         <View
             android:layout_width="fill_parent"
@@ -28,20 +28,18 @@
             android:id="@+id/hname"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="title"
+            android:text="@string/title"
             android:textColor="#ffffff"
-            android:textSize="30dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/hdescription"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:layout_marginBottom="5dp"
-            android:text="description"
+            android:text="@string/description"
             android:textColor="#bbbbbb"
-            android:textSize="18dp" />
+            android:textSize="18sp" />
 
         <LinearLayout
             android:layout_width="match_parent"

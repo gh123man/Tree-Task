@@ -25,7 +25,7 @@ public class EditTask extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.edittask);
 		
-		setTitle("Edit task");
+		setTitle(R.string.edit_task);
 
 		Object sTask = getIntent().getSerializableExtra("task");
 		fromList = getIntent().getBooleanExtra("fromListView", false);
@@ -45,7 +45,7 @@ public class EditTask extends Activity {
 			public void onClick(View v) {
 
 				if (name.getText().toString().length() < 1) {
-					Toast.makeText(EditTask.this, "You must supply a name", Toast.LENGTH_LONG).show();
+					Toast.makeText(EditTask.this, R.string.supply_name, Toast.LENGTH_LONG).show();
 					return;
 				}
 
@@ -77,10 +77,10 @@ public class EditTask extends Activity {
 						overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
 
 					} else {
-						Toast.makeText(EditTask.this, "Description must be less than " + Task.maxDescriptionLen + " characters.", Toast.LENGTH_LONG).show();
+						Toast.makeText(EditTask.this, R.string.description_less_than + " " + Task.maxDescriptionLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
 					}
 				} else {
-					Toast.makeText(EditTask.this, "Name must be less than " + Task.maxNameLen + " characters.", Toast.LENGTH_LONG).show();
+					Toast.makeText(EditTask.this, R.string.name_less_than + " " + Task.maxNameLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
 				}
 
 			}
