@@ -38,7 +38,6 @@ Import it into eclipse with android development tools installed.
 Have android API level 17 downloaded and ready.
 Have android support v4, v7-appcompat, and v13 installed (all can be accessed via the adt package manager)
 install this library as a project named "library" https://github.com/bauerca/drag-sort-listview#installation
-
 Compile and run!
 
 ### I love it!
