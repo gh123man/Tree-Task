@@ -11,7 +11,7 @@ html, body
     margin: 0px;
 }
 
-a {font-family:inherit; text-decoration:none; color:#00bbff;}
+a {font-family:inherit; text-decoration:none; color:#0f0;}
 a:link {}
 a:visited {}
 a:hover {text-decoration:underline;}
