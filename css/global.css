@@ -54,19 +54,19 @@ a img {
     bottom: 0;
     color: #888;
     margin-bottom:20px;
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    transition: all .2s ease;
+    -webkit-transition: font-size .2s ease;
+-moz-transition: font-size .2s ease;
+-ms-transition: font-size .2s ease;
+-o-transition: font-size .2s ease;
+transition: font-size .2s ease;
 }
 .scrollText:hover{
     font-size: 30pt;
-    -webkit-transition: all .2s ease;
-    -moz-transition: all .2s ease;
-    -ms-transition: all .2s ease;
-    -o-transition: all .2s ease;
-    transition: all .2s ease;
+    -webkit-transition: font-size .2s ease;
+    -moz-transition: font-size .2s ease;
+    -ms-transition: font-size .2s ease;
+    -o-transition: font-size .2s ease;
+    transition: font-size .2s ease;
 
 }
 
