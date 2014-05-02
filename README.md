@@ -16,22 +16,10 @@ Your progress on tasks/projects is tracked by calculating the completion of each
 - archive for finished tasks
 - progress tracking by calculating completion of all sub-tasks.
 - full tree view mode - visualize the entire tree and jump to any task (see screenshots)
+ 
 
 
-### Why open source?
-
-This app is for sale on Google play. I figure if someone wants to support my work or simply want consistent updates they will buy it. But I don't want put a pay-wall between developers or power-user who really love the app!
-I am a strong believer in open source software and feel that public exposure can only make a platform better. 
-
-### Can I try it first?
-Sure! 
-You may find a free, ad supported version here: https://play.google.com/store/apps/details?id=com.ghsoft.treetaskfreeapp
-
-If you really like my work you may purchace it here for $0.99: https://play.google.com/store/apps/details?id=com.ghsoft.treetask
-
-(Or if you are really sneaky, you will click the releases button on github)
-
-### Okay, so how can I compile it?
+### How to compile
 Easy!
 Clone this repo.
 Import it into eclipse with android development tools installed.
