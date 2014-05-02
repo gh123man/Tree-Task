@@ -6,7 +6,7 @@
 
 html, body
 {
-    height: 100%;
+    min-height: 100%;
     padding: 0px;
     margin: 0px;
 }
@@ -66,7 +66,7 @@ a img {
     float: left; 
     min-height: 400px;
     width: 100%;
-    margin-top: 70%;
+    margin-top: 50%;
 }
 
 .navBox {
