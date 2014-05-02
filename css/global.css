@@ -1,5 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,700);
 
+*, *:before, *:after {
+  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+ }
+
 html, body
 {
     height: 100%;
@@ -22,7 +26,6 @@ body {
 a img {
   border:none;
 }
-
 .mainTitle {
     font-size: 70pt;
     font-weight: 700;
@@ -219,12 +222,14 @@ a img {
 }
 
 .code {
+    margin-top:5px;
     background: #555;
     border-radius: 8px;
-    padding: 5px;
+    padding: 15px;
     margin-left: 0px;
     margin-right: 20px;
-    
+    white-space: pre-line;
+    font-family: monospace;
 }
 
 .stick {
