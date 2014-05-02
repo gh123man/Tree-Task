@@ -7,7 +7,7 @@ var $nav6;
 var $nav7;
 
 $(function(){
-    var $window = $(window),$navigation = $('#navBox'), top = $navigation.offset().top;
+    var $window = $(window),$navigation = $('#navBox'), top = $('.contentBox').offset().top;
     
     $('.mainTitle').delay(200).fadeIn(1000);
     $('.secondTitle').delay(800).fadeIn(1000);

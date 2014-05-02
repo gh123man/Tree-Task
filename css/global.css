@@ -73,7 +73,7 @@ a img {
     float: left;
     width: 215px;
     box-shadow: 3px 3px 100px 1px rgba(0,0,0,0.5);
-    position: relative;
+    margin-top: 40px;
     z-index: 10;
 }
 
