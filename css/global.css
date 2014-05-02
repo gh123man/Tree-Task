@@ -81,6 +81,7 @@ transition: font-size .2s ease;
     min-height: 400px;
     width: 100%;
     margin-top: 50%;
+    margin-top: 70%;
 }
 
 .navBox {
@@ -88,6 +89,7 @@ transition: font-size .2s ease;
     width: 215px;
     box-shadow: 3px 3px 100px 1px rgba(0,0,0,0.5);
     margin-top: 40px;
+    position: relative;
     z-index: 10;
 }
 
@@ -98,6 +100,10 @@ transition: font-size .2s ease;
     float: left;
     background: #444;
     border-bottom: solid 2px #00ff00;
+}
+
+.navText {
+    padding-left: 10px;
 }
 .smallIcon {
     margin-left: 5px;
