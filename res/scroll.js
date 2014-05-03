@@ -11,6 +11,7 @@ $(function(){
     
     $('.mainTitle').delay(400).fadeIn(1000);
     $('.secondTitle').delay(1000).fadeIn(1000);
+    $('.playLink').delay(1500).fadeIn(1000);
     $('.scrollText').delay(2000).fadeIn(1000);
     
     
