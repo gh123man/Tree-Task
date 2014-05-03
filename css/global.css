@@ -154,11 +154,21 @@ transition: font-size .2s ease;
     padding-bottom: 7px;
     border-top: solid 1px #555;
     color: #F1F1F1;
+-webkit-transition: background .2s ease;
+-moz-transition: background .2s ease;
+-ms-transition: background .2s ease;
+-o-transition: background .2s ease;
+transition: background .2s ease;
 }
 
 .navItem:hover {
     background: #4FD144;
     color: #444;
+-webkit-transition: background .2s ease;
+-moz-transition: background .2s ease;
+-ms-transition: background .2s ease;
+-o-transition: background .2s ease;
+transition: background .2s ease;
 }
 
 .navItemBody {
@@ -168,6 +178,11 @@ transition: font-size .2s ease;
 .navAt {
     background: #45B037;
     color: #444;
+-webkit-transition: background .2s ease;
+-moz-transition: background .2s ease;
+-ms-transition: background .2s ease;
+-o-transition: background .2s ease;
+transition: background .2s ease;
 }
 
 .contentBox {
@@ -197,11 +212,10 @@ transition: font-size .2s ease;
     font-size: 30pt;
     padding-left: 10px;
     padding-top: 10px;
+    border-bottom: solid 2px #00ff00;
+    padding-bottom:5px;
 }
 
-.divider {
-    border-bottom: solid 2px #00ff00;
-}
 
 .badges {
     margin: 10px;
@@ -283,7 +297,7 @@ transition: font-size .2s ease;
 .stick {
     position: fixed;
     top: 0;
-    margin-top:5px;
+    margin-top:0px;
 }
 
 .addPadding {
