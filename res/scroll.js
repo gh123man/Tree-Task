@@ -9,15 +9,15 @@ var $nav7;
 $(function(){
     var $window = $(window),$navigation = $('#navBox'), top = $navigation.offset().top;
     
-    $('.mainTitle').delay(200).fadeIn(1000);
-    $('.secondTitle').delay(800).fadeIn(1000);
+    $('.mainTitle').delay(400).fadeIn(1000);
+    $('.secondTitle').delay(1000).fadeIn(1000);
     $('.scrollText').delay(2000).fadeIn(1000);
     
     
     setTimeout(function() {
         if ($window.scrollTop() < 1) {
-            $window.scrollTo(25, 400);
-            $window.scrollTo(15, 300);
+            $window.scrollTo(20, 300);
+            $window.scrollTo(10, 200);
         }
     }, 3000);
     

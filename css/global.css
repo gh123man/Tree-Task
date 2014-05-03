@@ -26,24 +26,47 @@ body {
 a img {
   border:none;
 }
+
+.headerBox {
+    margin: auto;
+    margin-top: 5%;
+    width: 100%;
+    height: 80%;
+}
+.headLeft {
+    width: 50%;
+    height: 100%;
+    float: left;
+}
+.headRight {
+    width: 50%;
+    height: 100%;
+    float: right;
+}
+
+.top-img {
+    max-width: 100%;
+    max-height: 100%;
+}
 .mainTitle {
     font-size: 70pt;
     font-weight: 700;
-    width: 100%;
-    text-align: center;
-    margin-top: 14%;
+    width: 500px;
+    float: right;
+    text-align: right;
     color: #EEE;
-    position: absolute;
     text-shadow: 0px 2px 3px #222;
+    padding-left: 5px;
+    margin-top: 100px;
 }
 
 .secondTitle {
     font-size: 30pt;
-    width: 100%;
-    text-align: center;
+    width: 500px;
+    text-align: right;
     color: #EEE;
-    position: absolute;
     text-shadow: 0px 2px 3px #222;
+    float: right;
 }
 
 .scrollText {
