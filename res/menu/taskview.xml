@@ -5,24 +5,24 @@
         android:icon="@drawable/treeview"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:title="Tree View"/>
+        android:title="@string/tree_view"/>
     <item
         android:id="@+id/share"
-        android:icon="@drawable/social_share"
+        android:icon="@drawable/ic_action_share"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
-        android:title="Share/Export Task"/>
+        android:title="@string/export_task"/>
     <item
         android:id="@+id/newTask"
-        android:icon="@drawable/content_new"
+        android:icon="@drawable/ic_action_new"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="New Task"/>
+        android:title="@string/new_task"/>
     <item
         android:id="@+id/edit"
-        android:icon="@drawable/content_edit"
+        android:icon="@drawable/ic_action_edit"
         android:orderInCategory="100"
         android:showAsAction="always"
-        android:title="Edit Tree"/>
+        android:title="@string/edit_task"/>
 
 </menu>

@@ -498,10 +498,11 @@ public class TaskView extends Activity {
 			if (task.isHead()) {
 
 				Intent i = new Intent(TaskView.this, Main.class);
-				if (task.completion() == 100)
-					i.putExtra("page", 1);
-				else
-					i.putExtra("page", 0);
+				//if (task.completion() == 100)
+				//	i.putExtra("page", 1);
+				//else
+				//	i.putExtra("page", 0);
+				i.putExtra("page", 0);	//let always go to tasks for now
 				finish();
 				startActivity(i);
 				overridePendingTransition(R.anim.backslide, R.anim.backzoom);

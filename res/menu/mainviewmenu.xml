@@ -4,6 +4,6 @@
         android:id="@+id/deleteTask"
         android:orderInCategory="100"
         android:showAsAction="never"
-        android:title="Delete Task Tree"/>
+        android:title="@string/delete_tree"/>
 
 </menu>
