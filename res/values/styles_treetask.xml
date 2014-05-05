@@ -33,7 +33,7 @@
     </style>
 
     <style name="ActionBar.Solid.Treetask" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
-        <item name="android:background">#2d2d2d</item>
+        <item name="android:background">#333333</item>
         <item name="android:backgroundStacked">@drawable/ab_stacked_solid_treetask</item>
         <item name="android:backgroundSplit">@drawable/ab_background_textured_treetask</item>
         <item name="android:progressBarStyle">@style/ProgressBar.Treetask</item>
