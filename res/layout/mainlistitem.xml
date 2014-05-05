@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:contentDescription=""
+        android:contentDescription="drag handle"
         android:src="@drawable/dragtab" />
 
 </RelativeLayout>
