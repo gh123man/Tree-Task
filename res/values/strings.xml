@@ -16,7 +16,8 @@
     <string name="no">No</string>
     <string name="new_task">New Task</string>
     <string name="new_tree">New Tree</string>
-    <string name="subtasks">subtask(s)</string>
+    <string name="subtask">subtask</string>
+    <string name="subtasks">subtasks</string>
     <string name="path">Path</string>
     <string name="title">Title</string>
     <string name="description">Description</string>

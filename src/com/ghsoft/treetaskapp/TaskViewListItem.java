@@ -74,7 +74,7 @@ public class TaskViewListItem extends BaseAdapter {
 		description = (TextView) convertView.findViewById(R.id.description);
 		completion = (ProgressBar) convertView.findViewById(R.id.completion);
 		percent = (TextView) convertView.findViewById(R.id.percent);
-		subcount = (TextView) convertView.findViewById(R.id.subcount);
+		subcount = (TextView) convertView.findViewById(R.id.subcountmainlistitem);
 
 		name.setText(t.getName());
 		description.setText(t.getDescription());
@@ -83,7 +83,12 @@ public class TaskViewListItem extends BaseAdapter {
 		completion.setProgress(t.completion());
 		percent.setText(t.completion() + "%");
 
-		subcount.setText(t.subTaskCount() + R.string.subtasks);
+		if (t.subTaskCount() > 1) {
+			subcount.setText(t.subTaskCount() + " " + convertView.getResources().getString(R.string.subtasks));
+		} else {
+			subcount.setText(t.subTaskCount() + " " + convertView.getResources().getString(R.string.subtask));
+		}
+		
 
 		if (t.completion() == 100) {
 			name.setTextColor(Color.parseColor("#505050"));
