@@ -160,7 +160,6 @@ public class ExportView extends Activity {
 				sendIntent.putExtra(Intent.EXTRA_TEXT, ttb.getText());
 				sendIntent.setType("text/plain");
 				startActivity(sendIntent);
-				finish();
 			}
 		});
 	}
