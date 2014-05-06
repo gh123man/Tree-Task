@@ -1,5 +1,5 @@
 var $nav1;
-var $nav2;
+//var $nav2;
 var $nav3;
 var $nav4;
 var $nav5;
@@ -37,7 +37,7 @@ $(function(){
     });
     
     $nav1 = $('.nav-1');
-    $nav2 = $('.nav-2');
+    //$nav2 = $('.nav-2');
     $nav3 = $('.nav-3');
     $nav4 = $('.nav-4');
     $nav5 = $('.nav-5');
@@ -45,7 +45,7 @@ $(function(){
     $nav7 = $('.nav-7');
     
     var $box1 = $('.box-1');
-    var $box2 = $('.box-2');
+    //var $box2 = $('.box-2');
     var $box3 = $('.box-3');
     var $box4 = $('.box-4');
     var $box5 = $('.box-5');
@@ -66,10 +66,10 @@ $(function(){
             $('.navAt').removeClass('navAt');
             $nav1.addClass('navAt');
         } 
-        if ($(window).scrollTop() > $box2.offset().top - ($(window).height() / 3) ) {
-            $('.navAt').removeClass('navAt');
-            $nav2.addClass('navAt');
-        }
+        //if ($(window).scrollTop() > $box2.offset().top - ($(window).height() / 3) ) {
+        //    $('.navAt').removeClass('navAt');
+        //    $nav2.addClass('navAt');
+        //}
         if ($(window).scrollTop() > $box3.offset().top - ($(window).height() / 3) ) {
             $('.navAt').removeClass('navAt');
             $nav3.addClass('navAt');
