@@ -40,5 +40,6 @@
     <string name="new_task">New Task</string>
     <string name="tree_view">Tree View</string>
     <string name="export_task">Share/Export Task</string>
+    <string name="about">About</string>
 
 </resources>

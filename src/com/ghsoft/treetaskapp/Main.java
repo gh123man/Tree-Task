@@ -84,6 +84,14 @@ public class Main extends FragmentActivity {
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 
 			break;
+			
+		case R.id.about:
+			Intent aboutIntent = new Intent(Main.this, NewTreeTask.class);
+			finish();
+			startActivity(aboutIntent);
+			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+
+			break;
 
 		default:
 			break;
