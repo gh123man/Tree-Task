@@ -54,7 +54,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:text="@string/create_tree"
+            android:text="@string/create_task"
             android:textColor="@android:color/white" />
     </LinearLayout>
 

@@ -5,10 +5,12 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@drawable/ic_action_new"/>
+    <!--  
     <item
         android:id="@+id/about"
         android:orderInCategory="100"
         android:showAsAction="ifRoom"
         android:title="@string/about"/>
+        -->
 
 </menu>

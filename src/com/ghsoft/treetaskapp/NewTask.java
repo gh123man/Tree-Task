@@ -106,12 +106,7 @@ public class NewTask extends Activity {
 		Intent i;
 		hideInput();
 		
-		if (task.getChild(0) instanceof TaskDummy) {
-			
-			i = new Intent(NewTask.this, NewTreeView.class);
-			i.putExtra("task", task);
-			
-		} else if (task.numChildren() < 1) {
+		if (task.numChildren() < 1) {
 			
 			if (task.getParent() == null) {
 				i = new Intent(NewTask.this, Main.class);
@@ -119,7 +114,11 @@ public class NewTask extends Activity {
 				i = new Intent(NewTask.this, TaskView.class);
 				i.putExtra("task", task.getParent());
 			}
-
+		} else if (task.getChild(0) instanceof TaskDummy) {
+			
+			i = new Intent(NewTask.this, NewTreeView.class);
+			i.putExtra("task", task);
+			
 		} else {
 			
 			i = new Intent(NewTask.this, TaskView.class);

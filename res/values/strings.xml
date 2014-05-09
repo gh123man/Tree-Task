@@ -27,6 +27,7 @@
     <string name="tree_name">Tree Name</string>
     <string name="description_opt">Description (optional)</string>
     <string name="create_tree">Create Tree</string>
+    <string name="create_task">Create Task</string>
     <string name="current_task">Current Task</string>
     <string name="whole_tree">Whole Tree</string>
     <string name="show_numbers">Show Numbers</string>
