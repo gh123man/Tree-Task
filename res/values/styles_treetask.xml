@@ -17,43 +17,43 @@
      limitations under the License.
 -->
 
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="Theme.Treetask" parent="@android:style/Theme.Holo">
-        <item name="android:actionBarItemBackground">@drawable/selectable_background_treetask</item>
-        <item name="android:popupMenuStyle">@style/PopupMenu.Treetask</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Treetask</item>
-        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Treetask</item>
-        <item name="android:actionDropDownStyle">@style/DropDownNav.Treetask</item>
-        <item name="android:actionBarStyle">@style/ActionBar.Solid.Treetask</item>
-        <item name="android:actionModeBackground">@drawable/cab_background_top_treetask</item>
-        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_treetask</item>
-        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Treetask</item>
+    <style name="Theme.Treetask" parent="@style/Theme.AppCompat">
+        <item name="actionBarItemBackground">@drawable/selectable_background_treetask</item>
+        <item name="popupMenuStyle">@style/PopupMenu.Treetask</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Treetask</item>
+        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Treetask</item>
+        <item name="actionDropDownStyle">@style/DropDownNav.Treetask</item>
+        <item name="actionBarStyle">@style/ActionBar.Solid.Treetask</item>
+        <item name="actionModeBackground">@drawable/cab_background_top_treetask</item>
+        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_treetask</item>
+        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Treetask</item>
         
     </style>
 
-    <style name="ActionBar.Solid.Treetask" parent="@android:style/Widget.Holo.Light.ActionBar.Solid">
-        <item name="android:background">#333333</item>
-        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_treetask</item>
-        <item name="android:backgroundSplit">@drawable/ab_background_textured_treetask</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Treetask</item>
+    <style name="ActionBar.Solid.Treetask" parent="@style/Widget.AppCompat.Light.ActionBar.Solid">
+        <item name="background">@color/darkgrey</item>
+        <item name="backgroundStacked">@drawable/ab_stacked_solid_treetask</item>
+        <item name="backgroundSplit">@drawable/ab_background_textured_treetask</item>
+        <item name="progressBarStyle">@style/ProgressBar.Treetask</item>
     </style>
 
-    <style name="ActionBar.Transparent.Treetask" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:background">@drawable/ab_transparent_treetask</item>
-        <item name="android:progressBarStyle">@style/ProgressBar.Treetask</item>
+    <style name="ActionBar.Transparent.Treetask" parent="@style/Widget.AppCompat.Light.ActionBar">
+        <item name="background">@drawable/ab_transparent_treetask</item>
+        <item name="progressBarStyle">@style/ProgressBar.Treetask</item>
     </style>
 
-    <style name="PopupMenu.Treetask" parent="@android:style/Widget.Holo.ListPopupWindow">
+    <style name="PopupMenu.Treetask" parent="@style/Widget.AppCompat.ListPopupWindow">
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_treetask</item>	
     </style>
 
-    <style name="DropDownListView.Treetask" parent="@android:style/Widget.Holo.ListView.DropDown">
+    <style name="DropDownListView.Treetask" parent="@style/Widget.AppCompat.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_treetask</item>
     </style>
 
-    <style name="ActionBarTabStyle.Treetask" parent="@android:style/Widget.Holo.ActionBar.TabView">
-        <item name="android:background">@drawable/tab_indicator_ab_treetask</item>
+    <style name="ActionBarTabStyle.Treetask" parent="@style/Widget.AppCompat.ActionBar.TabView">
+        <item name="background">@drawable/tab_indicator_ab_treetask</item>
     </style>
 
     <style name="DropDownNav.Treetask" parent="@android:style/Widget.Holo.Spinner">
@@ -62,18 +62,18 @@
         <item name="android:dropDownSelector">@drawable/selectable_background_treetask</item>
     </style>
     
-    <style name="ProgressBar.Treetask" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
+    <style name="ProgressBar.Treetask" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_treetask</item>
     </style>
     
-    <style name="ActionButton.CloseMode.Treetask" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
-        <item name="android:background">@drawable/btn_cab_done_treetask</item>
+    <style name="ActionButton.CloseMode.Treetask" parent="@style/Widget.AppCompat.ActionButton.CloseMode">
+        <item name="background">@drawable/btn_cab_done_treetask</item>
     </style>
 
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Treetask.Widget" parent="@android:style/Theme.Holo">
-        <item name="android:popupMenuStyle">@style/PopupMenu.Treetask</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Treetask</item>
+    <style name="Theme.Treetask.Widget" parent="@style/Theme.AppCompat">
+        <item name="popupMenuStyle">@style/PopupMenu.Treetask</item>
+        <item name="dropDownListViewStyle">@style/DropDownListView.Treetask</item>
     </style>
 
 </resources>
