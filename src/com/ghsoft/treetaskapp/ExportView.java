@@ -1,10 +1,10 @@
 package com.ghsoft.treetaskapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -18,7 +18,7 @@ import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.TaskNode;
 import com.ghsoft.treetask.TextTreeBuilder;
 
-public class ExportView extends Activity {
+public class ExportView extends ActionBarActivity {
 
 	private TaskNode task;
 	private Button share;

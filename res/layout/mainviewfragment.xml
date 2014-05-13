@@ -10,7 +10,7 @@
         android:id="@+id/taskList"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#101010"
+        android:background="@color/bgbase"
         android:divider="#202020"
         android:dividerHeight="0px"
         dslv:drag_enabled="true"

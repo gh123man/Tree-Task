@@ -1,8 +1,8 @@
 package com.ghsoft.treetaskapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -15,7 +15,7 @@ import com.ghsoft.treetask.TaskDummy;
 import com.ghsoft.treetask.TaskHead;
 import com.ghsoft.treetask.TaskNode;
 
-public class NewTreeTask extends Activity {
+public class NewTreeTask extends ActionBarActivity {
 
 	private EditText description, treeName;
 	private Button submit;

@@ -1,16 +1,19 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/newTask"
         android:icon="@drawable/ic_action_new"
         android:orderInCategory="100"
         android:showAsAction="always"
+        app:showAsAction="always"
         android:title="@string/new_task"/>
     <item
         android:id="@+id/edit"
         android:icon="@drawable/ic_action_edit"
         android:orderInCategory="100"
         android:showAsAction="always"
+        app:showAsAction="always"
         android:title="@string/edit_task"/>
 
 </menu>

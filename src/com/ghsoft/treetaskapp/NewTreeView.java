@@ -1,8 +1,8 @@
 package com.ghsoft.treetaskapp;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,7 +14,7 @@ import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
 
-public class NewTreeView extends Activity {
+public class NewTreeView extends ActionBarActivity {
 
 	private TaskNode task;
 

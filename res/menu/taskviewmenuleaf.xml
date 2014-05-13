@@ -1,19 +1,23 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto" >
 
     <item
         android:id="@+id/addSubTask"
         android:orderInCategory="100"
         android:showAsAction="never"
+        app:showAsAction="never"
         android:title="Add Sub-Task"/>
     <item
         android:id="@+id/editSubTask"
         android:orderInCategory="100"
         android:showAsAction="never"
+        app:showAsAction="never"
         android:title="Edit Task"/>
     <item
         android:id="@+id/delete"
         android:orderInCategory="100"
         android:showAsAction="never"
+        app:showAsAction="never"
         android:title="Delete Task"/>
 
 </menu>

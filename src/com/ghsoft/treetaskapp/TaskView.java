@@ -4,7 +4,6 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -28,6 +28,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.ghsoft.treetask.R;
@@ -38,7 +40,7 @@ import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
 import com.mobeta.android.dslv.DragSortListView;
 
-public class TaskView extends Activity {
+public class TaskView extends ActionBarActivity {
 
 	private DragSortListView taskList;
 	private TaskNode task;
@@ -51,6 +53,7 @@ public class TaskView extends Activity {
 	private boolean titleDefualt, setScrollHeight, offsetSet;
 	private TextView percent;
 	private ProgressBar completion;
+	private RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
 
 	private DragSortListView.DragScrollProfile ssProfile = new DragSortListView.DragScrollProfile() {
 		@Override
@@ -64,15 +67,24 @@ public class TaskView extends Activity {
 		}
 	};
 
-	private DragSortListView.DropListener onDrop = new DragSortListView.DropListener() {
+	private DragSortListView.DragSortListener dragSort = new DragSortListView.DragSortListener() {
+
+		@Override
+		public void drag(int from, int to) {
+		}
+
 		@Override
 		public void drop(int from, int to) {
 			adapter.move(from, to);
 			adapter.notifyDataSetChanged();
 			TaskManager.save(task.getHead());
 		}
-	};
 
+		@Override
+		public void remove(int which) {
+		}
+	};
+	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.taskview);
@@ -86,15 +98,17 @@ public class TaskView extends Activity {
 			treeView = (Task) getIntent().getExtras().getSerializable("treeView");
 			parentCount = getIntent().getExtras().getInt("parentCount");
 		}
-
+		
+		
 		Object sTask = getIntent().getSerializableExtra("task");
 
 		task = (TaskNode) sTask;
 
-		setTitleCheck(true);
+		setTitleCheck(false);
 
 		taskList = (DragSortListView) findViewById(R.id.taskList);
-		taskList.setDropListener(onDrop);
+		//taskList.setDropListener(onDrop);
+		taskList.setDragSortListener(dragSort);
 		taskList.setDragScrollProfile(ssProfile);
 
 		header = header();
@@ -114,7 +128,7 @@ public class TaskView extends Activity {
 		floatingProgBarHeader = (LinearLayout) findViewById(R.id.progBarFloat);
 
 		setOffset();
-		placeFloatingViewWhenReady();
+		
 
 		ViewTreeObserver vto = taskList.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -174,6 +188,12 @@ public class TaskView extends Activity {
 			}
 		});
 	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+
+	}
 
 	public void setGrey(View v, boolean set) {
 		ImageView check = (ImageView) v.findViewById(R.id.check);
@@ -192,24 +212,35 @@ public class TaskView extends Activity {
 	}
 
 	private void placeFloatingView() {
-		if (getScroll() < headerHeight + baseScrollHeight) {
+		
+		if (getScroll() < (headerHeight + baseScrollHeight)) {
 			setTitleCheck(true);
-			floatingProgBarHeader.setTop(-1 * getScroll() + baseScrollHeight);
+			
+			
+			params.topMargin = (-1 * getScroll() + headerHeight + baseScrollHeight); //Your Y coordinate
+			floatingProgBarHeader.setLayoutParams(params);
+			
+			//floatingProgBarHeader.setTop(-1 * getScroll() + baseScrollHeight);
 		} else {
 			setTitleCheck(false);
-			floatingProgBarHeader.setTop(-1 * headerHeight);
+			
+			params.topMargin = 0; //Your Y coordinate
+			floatingProgBarHeader.setLayoutParams(params);
+			//floatingProgBarHeader.setTop(-1 * headerHeight);
 		}
+		
+		
 	}
 
 	private void setTitleCheck(boolean setDefault) {
 		if (setDefault) {
 			if (!titleDefualt) {
-				setTitle("Tree Task");
+				getSupportActionBar().setTitle("Tree Task");
 				titleDefualt = true;
 			}
 		} else {
 			if (titleDefualt) {
-				setTitle(task.getName());
+				getSupportActionBar().setTitle(task.getName());
 				titleDefualt = false;
 			}
 		}
@@ -228,6 +259,7 @@ public class TaskView extends Activity {
 		}
 		return scrollY;
 	}
+	
 
 	@Override
 	public void onResume() {
@@ -247,17 +279,6 @@ public class TaskView extends Activity {
 
 	}
 
-	private void placeFloatingViewWhenReady() {
-		View v = findViewById(R.id.progBarFloat);
-		ViewTreeObserver vto = v.getViewTreeObserver();
-		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-			@Override
-			public void onGlobalLayout() {
-				placeFloatingView();
-			}
-		});
-	}
-
 	private void setOffset() {
 		final View v = findViewById(R.id.triangle);
 		ViewTreeObserver vto = v.getViewTreeObserver();
@@ -265,18 +286,16 @@ public class TaskView extends Activity {
 			@Override
 			public void onGlobalLayout() {
 				triangleHeight = v.getMeasuredHeight();
+				
+				if (!offsetSet) {
+					headerHeight = header.getMeasuredHeight() - triangleHeight;
+					
+					params.topMargin = headerHeight; //Your Y coordinate
+					floatingProgBarHeader.setLayoutParams(params);
+					
+					offsetSet = true;
+				}
 
-				ViewTreeObserver vto1 = header.getViewTreeObserver();
-				vto1.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-					@Override
-					public void onGlobalLayout() {
-						if (!offsetSet) {
-							headerHeight = header.getMeasuredHeight() - triangleHeight;
-							floatingProgBarHeader.setY(headerHeight);
-							offsetSet = true;
-						}
-					}
-				});
 			}
 		});
 
