@@ -11,6 +11,7 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -27,7 +28,6 @@ public class Main extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-
 		page = 0;
 
 		if (getIntent().getExtras() != null && getIntent().getExtras().containsKey("page")) {
@@ -43,7 +43,7 @@ public class Main extends ActionBarActivity {
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 
-		mViewPager.setAdapter(mSectionsPagerAdapter);
+		mViewPager.setAdapter(mSectionsPagerAdapter); //issue
 
 		mViewPager.setCurrentItem(page);
 
@@ -119,7 +119,7 @@ public class Main extends ActionBarActivity {
 			// below) with the page number as its lone argument.
 			TaskManager tm = new TaskManager();
 			tm.load();
-
+			
 			Fragment fragment = new MainViewFragment();
 			Bundle args = new Bundle();
 

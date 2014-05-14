@@ -21,7 +21,7 @@
 
     <style name="Theme.Treetask" parent="@style/Theme.AppCompat">
         <item name="actionBarItemBackground">@drawable/selectable_background_treetask</item>
-        <item name="popupMenuStyle">@style/PopupMenu.Treetask</item>
+        <!-- <item name="popupMenuStyle">@style/PopupMenu.Treetask</item> -->
         <item name="dropDownListViewStyle">@style/DropDownListView.Treetask</item>
         <item name="actionBarTabStyle">@style/ActionBarTabStyle.Treetask</item>
         <item name="actionDropDownStyle">@style/DropDownNav.Treetask</item>
@@ -31,7 +31,7 @@
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Treetask</item>
         
         <item name="android:actionBarItemBackground">@drawable/selectable_background_treetask</item>
-        <item name="android:popupMenuStyle">@style/PopupMenu.Treetask</item>
+        <!--  <item name="android:popupMenuStyle">@style/PopupMenu.Treetask</item> -->
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Treetask</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Treetask</item>
         <item name="android:actionDropDownStyle">@style/DropDownNav.Treetask</item>
@@ -97,7 +97,7 @@
         <item name="popupMenuStyle">@style/PopupMenu.Treetask</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Treetask</item>
         
-        <item name="android:popupMenuStyle">@style/PopupMenu.Treetask</item>
+        <!-- <item name="android:popupMenuStyle">@style/PopupMenu.Treetask</item>-->
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Treetask</item>
     </style>
 

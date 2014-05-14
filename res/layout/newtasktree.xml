@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/apptheme_edit_text_holo_dark"
             android:inputType="text"
             android:textColor="#ffffff" >
 
@@ -44,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/apptheme_edit_text_holo_dark"
             android:inputType="textMultiLine"
             android:textColor="#ffffff" >
         </EditText>
@@ -56,6 +58,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
             android:text="@string/create_tree"
+            android:background="@drawable/newtaskbutton"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
