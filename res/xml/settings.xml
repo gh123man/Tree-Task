@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="general"
+        android:title="@string/color_settings" >
+        
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@color/accentColor"
+            android:key="accent_color"
+            android:summary="@string/accent_colors_des"
+            android:title="@string/accent_colors" />
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>

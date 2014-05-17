@@ -21,9 +21,9 @@
             android:textSize="12sp" />
 
         <View
+            android:id="@+id/hspacer"
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
-            android:background="#FF00FF00" />
+            android:layout_height="1dp" />
 
         <TextView
             android:id="@+id/hname"

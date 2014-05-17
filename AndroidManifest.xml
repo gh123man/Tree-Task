@@ -36,6 +36,8 @@
         </activity>
         <activity android:name="com.ghsoft.treetaskapp.NewTreeView" >
         </activity>
+        <activity android:name="com.ghsoft.treetaskapp.Settings" >
+        </activity>
     </application>
 
 </manifest>

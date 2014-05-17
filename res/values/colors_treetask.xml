@@ -24,5 +24,6 @@
     <color name="transparent">#00000000</color>
     <color name="darkgrey">#333333</color>
     <color name="bgbase">#101010</color>
+    <color name="accentColor">#F1F1F1</color>
     
 </resources>

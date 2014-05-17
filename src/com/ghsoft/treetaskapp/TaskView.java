@@ -9,11 +9,13 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -138,6 +140,7 @@ public class TaskView extends ActionBarActivity {
 		setOffset();
 		
 		setColors();
+		
 
 		ViewTreeObserver vto = taskList.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -359,6 +362,12 @@ public class TaskView extends ActionBarActivity {
 		TextView timeStamp = (TextView) header.findViewById(R.id.htimestamp);
 		headerBase = (LinearLayout) header.findViewById(R.id.header_base);
 		floatingViewBase = (RelativeLayout) findViewById(R.id.floatingViewBase);
+		View spacer = (View) header.findViewById(R.id.hspacer);
+		
+		SharedPreferences general = PreferenceManager.getDefaultSharedPreferences(this);
+		int color = general.getInt("accent_color", getResources().getColor(R.color.accentColor));
+		spacer.setBackgroundColor(color);
+		
 		
 		if (task.getTimeStamp() != null) {
 			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");

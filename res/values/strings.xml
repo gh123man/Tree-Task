@@ -43,5 +43,9 @@
     <string name="about">About</string>
     <string name="drag_handle">drag handle</string>
     <string name="color">Change Color</string>
-
+    <string name="settings">Settings</string>
+    <string name="color_settings">Color Settings</string>
+    <string name="accent_colors">Global Accent Color Setting</string>
+    <string name="accent_colors_des">Changes the color of the tab titles and other accents</string>
+    
 </resources>

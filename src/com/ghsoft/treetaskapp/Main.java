@@ -7,7 +7,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -39,6 +41,12 @@ public class Main extends ActionBarActivity {
 
 		PagerTabStrip pts = (PagerTabStrip) findViewById(R.id.pager_title_strip);
 		pts.setDrawFullUnderline(true);
+
+		SharedPreferences general = PreferenceManager.getDefaultSharedPreferences(this);
+		int color = general.getInt("accent_color", getResources().getColor(R.color.accentColor));
+		pts.setTextColor(color);
+		pts.setTabIndicatorColor(color);
+		
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
@@ -75,10 +83,6 @@ public class Main extends ActionBarActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		// case R.id.action_settings:
-		// Toast.makeText(this, "Menu Item 1 selected",
-		// Toast.LENGTH_SHORT).show();
-		// break;
 
 		case R.id.newTask:
 			Intent i = new Intent(Main.this, NewTreeTask.class);
@@ -88,13 +92,13 @@ public class Main extends ActionBarActivity {
 
 			break;
 
-		/*
-		 * case R.id.about: Intent aboutIntent = new Intent(Main.this,
-		 * NewTreeTask.class); finish(); startActivity(aboutIntent);
-		 * overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
-		 * 
-		 * break;
-		 */
+		case R.id.settings:
+			Intent s = new Intent(Main.this, Settings.class);
+			finish();
+			startActivity(s);
+			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+
+			break;
 
 		default:
 			break;
