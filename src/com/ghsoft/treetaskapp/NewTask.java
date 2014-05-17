@@ -60,7 +60,7 @@ public class NewTask extends ModifyTaskActivity {
 				tn.addSubTask(t);
 
 				TaskManager.save(task.getHead());
-
+				
 				Intent i = new Intent(NewTask.this, TaskView.class);
 				i.putExtra("task", task);
 				finish();

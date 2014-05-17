@@ -13,6 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/header_base"
             android:layout_marginBottom="6dp"
             android:background="#333"
             android:orientation="vertical" >

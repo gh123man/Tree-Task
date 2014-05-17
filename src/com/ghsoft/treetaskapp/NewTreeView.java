@@ -5,12 +5,14 @@ import java.text.SimpleDateFormat;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -35,6 +37,7 @@ public class NewTreeView extends ActionBarActivity {
 		TextView path = (TextView) findViewById(R.id.path);
 		TextView description = (TextView) findViewById(R.id.hdescription);
 		TextView timeStamp = (TextView) findViewById(R.id.htimestamp);
+		LinearLayout headerBase = (LinearLayout) findViewById(R.id.header_base);
 		
 		if (task.getTimeStamp() != null) {
 			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
@@ -52,6 +55,11 @@ public class NewTreeView extends ActionBarActivity {
 		name.setText(task.getName());
 		path.setText(task.getPath());
 		description.setText(task.getDescription());
+		
+		if (task.getUseColor()) {
+			getSupportActionBar().setBackgroundDrawable(new ColorDrawable(task.getColor()));
+			headerBase.setBackgroundColor(task.getColor());
+		}
 		
 		Button newTask = (Button)findViewById(R.id.newtask);
 		newTask.setOnClickListener(new View.OnClickListener() {
