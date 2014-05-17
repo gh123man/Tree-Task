@@ -109,7 +109,7 @@ public class TaskView extends ActionBarActivity {
 
 		task = (TaskNode) sTask;
 		
-		
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		setTitleCheck(false);
 
@@ -391,6 +391,11 @@ public class TaskView extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent i;
 		switch (item.getItemId()) {
+		
+		case android.R.id.home:
+			onBackPressed();
+			break;
+		
 		case R.id.edit:
 
 			i = new Intent(TaskView.this, EditTask.class);
