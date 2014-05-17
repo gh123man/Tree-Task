@@ -27,8 +27,7 @@ public class MainListItem extends BaseAdapter {
 	private LinearLayout listItemBase;
 
 	public MainListItem(Context context, ArrayList<TaskHead> tasks, String type) {
-		//this.inflater = LayoutInflater.from(context);
-		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		this.inflater = LayoutInflater.from(context);
 		this.tasks = tasks;
 		this.type = type;
 	}

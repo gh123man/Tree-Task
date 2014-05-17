@@ -4,19 +4,20 @@
     <PreferenceCategory
         android:key="general"
         android:title="@string/color_settings" >
-        
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:defaultValue="@color/accentColor"
             android:key="accent_color"
             android:summary="@string/accent_colors_des"
             android:title="@string/accent_colors" />
-        
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:defaultValue="@color/progDefault"
             android:key="prog_color"
             android:summary="@string/prog_color_des"
             android:title="@string/prog_color" />
-        
     </PreferenceCategory>
+
+    <Preference
+        android:key="reset_all"
+        android:title="@string/reset_settings" />
 
 </PreferenceScreen>

@@ -49,5 +49,9 @@
     <string name="accent_colors_des">Changes the color of the tab titles and other accents</string>
     <string name="prog_color">Progres bar colors</string>
     <string name="prog_color_des">Changes the color of the task progress bars</string>
+    <string name="reset_settings">Reset all settings</string>
+    <string name="sure_to_reset">Are you sure you want to reset all settings?</string>
+    
+    
     
 </resources>
