@@ -1,317 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-<!DOCTYPE html> 
-<html lang="en"> 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-28726010-3', 'treetask.net');
+        ga('send', 'pageview');
 
-  ga('create', 'UA-28726010-3', 'treetask.net');
-  ga('send', 'pageview');
-
-</script>
-<head> 
-    <meta charset="utf-8" /> 
-    <meta name="description" content="Tree Task: The nested task manager and to-do app for Android">
-    <meta name="keywords" content="Tree,Task,Nested,task,manager,app,android,todo,list">
-    <meta name="author" content="Brian Floersch">
-    <title>Tree Task</title>
-    <link rel="icon" type="image/png" href="res/tticon50px.png">
-    <link rel="stylesheet" type="text/css" href="css/global.css">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <script type="text/javascript" src="res/jquery.min.js"></script>
-    <script type="text/javascript" src="res/scrollTo.js"></script>
-    <script type="text/javascript" src="res/scroll.js"></script>
+    </script>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Tree Task: The nested task manager and to-do app for Android">
+        <meta name="keywords" content="Tree,Task,Nested,task,manager,app,android,todo,list">
+        <meta name="author" content="Alexander Glica, Brian Floersch">
+        <title>Tree Task</title>
+        <link rel="icon" type="image/png" href="res/tticon50px.png">
+        <link rel="stylesheet" type="text/css" href="bower_components/fontawesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="bower_components/normalize.css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="css/global.css">
     </head>
-    
-    <body> 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-        <div class="section-1 section">
-        
-            <div class="headerBox">
-                <div class="headLeft">
-                    <div class="mainTitle" hidden>
-                        Tree Task
-                    </div>
-                    <div class="secondTitle" hidden>
-                        The nested task manager for everyone
-                    </div>
-                    <div class="playLink" hidden>
-                        <a href="https://play.google.com/store/apps/details?id=com.ghsoft.treetask"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" /></a>
-                   </div> 
+    <body>
+        <header>
+            <div class="head-left">
+                <div class="mainTitle">
+                    Tree Task
                 </div>
-                <div class="headRight">
-                    <img class="top-img" onload="$(this).fadeIn(1000);" style="display:none;" src="res/ttDevice.png"/>
+                <div class="secondTitle">
+                    The nested task manager for everyone
+                </div>
+                <div class="playLink">
+                    <a href="https://play.google.com/store/apps/details?id=com.ghsoft.treetask"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" /></a>
                 </div>
             </div>
-            
-            
-            <div class="scrollText clickable" onclick="$(document).scrollTo('.box-1', 500)" hidden>
-            <i class="fa fa-angle-down"></i> Scroll <i class="fa fa-angle-down"></i>
+            <div class="headRight">
+                <img class="top-img" src="img/ttDevice.png"/>
             </div>
-        </div>
-        <div class="section-2 section">
-        </div>
-        <div class="section-3 section">
-        </div>
-        <div class="section-4 section">
-        </div>
-        
-        <div class="pageWrapper">
-            <div class="pageContent">
-                
-                <div class="navBox" id="navBox">
-                    
-                    <div class="navHead">
-                        <img alt="icon" class="smallIcon" src="res/tticon50px.png"/>
-                        <div class="title">
-                            Tree Task
-                        </div>
-                    </div>
-                    
-                    <a class="clickable" onclick="$(document).scrollTo('.box-1', 500)">
-                        <div class="navItem nav-1">
-                            <div class="navItemBody"><i class="fa fa-fw fa-home"></i> <span class="navText">Intro</span></div>
-                        </div>
-                    </a>
-                    
-                    <a class="clickable" onclick="$(document).scrollTo('.box-3', 500 )">
-                        <div class="navItem nav-3">
-                            <div class="navItemBody"><i class="fa fa-fw fa-question"></i> <span class="navText">FAQ</span></div>
-                        </div>
-                    </a>
-                    
-                    <a class="clickable" onclick="$(body).scrollTo('.box-4', 500 )">
-                        <div class="navItem nav-4">
-                            <div class="navItemBody"><i class="fa fa-fw fa-download"></i> <span class="navText">Downloads</span></div>
-                        </div>
-                    </a>
-                    
-                    <a class="clickable" onclick="$(body).scrollTo('.box-5', 500 )">
-                        <div class="navItem nav-5">
-                            <div class="navItemBody"><i class="fa fa-fw fa-code"></i> <span class="navText">Developers</span></div>
-                        </div>
-                    </a>
-                    
-                    <a class="clickable" onclick="$(body).scrollTo('.box-6', 500 )">
-                        <div class="navItem nav-6">
-                            <div class="navItemBody"><i class="fa fa-fw fa-keyboard-o"></i> <span class="navText">Changelog</span></div>
-                        </div>
-                    </a>
-                    <a class="clickable" onclick="$(body).scrollTo('.box-7', 500 )">
-                        <div class="navItem nav-7">
-                            <div class="navItemBody"><i class="fa fa-fw fa-fighter-jet"></i> <span class="navText">About</span></div>
-                        </div>
-                    </a>
-                </div>
-                
-                <div class="spaceFix"></div>
-                <div class="contentBox box-1">
-                    <div class="pageTitle">
-                    Intro
-                    </div>
-                    <div class="content" style="margin-right: 10px;">
-                    
-                        <h3 class="question">Like To Do lists, but better</h3>
-                        <p class="answer">
-                        To Do lists are great, but what if you need more detail? With tree task, any task can be its own list - Just like files in folders.
-                        </p>
-                        
-                        <h3 class="question">Fast and light weight</h3>
-                        <p class="answer">
-                        Tree Task is built for speed. No splash screens or network access slowing you down. That also means we dont "phone home" your data is compleatly in your contorl!
-                        </p>
-                        
-                        <h3 class="question">Track your progress at a glance</h3>
-                        <p class="answer">
-                        Tree task calculates the compleation of any given task by the average compleation of all of its child tasks. More simply - Tree Task keeps track so you dont have to!
-                        <img  alt="screenshot" style="float: right; margin: 15px;" src="res/n5_mini.png"/>
-                        </p>
-                                     
-                        <h3>Features</h3>
-                        <ul>
-                            <li>create nested tasks (like to-do lists inside to-do lists)</li>
-                            <li>tasks may also be used as notes (50k characters per task description)</li>
-                            <li>export tasks to any other app (email, text message...)</li>
-                            <li>archive for finished tasks</li>
-                            <li>sort tasks in any order you like</li>
-                            <li>progress tracking by calculating completion of all sub-tasks.</li>
-                            <li>full tree view mode - visualize the entire tree and jump to any task</li>
-                        </ul>
-                        <div style="float: right;">
-			    <div class="fb-like" data-href="https://www.facebook.com/TreeTask" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                            <iframe src="http://ghbtns.com/github-btn.html?user=gh123man&repo=Tree-Task&type=watch&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-                            <iframe src="http://ghbtns.com/github-btn.html?user=gh123man&repo=Tree-Task&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="110" height="20"></iframe>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="spaceFix"></div>
-                <div class="contentBox box-3">
-                    <div class="pageTitle">
-                        FAQ
-                    </div>
-                    <div class="content">
-
-                        <h3 class="question">Q: Is it free?</h3>
-                        <p class="answer">
-                        A: Yes. It is open source. Meaning both the app and the source code is free to use.
-                        </p>
-                        
-                        <h3 class="question">Q: Can I contribute?</h3>
-                        <p class="answer">
-                        A: Yes! head to the <a href="https://github.com/gh123man/Tree-Task">GitHub Page</a> and read the README.md
-                        </p>
-                        
-                    </div>
-                </div>
-                
-                <div class="spaceFix"></div>
-                <div class="contentBox box-4">
-                    <div class="pageTitle">
-                        Downloads
-                    </div>
-                    <div class="content">
-                        <a href="https://play.google.com/store/apps/details?id=com.ghsoft.treetask"><img alt="Get it on Google Play" src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" /></a>
-                        <br/>
-                        <br/>
-                        Or on the <a href="https://github.com/gh123man/Tree-Task/releases">GitHub releases page</a>
-                    </div>
-                </div>
-                
-                <div class="spaceFix"></div>
-                <div class="contentBox box-5">
-                    <div class="pageTitle">
-                        Developers
-                    </div>
-                    <div class="content">
-                        <br/>
-                        You may download and modify the <a href="https://github.com/gh123man/Tree-Task">source code</a> freely under the Apache License, Version 2.0
-                        <br/>
-                        <div class="code">Copyright 2013 Brian Floersch (gh123man@gmail.com)
-
-    Licensed under the Apache License, Version 2.0 (the "License");you may not use this file except in compliance with the License. You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</div>
-                    </div>
-                </div>
-                
-                <div class="spaceFix"></div>
-                <div class="contentBox box-6">
-                    <div class="pageTitle">
-                        Changelog
-                    </div>
-                    <div class="content">
-                        
-                        <h3 class="question">1.4.1</h3>
-                        <ul>
-                            <li>Layout Optimizations</li>
-                            <li>New Icon (Android 4.5 style)</li>
-                            <li>High res In-app Icons</li>
-                            <li>Bug Fixes/small changes</li>
-                        </ul>
-                    <h3 class="question">1.4</h3>
-                    <ul>
-                        <li>task sorting in all views</li>
-                        <li>More intuitive way to create trees</li>
-                        <li>better scaling</li>
-                        <li>fixed description display bugs</li>
-                    </ul>
-
-                    <h3 class="question">1.3.1</h3>
-                    <ul>
-                        <li>New launcher Icon</li>
-                        <li>some bug fixes</li>
-                    </ul>
-
-                    <h3 class="question">1.3</h3>
-                    <ul>
-                        <li>Sticky progress bar on task views</li>
-                        <li>bug fixes</li>
-                        <li>Performance optimizations</li>
-                        <li>layout updates</li>
-                    </ul>
-
-
-                    <h3 class="question">1.2</h3>
-                    <ul>
-                        <li>Now share tasks as text to email, text messages or any other application that supports text intents!</li>
-                        <li>some bug fixes</li>
-                        <li>icon updates</li>
-                        <li>layout updates</li>
-                    </ul>
-
-                    <h3 class="question">1.1</h3>
-                    <ul>
-                        <li>bug fixes</li>
-                    </ul>
-
-
-                    <h3 class="question">1.0</h3>
-                    <ul>
-                        <li>initial release</li>
-                    </ul>
-
-                    </div>
-                </div>
-                
-                <div class="spaceFix"></div>
-                <div class="contentBox box-7 lastBox">
-                    <div class="pageTitle">
-                    About
-                    </div>
-                    <div class="content">
-                        <p>I built Tree Task because I required a project manager that could handle large projects and notes while maintaining an effective UI. </p>
-                        <p>Originaly Tree Task was a web platform. I decided to port it to Android because I felt it would be more effective in a mobile environment.
-                        </p>
-                        
-                        
-                        <h3 class="question">Developers</h3>
-                        <p class="answer">
-                            <table style="width: 100%; margin-left: 10px;">
-                                <tr>
-                                    <td>
-                                        Brian Floersch - Core app and website
-                                    </td>
-                                    <td>
-                                        <iframe src="http://ghbtns.com/github-btn.html?user=gh123man&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="210" height="20"></iframe>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Alexander Glica - website
-                                    </td>
-                                    <td>
-                                        <iframe src="http://ghbtns.com/github-btn.html?user=VladimirStrelok&type=follow&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="210" height="20"></iframe>
-                                    </td>
-                                </tr>
-                            </table>
-                            
-                            
-                        </p>
-                        
-                        
-                        <br/>
-                        <br/>
-                        &copy; Tree Task Developmnet Team, 2013 - 2014, All rights reserved. 
-                        <br/>
-                    </div>
-
-                </div>
-                
+            <div class="head-bottom" id="header-scroll">
+                <i class="fa fa-angle-down"></i> Scroll <i class="fa fa-angle-down"></i>
             </div>
+        </header>
+        <div class="content" id="content">
         </div>
-    </body> 
-</html> 
+
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/jquery.scrollTo/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript" src="js/global.js"></script>
+    </body>
+</html>
