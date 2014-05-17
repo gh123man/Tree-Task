@@ -1,6 +1,7 @@
 package com.ghsoft.treetask;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public abstract class Task implements Serializable {
 
@@ -8,12 +9,14 @@ public abstract class Task implements Serializable {
 	public static final int maxNameLen = 3000;
 	public static final int maxDescriptionLen = 50000;
 	private String name, description;
+	private Date timeStamp;
 	private Task parent;
 	private TaskHead head;
 
 	public Task(Task parent) {
 		this.parent = parent;
 		this.head = parent.getHead();
+		this.timeStamp = new Date();
 	}
 
 	public Task(TaskHead head) {
@@ -57,6 +60,10 @@ public abstract class Task implements Serializable {
 			return "";
 		else
 			return description;
+	}
+	
+	public Date getTimeStamp() {
+		return timeStamp;
 	}
 
 	public Task getParent() {

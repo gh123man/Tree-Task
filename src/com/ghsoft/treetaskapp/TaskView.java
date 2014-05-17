@@ -1,5 +1,7 @@
 package com.ghsoft.treetaskapp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -99,10 +101,12 @@ public class TaskView extends ActionBarActivity {
 			parentCount = getIntent().getExtras().getInt("parentCount");
 		}
 		
-		
+		//htimestamp
 		Object sTask = getIntent().getSerializableExtra("task");
 
 		task = (TaskNode) sTask;
+		
+		
 
 		setTitleCheck(false);
 
@@ -200,15 +204,18 @@ public class TaskView extends ActionBarActivity {
 		ImageView check = (ImageView) v.findViewById(R.id.check);
 		TextView name = (TextView) v.findViewById(R.id.name);
 		TextView description = (TextView) v.findViewById(R.id.description);
+		TextView timeStamp = (TextView) v.findViewById(R.id.timestamp);
 
 		if (set) {
 			check.setVisibility(View.VISIBLE);
 			name.setTextColor(Color.parseColor("#505050"));
 			description.setTextColor(Color.parseColor("#505050"));
+			timeStamp.setTextColor(Color.parseColor("#505050"));
 		} else {
 			check.setVisibility(View.INVISIBLE);
 			name.setTextColor(Color.parseColor("#ffffff"));
 			description.setTextColor(Color.parseColor("#bbbbbb"));
+			timeStamp.setTextColor(Color.parseColor("#bbbbbb"));
 		}
 	}
 
@@ -329,12 +336,20 @@ public class TaskView extends ActionBarActivity {
 
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	private View header() {
 		View header = getLayoutInflater().inflate(R.layout.header, null);
 
 		TextView name = (TextView) header.findViewById(R.id.hname);
 		TextView path = (TextView) header.findViewById(R.id.path);
 		TextView description = (TextView) header.findViewById(R.id.hdescription);
+		TextView timeStamp = (TextView) header.findViewById(R.id.htimestamp);
+		
+		if (task.getTimeStamp() != null) {
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
+			String timeString = df.format(task.getTimeStamp());
+			timeStamp.setText(timeString);
+		}
 
 		name.setText(task.getName());
 		path.setText(task.getPath());

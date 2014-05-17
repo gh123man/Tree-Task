@@ -1,5 +1,8 @@
 package com.ghsoft.treetaskapp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -16,7 +19,7 @@ import com.ghsoft.treetask.TaskNode;
 
 public class TaskViewListItem extends BaseAdapter {
 	private LayoutInflater inflater;
-	private TextView name, description, percent, subcount;
+	private TextView name, description, percent, subcount, timeStamp;
 	private ProgressBar completion;
 	private TaskNode task;
 	private ImageView check;
@@ -75,7 +78,14 @@ public class TaskViewListItem extends BaseAdapter {
 		completion = (ProgressBar) convertView.findViewById(R.id.completion);
 		percent = (TextView) convertView.findViewById(R.id.percent);
 		subcount = (TextView) convertView.findViewById(R.id.subcountmainlistitem);
-
+	    timeStamp = (TextView) convertView.findViewById(R.id.timestamp);
+		
+		if (task.getTimeStamp() != null) {
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
+			String timeString = df.format(task.getTimeStamp());
+			timeStamp.setText(timeString);
+		}
+		
 		name.setText(t.getName());
 		description.setText(t.getDescription());
 
@@ -93,6 +103,7 @@ public class TaskViewListItem extends BaseAdapter {
 		if (t.completion() == 100) {
 			name.setTextColor(Color.parseColor("#505050"));
 			description.setTextColor(Color.parseColor("#505050"));
+			timeStamp.setTextColor(Color.parseColor("#505050"));
 		}
 
 	}
@@ -101,6 +112,13 @@ public class TaskViewListItem extends BaseAdapter {
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
 		check = (ImageView) convertView.findViewById(R.id.check);
+		timeStamp = (TextView) convertView.findViewById(R.id.timestamp);
+		
+		if (task.getTimeStamp() != null) {
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
+			String timeString = df.format(task.getTimeStamp());
+			timeStamp.setText(timeString);
+		}
 
 		name.setText(t.getName());
 		description.setText(t.getDescription());
@@ -109,6 +127,7 @@ public class TaskViewListItem extends BaseAdapter {
 			check.setVisibility(View.VISIBLE);
 			name.setTextColor(Color.parseColor("#505050"));
 			description.setTextColor(Color.parseColor("#505050"));
+			timeStamp.setTextColor(Color.parseColor("#505050"));
 		}
 
 	}
