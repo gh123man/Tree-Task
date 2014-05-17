@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ghsoft.treetask.R;
@@ -24,7 +23,7 @@ import com.ghsoft.treetask.TaskNode;
 public class TaskViewListItem extends BaseAdapter {
 	private LayoutInflater inflater;
 	private TextView name, description, percent, subcount, timeStamp;
-	private ProgressBar completion;
+	private TreeTaskProgressBar completion;
 	private TaskNode task;
 	private ImageView check;
 	private LinearLayout listItemBase;
@@ -82,7 +81,7 @@ public class TaskViewListItem extends BaseAdapter {
 	private void layoutHasChildren(View convertView, Task t) {
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
-		completion = (ProgressBar) convertView.findViewById(R.id.completion);
+		completion = (TreeTaskProgressBar) convertView.findViewById(R.id.completion);
 		percent = (TextView) convertView.findViewById(R.id.percent);
 		subcount = (TextView) convertView.findViewById(R.id.subcountmainlistitem);
 	    timeStamp = (TextView) convertView.findViewById(R.id.timestamp);

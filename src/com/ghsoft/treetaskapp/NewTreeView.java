@@ -13,7 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.ghsoft.treetask.R;
@@ -46,7 +45,7 @@ public class NewTreeView extends ActionBarActivity {
 		}
 
 		TextView percent = (TextView) findViewById(R.id.percent);
-		ProgressBar completion = (ProgressBar) findViewById(R.id.completion);
+		TreeTaskProgressBar completion = (TreeTaskProgressBar) findViewById(R.id.completion);
 		completion.setMax(100);
 
 		completion.setProgress(0);

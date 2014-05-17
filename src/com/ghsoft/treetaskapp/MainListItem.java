@@ -3,6 +3,7 @@ package com.ghsoft.treetaskapp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
@@ -12,21 +13,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.TaskHead;
 
 public class MainListItem extends BaseAdapter {
 	private LayoutInflater inflater;
 	private TextView name, description, percent, subcount;
-	private ProgressBar completion;
+	private TreeTaskProgressBar completion;
 	private ArrayList<TaskHead> tasks;
 	private String type;
 	private LinearLayout listItemBase;
 
 	public MainListItem(Context context, ArrayList<TaskHead> tasks, String type) {
-		this.inflater = LayoutInflater.from(context);
+		//this.inflater = LayoutInflater.from(context);
+		this.inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.tasks = tasks;
 		this.type = type;
 	}
@@ -67,7 +69,7 @@ public class MainListItem extends BaseAdapter {
 
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
-		completion = (ProgressBar) convertView.findViewById(R.id.completion);
+		completion = (TreeTaskProgressBar) convertView.findViewById(R.id.completion);
 		percent = (TextView) convertView.findViewById(R.id.percent);
 		subcount = (TextView) convertView.findViewById(R.id.subcount);
 		listItemBase = (LinearLayout) convertView.findViewById(R.id.list_item_base);

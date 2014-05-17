@@ -25,5 +25,7 @@
     <color name="darkgrey">#333333</color>
     <color name="bgbase">#101010</color>
     <color name="accentColor">#F1F1F1</color>
+    <color name="progDefault">#007A00</color>
+    
     
 </resources>

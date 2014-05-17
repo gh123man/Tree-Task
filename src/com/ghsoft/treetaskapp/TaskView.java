@@ -32,7 +32,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
@@ -58,7 +57,7 @@ public class TaskView extends ActionBarActivity {
 	private Dictionary<Integer, Integer> listViewItemHeights;
 	private boolean titleDefualt, setScrollHeight, offsetSet;
 	private TextView percent;
-	private ProgressBar completion;
+	private TreeTaskProgressBar completion;
 	private RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
 
 	private DragSortListView.DragScrollProfile ssProfile = new DragSortListView.DragScrollProfile() {
@@ -326,9 +325,9 @@ public class TaskView extends ActionBarActivity {
 	private void setUpFloatingHead() {
 
 		percent = (TextView) findViewById(R.id.hpercent);
-		completion = (ProgressBar) findViewById(R.id.hcompletion);
+		completion = (TreeTaskProgressBar) findViewById(R.id.hcompletion);
 		completion.setMax(100);
-
+		
 		updateFloatingHead();
 	}
 

@@ -47,5 +47,7 @@
     <string name="color_settings">Color Settings</string>
     <string name="accent_colors">Global Accent Color Setting</string>
     <string name="accent_colors_des">Changes the color of the tab titles and other accents</string>
+    <string name="prog_color">Progres bar colors</string>
+    <string name="prog_color_des">Changes the color of the task progress bars</string>
     
 </resources>
