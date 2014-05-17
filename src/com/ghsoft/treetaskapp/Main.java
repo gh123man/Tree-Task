@@ -1,7 +1,11 @@
 package com.ghsoft.treetaskapp;
 
+import java.io.FileNotFoundException;
 import java.util.Locale;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,7 +15,6 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -39,11 +42,11 @@ public class Main extends ActionBarActivity {
 
 		// Create the adapter that will return a fragment for each of the three
 		// primary sections of the app.
-		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+		mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), this);
 		// Set up the ViewPager with the sections adapter.
 		mViewPager = (ViewPager) findViewById(R.id.pager);
 
-		mViewPager.setAdapter(mSectionsPagerAdapter); //issue
+		mViewPager.setAdapter(mSectionsPagerAdapter); // issue
 
 		mViewPager.setCurrentItem(page);
 
@@ -84,16 +87,14 @@ public class Main extends ActionBarActivity {
 			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 
 			break;
-			
-			/*
-		case R.id.about:
-			Intent aboutIntent = new Intent(Main.this, NewTreeTask.class);
-			finish();
-			startActivity(aboutIntent);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
 
-			break;
-			*/
+		/*
+		 * case R.id.about: Intent aboutIntent = new Intent(Main.this,
+		 * NewTreeTask.class); finish(); startActivity(aboutIntent);
+		 * overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+		 * 
+		 * break;
+		 */
 
 		default:
 			break;
@@ -108,8 +109,11 @@ public class Main extends ActionBarActivity {
 	 */
 	public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-		public SectionsPagerAdapter(FragmentManager fm) {
+		private Context c;
+
+		public SectionsPagerAdapter(FragmentManager fm, Context c) {
 			super(fm);
+			this.c = c;
 		}
 
 		@Override
@@ -118,8 +122,20 @@ public class Main extends ActionBarActivity {
 			// Return a DummySectionFragment (defined as a static inner class
 			// below) with the page number as its lone argument.
 			TaskManager tm = new TaskManager();
-			tm.load();
-			
+
+			try {
+				tm.load();
+			} catch (FileNotFoundException e) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(c);
+				builder.setMessage("Cannot read tasks from SD card. Do you have an SD card inserted?").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						finish();
+					}
+				});
+				AlertDialog alert = builder.create();
+				alert.show();
+			}
+
 			Fragment fragment = new MainViewFragment();
 			Bundle args = new Bundle();
 

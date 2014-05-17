@@ -56,12 +56,12 @@ public class TaskViewListItem extends BaseAdapter {
 
 		if (t.hasChildren()) {
 
-			convertView = this.inflater.inflate(R.layout.taskviewlistitem, null);
+			convertView = this.inflater.inflate(R.layout.task_view_list_item, null);
 			layoutHasChildren(convertView, t);
 
 		} else {
 
-			convertView = this.inflater.inflate(R.layout.taskviewlistitemnochildren, null);
+			convertView = this.inflater.inflate(R.layout.task_view_list_item_no_children, null);
 			layoutNoChildren(convertView, t);
 
 		}

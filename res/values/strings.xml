@@ -38,9 +38,9 @@
     <string name="update">Update</string>
     <string name="delete_tree">Delete Tree</string>
     <string name="edit_tree">Edit Tree</string>
-    <string name="new_task">New Task</string>
     <string name="tree_view">Tree View</string>
     <string name="export_task">Share/Export Task</string>
     <string name="about">About</string>
+    <string name="drag_handle">drag handle</string>
 
 </resources>

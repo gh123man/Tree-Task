@@ -30,6 +30,8 @@
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_treetask</item>
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Treetask</item>
         
+        <item name="android:windowContentOverlay">@null</item>
+        
         <item name="android:actionBarItemBackground">@drawable/selectable_background_treetask</item>
         <!--  <item name="android:popupMenuStyle">@style/PopupMenu.Treetask</item> -->
         <item name="android:dropDownListViewStyle">@style/DropDownListView.Treetask</item>

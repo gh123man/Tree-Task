@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.LayoutInflater;
@@ -82,12 +81,12 @@ public class MainViewFragment extends Fragment {
 
 		toDisplay = new ArrayList<TaskHead>();
 		if (getArguments().getInt(ARG_SECTION_NUMBER) == TASKS) {
-			rootView = inflater.inflate(R.layout.mainviewfragment, container, false);
+			rootView = inflater.inflate(R.layout.main_view_fragment, container, false);
 			toDisplay = tm.getTasks();
 			taskList = (DragSortListView) rootView.findViewById(R.id.taskList);
 			adapter = new MainListItem(getActivity().getApplicationContext(), toDisplay, "tasks");
 		} else {
-			rootView = inflater.inflate(R.layout.mainviewfragmentarchive, container, false);
+			rootView = inflater.inflate(R.layout.main_view_fragment_archive, container, false);
 			toDisplay = tm.getArchive();
 			taskList = (DragSortListView) rootView.findViewById(R.id.taskListArchive);
 			adapter = new MainListItem(getActivity().getApplicationContext(), toDisplay, "archive");

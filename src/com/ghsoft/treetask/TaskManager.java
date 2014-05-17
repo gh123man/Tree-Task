@@ -2,6 +2,7 @@ package com.ghsoft.treetask;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,7 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import android.os.Environment;
-import android.util.Log;
 
 public class TaskManager implements Serializable {
 
@@ -38,19 +38,15 @@ public class TaskManager implements Serializable {
 
 	}
 
-	public void load() {
+	public void load() throws FileNotFoundException {
 		File dir = new File(sdcard.getAbsolutePath() + "/TaskTree/");
 		metaData = null;
 		if (!dir.exists()) {
-			try {
 				
-				boolean success = dir.mkdir();
-				if (success) {
-				} else {
-					Log.e("err", "failed to create DIR");
-				}
-			} catch (Exception e) {
-				System.err.println("Error: " + e.getMessage());
+			boolean success = dir.mkdir();
+			if (success) {
+			} else {
+				throw new FileNotFoundException("cannot access task storage folder");
 			}
 		}
 

@@ -18,7 +18,7 @@ public class TreeView extends ActionBarActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.treeview);
+		setContentView(R.layout.tree_view);
 
 		Object sTask = getIntent().getSerializableExtra("task");
 

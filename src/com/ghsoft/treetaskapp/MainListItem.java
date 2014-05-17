@@ -60,7 +60,7 @@ public class MainListItem extends BaseAdapter {
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 
-		convertView = this.inflater.inflate(R.layout.mainlistitem, null);
+		convertView = this.inflater.inflate(R.layout.main_list_item, null);
 
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);

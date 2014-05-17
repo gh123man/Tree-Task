@@ -87,7 +87,7 @@ public class TaskView extends ActionBarActivity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.taskview);
+		setContentView(R.layout.task_view);
 		setScrollHeight = false;
 		offsetSet = false;
 		treeView = null;
@@ -120,8 +120,11 @@ public class TaskView extends ActionBarActivity {
 		adapter = new TaskViewListItem(getApplicationContext(), task, header);
 
 		taskList.setAdapter(adapter);
-
-		taskList.setOverScrollMode(View.OVER_SCROLL_NEVER);
+		
+		try {
+			taskList.setOverScrollMode(View.OVER_SCROLL_NEVER);
+		} catch (NoSuchMethodError e) {
+		}
 
 		registerForContextMenu(taskList);
 

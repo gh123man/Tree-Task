@@ -30,7 +30,7 @@ public class ExportView extends ActionBarActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.exportview);
+		setContentView(R.layout.export_view);
 
 		Object sTask = getIntent().getSerializableExtra("task");
 		task = (TaskNode) sTask;

@@ -20,7 +20,7 @@ public class NewTreeView extends ActionBarActivity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.newtreeview);
+		setContentView(R.layout.new_tree_view);
 
 		Object sTask = getIntent().getSerializableExtra("task");
 

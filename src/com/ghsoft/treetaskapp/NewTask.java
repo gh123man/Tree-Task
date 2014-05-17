@@ -2,11 +2,6 @@ package com.ghsoft.treetaskapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ghsoft.treetask.R;
@@ -16,95 +11,67 @@ import com.ghsoft.treetask.TaskLeaf;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
 
-public class NewTask extends ActionBarActivity {
+public class NewTask extends ModifyTaskActivity {
 
-	private EditText name, description;
-	private Button submit;
 	private TaskNode task;
-	private InputMethodManager inputManager;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.newtask);
 
 		setTitle(R.string.new_task);
+		getSubmitButton().setText(R.string.new_task);
 		
-		inputManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-
 		Object sTask = getIntent().getSerializableExtra("task");
 
 		task = (TaskNode) sTask;
 
-		name = (EditText) findViewById(R.id.name);
-		description = (EditText) findViewById(R.id.description);
-		submit = (Button) findViewById(R.id.submit);
-
-		showInput();
-
-		submit.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				TaskLeaf t = new TaskLeaf(task);
-
-				if (name.getText().toString().length() < 1) {
-					Toast.makeText(NewTask.this, R.string.supply_name, Toast.LENGTH_LONG).show();
-					return;
-				}
-
-				if (t.setName(name.getText().toString())) {
-					if (t.setDescription(description.getText().toString())) {
-						
-						
-						if (task.hasChildren()) {
-							Task child = task.getChild(0);
-							
-							if (child instanceof TaskDummy) {
-								task.deleteChild(child);
-							}
-						}
-
-						TaskNode tn = (TaskNode) task;
-						tn.addSubTask(t);
-
-						TaskManager.save(task.getHead());
-
-						Intent i = new Intent(NewTask.this, TaskView.class);
-						i.putExtra("task", task);
-						finish();
-						startActivity(i);
-						overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
-
-					} else {
-						Toast.makeText(NewTask.this, R.string.description_less_than + " " + Task.maxDescriptionLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
-					}
-				} else {
-					Toast.makeText(NewTask.this, R.string.name_less_than + " " + Task.maxNameLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
-				}
-
-			}
-		});
-
-	}
-
-	private void showInput() {
-		inputManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-	}
-
-	private void hideInput() {
-		inputManager.toggleSoftInput(InputMethodManager.HIDE_NOT_ALWAYS, 0);
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		hideInput();
 	}
 	
 	@Override
+	public void onSubmit() {
+		TaskLeaf t = new TaskLeaf(task);
+
+		if (getNameField().getText().toString().length() < 1) {
+			Toast.makeText(NewTask.this, R.string.supply_name, Toast.LENGTH_LONG).show();
+			return;
+		}
+
+		if (t.setName(getNameField().getText().toString())) {
+			if (t.setDescription(getdescriptionField().getText().toString())) {
+				
+				
+				if (task.hasChildren()) {
+					Task child = task.getChild(0);
+					
+					if (child instanceof TaskDummy) {
+						task.deleteChild(child);
+					}
+				}
+
+				TaskNode tn = (TaskNode) task;
+				tn.addSubTask(t);
+
+				TaskManager.save(task.getHead());
+
+				Intent i = new Intent(NewTask.this, TaskView.class);
+				i.putExtra("task", task);
+				finish();
+				startActivity(i);
+				overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
+
+			} else {
+				Toast.makeText(NewTask.this, R.string.description_less_than + " " + Task.maxDescriptionLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
+			}
+		} else {
+			Toast.makeText(NewTask.this, R.string.name_less_than + " " + Task.maxNameLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
+		}
+
+	}
+
+	@Override
 	public void onBackPressed() {
+		super.onBackPressed();
 		Intent i;
-		hideInput();
 		
 		if (task.numChildren() < 1) {
 			
@@ -130,5 +97,6 @@ public class NewTask extends ActionBarActivity {
 		overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
 
 	}
+
 
 }
