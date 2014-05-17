@@ -1,5 +1,9 @@
 package com.ghsoft.treetaskapp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -18,6 +22,7 @@ public class NewTreeView extends ActionBarActivity {
 
 	private TaskNode task;
 
+	@SuppressLint("SimpleDateFormat")
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_tree_view);
@@ -29,6 +34,13 @@ public class NewTreeView extends ActionBarActivity {
 		TextView name = (TextView) findViewById(R.id.hname);
 		TextView path = (TextView) findViewById(R.id.path);
 		TextView description = (TextView) findViewById(R.id.hdescription);
+		TextView timeStamp = (TextView) findViewById(R.id.htimestamp);
+		
+		if (task.getTimeStamp() != null) {
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
+			String timeString = df.format(task.getTimeStamp());
+			timeStamp.setText(timeString);
+		}
 
 		TextView percent = (TextView) findViewById(R.id.percent);
 		ProgressBar completion = (ProgressBar) findViewById(R.id.completion);

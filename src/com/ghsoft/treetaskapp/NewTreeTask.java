@@ -1,5 +1,7 @@
 package com.ghsoft.treetaskapp;
 
+import java.util.Date;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -21,6 +23,8 @@ public class NewTreeTask extends ModifyTaskActivity {
 
 		TaskHead th = new TaskHead();
 		task = new TaskNode(th);
+		
+		task.setTimeStamp(new Date());
 		
 		getSubmitButton().setText(R.string.new_tree);
 		

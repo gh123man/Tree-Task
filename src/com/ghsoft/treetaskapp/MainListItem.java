@@ -1,7 +1,9 @@
 package com.ghsoft.treetaskapp;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -12,7 +14,6 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.TaskHead;
 
@@ -58,6 +59,7 @@ public class MainListItem extends BaseAdapter {
 		return tasks;
 	}
 
+	@SuppressLint("SimpleDateFormat")
 	@SuppressWarnings("deprecation")
 	public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -69,7 +71,14 @@ public class MainListItem extends BaseAdapter {
 		percent = (TextView) convertView.findViewById(R.id.percent);
 		subcount = (TextView) convertView.findViewById(R.id.subcount);
 		listItemBase = (LinearLayout) convertView.findViewById(R.id.list_item_base);
-		
+		TextView timeStamp = (TextView) convertView.findViewById(R.id.timestamp);
+
+		if (tasks.get(position).getTask().getTimeStamp() != null) {
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
+			String timeString = df.format(tasks.get(position).getTask().getTimeStamp());
+			timeStamp.setText(timeString);
+		}
+
 		name.setText(tasks.get(position).getTask().getName());
 		description.setText(tasks.get(position).getTask().getDescription());
 		completion.setMax(100);
@@ -85,7 +94,6 @@ public class MainListItem extends BaseAdapter {
 			states.addState(new int[] {}, convertView.getResources().getDrawable(R.color.nselect));
 		}
 		listItemBase.setBackgroundDrawable(states);
-
 
 		if (tasks.get(position).getTask().subTaskCount() > 1) {
 			subcount.setText(String.valueOf(tasks.get(position).getTask().subTaskCount()) + " " + convertView.getResources().getString(R.string.subtasks));

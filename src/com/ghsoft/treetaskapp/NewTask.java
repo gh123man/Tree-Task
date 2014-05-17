@@ -1,5 +1,7 @@
 package com.ghsoft.treetaskapp;
 
+import java.util.Date;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -30,6 +32,7 @@ public class NewTask extends ModifyTaskActivity {
 	@Override
 	public void onSubmit() {
 		TaskLeaf t = new TaskLeaf(task);
+		t.setTimeStamp(new Date());
 
 		if (getNameField().getText().toString().length() < 1) {
 			Toast.makeText(NewTask.this, R.string.supply_name, Toast.LENGTH_LONG).show();

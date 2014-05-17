@@ -42,7 +42,6 @@ import com.ghsoft.treetask.TaskLeaf;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
 import com.mobeta.android.dslv.DragSortListView;
-import com.mobeta.android.dslv.DragSortListView.FloatViewManager;
 
 public class TaskView extends ActionBarActivity {
 
@@ -138,13 +137,7 @@ public class TaskView extends ActionBarActivity {
 
 		setOffset();
 		
-		if (task.getUseColor()) {
-			getSupportActionBar().setBackgroundDrawable(new ColorDrawable(task.getColor()));
-			headerBase.setBackgroundColor(task.getColor());
-			floatingViewBase.setBackgroundColor(task.getColor());
-		}
-		
-		
+		setColors();
 
 		ViewTreeObserver vto = taskList.getViewTreeObserver();
 		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
@@ -282,12 +275,17 @@ public class TaskView extends ActionBarActivity {
 		super.onResume();
 		taskList.setSelection(0);
 		listViewItemHeights = new Hashtable<Integer, Integer>();
+		
+
+	}
+	
+	private void setColors() {
+		
 		if (task.getUseColor()) {
 			getSupportActionBar().setBackgroundDrawable(new ColorDrawable(task.getColor()));
 			headerBase.setBackgroundColor(task.getColor());
 			floatingViewBase.setBackgroundColor(task.getColor());
 		}
-
 	}
 
 	@Override

@@ -47,10 +47,20 @@
                 android:textColor="#bbbbbb"
                 android:textSize="18sp" />
 
+            <TextView
+                android:id="@+id/htimestamp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="right"
+                android:paddingRight="5dp"
+                android:text=""
+                android:textColor="#bbbbbb"
+                android:textSize="12sp" />
+
             <RelativeLayout
                 android:layout_width="fill_parent"
-                android:layout_height="30dp"
-                android:paddingTop="5dp" >
+                android:layout_height="30dp">
 
                 <TextView
                     android:id="@+id/percent"
@@ -94,12 +104,12 @@
                 android:id="@+id/newtask"
                 android:layout_width="fill_parent"
                 android:layout_height="70dp"
-                android:layout_marginTop="3dp"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/newtaskbutton"
                 android:layout_below="@+id/view1"
-                android:textColor="#ffffff"
-                android:text="@string/add_task" />
+                android:layout_marginTop="3dp"
+                android:background="@drawable/newtaskbutton"
+                android:text="@string/add_task"
+                android:textColor="#ffffff" />
         </RelativeLayout>
     </LinearLayout>
 

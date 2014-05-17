@@ -16,6 +16,8 @@ public class TaskLeaf extends Task implements Serializable {
 		TaskLeaf tl = new TaskLeaf((TaskNode) from.getParent());
 		tl.setName(from.getName());
 		tl.setDescription(from.getDescription());
+		tl.setColor(from.getColor());
+		tl.setTimeStamp(from.getTimeStamp());
 		return tl;
 	}
 
