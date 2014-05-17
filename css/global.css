@@ -20,22 +20,22 @@ body {
   font-family: 'Ubuntu', sans-serif;
   font-size: 100%;
 }
-header {
+body header.landing {
   display: none !important;
   background-color: #666666;
   height: 100%;
 }
 @media screen and (min-width: 768px) {
-  header {
+  body header.landing {
     display: block !important;
   }
 }
-header .head-left {
+body header.landing .head-left {
   width: 50%;
   height: 100%;
   float: left;
 }
-header .head-left .mainTitle {
+body header.landing .head-left .mainTitle {
   font-size: 10vmax;
   font-weight: 700;
   width: 100%;
@@ -46,7 +46,7 @@ header .head-left .mainTitle {
   padding-left: 5px;
   margin-top: 100px;
 }
-header .head-left .secondTitle {
+body header.landing .head-left .secondTitle {
   font-size: 5vmax;
   width: 100%;
   text-align: right;
@@ -54,35 +54,97 @@ header .head-left .secondTitle {
   text-shadow: 0px 2px 3px #222;
   float: right;
 }
-header .head-left .playLink {
+body header.landing .head-left .playLink {
   float: right;
   width: 100%;
   text-align: right;
   margin-top: 20px;
 }
-header .headRight {
+body header.landing .headRight {
   width: 50%;
   height: 100%;
   float: right;
 }
-header .headRight .top-img {
+body header.landing .headRight .top-img {
   max-width: 100%;
   max-height: 100%;
 }
-header .head-bottom {
+body header.landing .head-bottom {
   text-align: center;
   position: absolute;
   bottom: 0;
   width: 100%;
-  font-size: 1.5vmax;
+  font-size: 30px;
   -webkit-transition: font-size 0.2s ease;
   -moz-transition: font-size 0.2s ease;
   -o-transition: font-size 0.2s ease;
   transition: font-size 0.2s ease;
 }
-header .head-bottom:hover {
-  font-size: 2.5vmax;
+body header.landing .head-bottom:hover {
+  font-size: 40px;
 }
-.content {
+body main {
   min-height: 100%;
+  padding-top: 50px;
+}
+@media screen and (min-width: 768px) {
+  body main {
+    padding-top: 0px;
+  }
+}
+body main nav {
+  position: fixed;
+  height: 50px;
+  top: 0;
+  width: 100%;
+  background-color: #444444;
+}
+@media screen and (min-width: 768px) {
+  body main nav {
+    position: relative;
+    float: left;
+    width: 30%;
+    margin-left: 20px;
+  }
+}
+body main nav .nav-title {
+  color: #eeeeee;
+  padding-top: 5px;
+  padding-left: 5px;
+  font-size: 30px;
+}
+@media screen and (min-width: 768px) {
+  body main nav .nav-title {
+    border-bottom: solid 2px #00ff00;
+  }
+}
+body main nav.stick {
+  position: fixed;
+  top: 0;
+}
+body main section {
+  float: right;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: #444444;
+  min-height: 300px;
+  -webkit-box-shadow: 3px 3px 100px 1px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 3px 3px 100px 1px rgba(0, 0, 0, 0.8);
+  box-shadow: 3px 3px 100px 1px rgba(0, 0, 0, 0.8);
+}
+@media screen and (min-width: 768px) {
+  body main section {
+    width: 60%;
+    margin-right: 5%;
+    margin-bottom: 20px;
+  }
+}
+body main section header {
+  color: white;
+  font-size: 30pt;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-bottom: solid 2px #00ff00;
 }
