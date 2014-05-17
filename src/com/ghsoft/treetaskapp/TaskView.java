@@ -53,7 +53,7 @@ public class TaskView extends ActionBarActivity {
 	private boolean titleDefualt, setScrollHeight, offsetSet;
 	private TextView percent;
 	private ProgressBar completion;
-	private RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.FILL_PARENT);
+	private RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
 
 	private DragSortListView.DragScrollProfile ssProfile = new DragSortListView.DragScrollProfile() {
 		@Override
@@ -85,6 +85,7 @@ public class TaskView extends ActionBarActivity {
 		}
 	};
 	
+	@SuppressLint("InlinedApi")
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.task_view);
