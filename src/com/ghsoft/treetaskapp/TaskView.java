@@ -59,7 +59,6 @@ public class TaskView extends ActionBarActivity {
 		@Override
 		public float getSpeed(float w, long t) {
 			if (w > 0.8f) {
-				// Traverse all views in a millisecond
 				return ((float) adapter.getCount()) / 0.001f;
 			} else {
 				return 10.0f * w;
@@ -108,7 +107,6 @@ public class TaskView extends ActionBarActivity {
 		setTitleCheck(false);
 
 		taskList = (DragSortListView) findViewById(R.id.taskList);
-		//taskList.setDropListener(onDrop);
 		taskList.setDragSortListener(dragSort);
 		taskList.setDragScrollProfile(ssProfile);
 
@@ -156,7 +154,6 @@ public class TaskView extends ActionBarActivity {
 
 			@Override
 			public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-				// TODO Auto-generated method stub
 				placeFloatingView();
 			}
 		});
@@ -224,13 +221,11 @@ public class TaskView extends ActionBarActivity {
 			params.topMargin = (-1 * getScroll() + headerHeight + baseScrollHeight); //Your Y coordinate
 			floatingProgBarHeader.setLayoutParams(params);
 			
-			//floatingProgBarHeader.setTop(-1 * getScroll() + baseScrollHeight);
 		} else {
 			setTitleCheck(false);
 			
 			params.topMargin = 0; //Your Y coordinate
 			floatingProgBarHeader.setLayoutParams(params);
-			//floatingProgBarHeader.setTop(-1 * headerHeight);
 		}
 		
 		
@@ -350,7 +345,6 @@ public class TaskView extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.taskview, menu);
 		return true;
 	}
@@ -521,10 +515,6 @@ public class TaskView extends ActionBarActivity {
 			if (task.isHead()) {
 
 				Intent i = new Intent(TaskView.this, Main.class);
-				//if (task.completion() == 100)
-				//	i.putExtra("page", 1);
-				//else
-				//	i.putExtra("page", 0);
 				i.putExtra("page", 0);	//let always go to tasks for now
 				finish();
 				startActivity(i);
