@@ -12,6 +12,8 @@ public abstract class Task implements Serializable {
 	private Date timeStamp;
 	private Task parent;
 	private TaskHead head;
+	private int color;
+	private boolean useColor;
 
 	public Task(Task parent) {
 		this.parent = parent;
@@ -46,6 +48,23 @@ public abstract class Task implements Serializable {
 			return true;
 		}
 		return false;
+	}
+	
+	public void setColor(int color) {
+		this.color = color;
+		this.useColor = true;
+	}
+	
+	public int getColor() {
+		return this.color;
+	}
+	
+	public void setUseColor(boolean useColor) {
+		this.useColor = useColor;
+	}
+	
+	public boolean getUseColor() {
+		return useColor;
 	}
 
 	public String getName() {

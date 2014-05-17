@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:background="@drawable/select"
+        android:id="@+id/list_item_base"
         android:minHeight="80dp"
         android:orientation="vertical" >
 

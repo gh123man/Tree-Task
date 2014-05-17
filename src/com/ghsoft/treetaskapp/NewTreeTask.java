@@ -39,6 +39,13 @@ public class NewTreeTask extends ModifyTaskActivity {
 		if (task.setName(getNameField().getText().toString())) {
 
 			if (task.setDescription(getdescriptionField().getText().toString())) {
+				
+				if (getChangeColor()) {
+					task.setColor(getPicker().getColor());
+				} else {
+					task.setColor(getResources().getColor(R.color.darkgrey));
+				}
+				
 				final TaskNode tn = (TaskNode) task;
 				tn.addSubTask(t);
 				Intent i = new Intent(NewTreeTask.this, NewTreeView.class);

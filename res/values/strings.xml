@@ -42,5 +42,6 @@
     <string name="export_task">Share/Export Task</string>
     <string name="about">About</string>
     <string name="drag_handle">drag handle</string>
+    <string name="color">Change Color</string>
 
 </resources>

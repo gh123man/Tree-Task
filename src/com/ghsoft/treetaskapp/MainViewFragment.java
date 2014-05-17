@@ -56,11 +56,11 @@ public class MainViewFragment extends Fragment {
 		@Override
 		public void drop(int from, int to) {
 			TaskHead th = adapter.getData().get(from);
-			
+
 			adapter.getData().remove(th);
 			adapter.getData().add(to, th);
 			adapter.notifyDataSetChanged();
-			
+
 			if (adapter.getType().equals("tasks")) {
 				tm.getMetadata().buildTasksOrder(adapter.getData());
 				TaskManager.saveMetaData();
@@ -68,15 +68,14 @@ public class MainViewFragment extends Fragment {
 				tm.getMetadata().buildArchiveOrder(adapter.getData());
 				TaskManager.saveMetaData();
 			}
-			
+
 		}
 	};
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View rootView;
-		
+
 		tm = (TaskManager) getArguments().get("tm");
 
 		toDisplay = new ArrayList<TaskHead>();
@@ -91,12 +90,11 @@ public class MainViewFragment extends Fragment {
 			taskList = (DragSortListView) rootView.findViewById(R.id.taskListArchive);
 			adapter = new MainListItem(getActivity().getApplicationContext(), toDisplay, "archive");
 		}
-		
+
 		taskList.setDropListener(onDrop);
 		taskList.setDragScrollProfile(ssProfile);
 
 		if (toDisplay.size() > 0) {
-			
 
 			taskList.setAdapter(adapter);
 		}
@@ -106,19 +104,20 @@ public class MainViewFragment extends Fragment {
 		taskList.setOnItemClickListener(new OnItemClickListener() {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
-				ViewPager a = (ViewPager) arg1.getParent().getParent().getParent().getParent(); //lol
-				
 				TaskNode t = toDisplay.get(position).getTask();
+
+				ViewPager a = (ViewPager) arg1.getParent().getParent().getParent().getParent(); // lol
+
 				Task child = t.getChild(0);
-				
+
 				Intent i = null;
-				
+
 				if (child instanceof TaskDummy) {
 					i = new Intent(getActivity(), NewTreeView.class);
 				} else {
 					i = new Intent(getActivity(), TaskView.class);
 				}
-				
+
 				i.putExtra("task", toDisplay.get(position).getTask());
 				i.putExtra("page", a.getCurrentItem());
 				getActivity().finish();
@@ -130,7 +129,7 @@ public class MainViewFragment extends Fragment {
 
 		return rootView;
 	}
-	
+
 	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		ViewPager a = (ViewPager) v.getParent().getParent().getParent();
 
@@ -161,10 +160,10 @@ public class MainViewFragment extends Fragment {
 					DragSortListView list = (DragSortListView) getActivity().findViewById(R.id.taskList);
 					MainListItem adapter = ((MainListItem) list.getInputAdapter());
 					adapter.getData().remove(info.position);
-					
+
 					tm.getMetadata().buildTasksOrder(adapter.getData());
 					TaskManager.saveMetaData();
-					
+
 					adapter.notifyDataSetChanged();
 
 				}
@@ -183,17 +182,16 @@ public class MainViewFragment extends Fragment {
 			builder = new AlertDialog.Builder(getActivity());
 			builder.setMessage(R.string.sure_to_delete).setCancelable(false).setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
-					
-					
+
 					TaskManager.delete(tm.getArchive().get(info.position).taskID);
 
 					DragSortListView list = (DragSortListView) getActivity().findViewById(R.id.taskListArchive);
 					MainListItem adapter = ((MainListItem) list.getInputAdapter());
 					adapter.getData().remove(info.position);
-					
+
 					tm.getMetadata().buildArchiveOrder(adapter.getData());
 					TaskManager.saveMetaData();
-					
+
 					adapter.notifyDataSetChanged();
 				}
 			}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {

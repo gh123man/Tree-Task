@@ -39,6 +39,11 @@ public class NewTask extends ModifyTaskActivity {
 		if (t.setName(getNameField().getText().toString())) {
 			if (t.setDescription(getdescriptionField().getText().toString())) {
 				
+				if (getChangeColor()) {
+					t.setColor(getPicker().getColor());
+				} else {
+					t.setColor(getResources().getColor(R.color.darkgrey));
+				}
 				
 				if (task.hasChildren()) {
 					Task child = task.getChild(0);

@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -41,6 +42,7 @@ import com.ghsoft.treetask.TaskLeaf;
 import com.ghsoft.treetask.TaskManager;
 import com.ghsoft.treetask.TaskNode;
 import com.mobeta.android.dslv.DragSortListView;
+import com.mobeta.android.dslv.DragSortListView.FloatViewManager;
 
 public class TaskView extends ActionBarActivity {
 
@@ -50,7 +52,8 @@ public class TaskView extends ActionBarActivity {
 	private View header;
 	private Task treeView;
 	private int parentCount, headerHeight, baseScrollHeight, triangleHeight, setSompletion;
-	private LinearLayout floatingProgBarHeader;
+	private LinearLayout floatingProgBarHeader, headerBase;
+	private RelativeLayout floatingViewBase;
 	private Dictionary<Integer, Integer> listViewItemHeights;
 	private boolean titleDefualt, setScrollHeight, offsetSet;
 	private TextView percent;
@@ -134,6 +137,13 @@ public class TaskView extends ActionBarActivity {
 		floatingProgBarHeader = (LinearLayout) findViewById(R.id.progBarFloat);
 
 		setOffset();
+		
+		if (task.getUseColor()) {
+			getSupportActionBar().setBackgroundDrawable(new ColorDrawable(task.getColor()));
+			headerBase.setBackgroundColor(task.getColor());
+			floatingViewBase.setBackgroundColor(task.getColor());
+		}
+		
 		
 
 		ViewTreeObserver vto = taskList.getViewTreeObserver();
@@ -272,6 +282,11 @@ public class TaskView extends ActionBarActivity {
 		super.onResume();
 		taskList.setSelection(0);
 		listViewItemHeights = new Hashtable<Integer, Integer>();
+		if (task.getUseColor()) {
+			getSupportActionBar().setBackgroundDrawable(new ColorDrawable(task.getColor()));
+			headerBase.setBackgroundColor(task.getColor());
+			floatingViewBase.setBackgroundColor(task.getColor());
+		}
 
 	}
 
@@ -344,6 +359,8 @@ public class TaskView extends ActionBarActivity {
 		TextView path = (TextView) header.findViewById(R.id.path);
 		TextView description = (TextView) header.findViewById(R.id.hdescription);
 		TextView timeStamp = (TextView) header.findViewById(R.id.htimestamp);
+		headerBase = (LinearLayout) header.findViewById(R.id.header_base);
+		floatingViewBase = (RelativeLayout) findViewById(R.id.floatingViewBase);
 		
 		if (task.getTimeStamp() != null) {
 			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");

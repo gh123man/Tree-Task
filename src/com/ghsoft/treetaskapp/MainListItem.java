@@ -3,10 +3,13 @@ package com.ghsoft.treetaskapp;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -19,16 +22,14 @@ public class MainListItem extends BaseAdapter {
 	private ProgressBar completion;
 	private ArrayList<TaskHead> tasks;
 	private String type;
-	
+	private LinearLayout listItemBase;
 
 	public MainListItem(Context context, ArrayList<TaskHead> tasks, String type) {
-		// Caches the LayoutInflater for quicker use
 		this.inflater = LayoutInflater.from(context);
-		// Sets the events data
 		this.tasks = tasks;
 		this.type = type;
 	}
-	
+
 	public String getType() {
 		return type;
 	}
@@ -50,7 +51,6 @@ public class MainListItem extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return tasks.size();
 	}
 
@@ -58,6 +58,7 @@ public class MainListItem extends BaseAdapter {
 		return tasks;
 	}
 
+	@SuppressWarnings("deprecation")
 	public View getView(int position, View convertView, ViewGroup parent) {
 
 		convertView = this.inflater.inflate(R.layout.main_list_item, null);
@@ -67,19 +68,30 @@ public class MainListItem extends BaseAdapter {
 		completion = (ProgressBar) convertView.findViewById(R.id.completion);
 		percent = (TextView) convertView.findViewById(R.id.percent);
 		subcount = (TextView) convertView.findViewById(R.id.subcount);
-
+		listItemBase = (LinearLayout) convertView.findViewById(R.id.list_item_base);
+		
 		name.setText(tasks.get(position).getTask().getName());
 		description.setText(tasks.get(position).getTask().getDescription());
 		completion.setMax(100);
 		completion.setProgress(tasks.get(position).getTask().completion());
 		percent.setText(tasks.get(position).getTask().completion() + "%");
-		
+
+		StateListDrawable states = new StateListDrawable();
+		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.select));
+		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.select));
+		if (tasks.get(position).getTask().getUseColor()) {
+			states.addState(new int[] {}, new ColorDrawable(tasks.get(position).getTask().getColor()));
+		} else {
+			states.addState(new int[] {}, convertView.getResources().getDrawable(R.color.nselect));
+		}
+		listItemBase.setBackgroundDrawable(states);
+
+
 		if (tasks.get(position).getTask().subTaskCount() > 1) {
 			subcount.setText(String.valueOf(tasks.get(position).getTask().subTaskCount()) + " " + convertView.getResources().getString(R.string.subtasks));
 		} else {
 			subcount.setText(String.valueOf(tasks.get(position).getTask().subTaskCount()) + " " + convertView.getResources().getString(R.string.subtask));
 		}
-		
 
 		return convertView;
 	}

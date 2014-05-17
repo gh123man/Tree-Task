@@ -3,13 +3,17 @@ package com.ghsoft.treetaskapp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -23,6 +27,7 @@ public class TaskViewListItem extends BaseAdapter {
 	private ProgressBar completion;
 	private TaskNode task;
 	private ImageView check;
+	private LinearLayout listItemBase;
 
 	public TaskViewListItem(Context context, TaskNode task, View header) {
 		this.inflater = LayoutInflater.from(context);
@@ -72,6 +77,8 @@ public class TaskViewListItem extends BaseAdapter {
 		return convertView;
 	}
 
+	@SuppressWarnings("deprecation")
+	@SuppressLint("SimpleDateFormat")
 	private void layoutHasChildren(View convertView, Task t) {
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
@@ -80,9 +87,21 @@ public class TaskViewListItem extends BaseAdapter {
 		subcount = (TextView) convertView.findViewById(R.id.subcountmainlistitem);
 	    timeStamp = (TextView) convertView.findViewById(R.id.timestamp);
 		
+	    listItemBase = (LinearLayout) convertView.findViewById(R.id.tv_list_item_base);
+		
+		StateListDrawable states = new StateListDrawable();
+		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.select));
+		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.select));
+		if (t.getUseColor()) {
+			states.addState(new int[] {}, new ColorDrawable(t.getColor()));
+		} else {
+			states.addState(new int[] {}, convertView.getResources().getDrawable(R.color.nselect));
+		}
+		listItemBase.setBackgroundDrawable(states);
+		
 		if (task.getTimeStamp() != null) {
 			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
-			String timeString = df.format(task.getTimeStamp());
+			String timeString = df.format(t.getTimeStamp());
 			timeStamp.setText(timeString);
 		}
 		
@@ -92,6 +111,8 @@ public class TaskViewListItem extends BaseAdapter {
 		completion.setMax(100);
 		completion.setProgress(t.completion());
 		percent.setText(t.completion() + "%");
+		
+		
 
 		if (t.subTaskCount() > 1) {
 			subcount.setText(t.subTaskCount() + " " + convertView.getResources().getString(R.string.subtasks));
@@ -108,15 +129,29 @@ public class TaskViewListItem extends BaseAdapter {
 
 	}
 
+	@SuppressWarnings("deprecation")
+	@SuppressLint("SimpleDateFormat")
 	private void layoutNoChildren(View convertView, Task t) {
 		name = (TextView) convertView.findViewById(R.id.name);
 		description = (TextView) convertView.findViewById(R.id.description);
 		check = (ImageView) convertView.findViewById(R.id.check);
 		timeStamp = (TextView) convertView.findViewById(R.id.timestamp);
 		
+		listItemBase = (LinearLayout) convertView.findViewById(R.id.tv_list_item_base);
+		
+		StateListDrawable states = new StateListDrawable();
+		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.select));
+		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.select));
+		if (t.getUseColor()) {
+			states.addState(new int[] {}, new ColorDrawable(t.getColor()));
+		} else {
+			states.addState(new int[] {}, convertView.getResources().getDrawable(R.color.nselect));
+		}
+		listItemBase.setBackgroundDrawable(states);
+		
 		if (task.getTimeStamp() != null) {
 			DateFormat df = new SimpleDateFormat("MM/dd/yyyy h:mm a");
-			String timeString = df.format(task.getTimeStamp());
+			String timeString = df.format(t.getTimeStamp());
 			timeStamp.setText(timeString);
 		}
 

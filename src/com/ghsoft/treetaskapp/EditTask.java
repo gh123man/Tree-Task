@@ -28,6 +28,8 @@ public class EditTask extends ModifyTaskActivity {
 
 		getNameField().setText(task.getName());
 		getdescriptionField().setText(task.getDescription());
+		
+		getPicker().setOldCenterColor(task.getColor());
 
 	}
 
@@ -41,7 +43,11 @@ public class EditTask extends ModifyTaskActivity {
 
 		if (task.setName(getNameField().getText().toString())) {
 			if (task.setDescription(getdescriptionField().getText().toString())) {
-
+				
+				if (getChangeColor()) {
+					task.setColor(getPicker().getColor());
+				}
+				
 				TaskManager.save(task.getHead());
 				Intent i = null;
 

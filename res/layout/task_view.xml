@@ -26,6 +26,7 @@
         android:orientation="vertical" >
 
         <RelativeLayout
+            android:id="@+id/floatingViewBase"
             android:layout_width="fill_parent"
             android:layout_height="30dp"
             android:background="#333333"
