@@ -66,20 +66,100 @@
             android:orientation="vertical"
             android:visibility="gone" >
 
-            <com.larswerkman.holocolorpicker.ColorPicker
-                android:id="@+id/picker"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" >
 
-            <com.larswerkman.holocolorpicker.SaturationBar
-                android:id="@+id/saturationbar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <RadioGroup
+                    android:id="@+id/defualtColors1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left" >
 
-            <com.larswerkman.holocolorpicker.ValueBar
-                android:id="@+id/valuebar"
+                    <RadioButton
+                        android:id="@+id/radio0"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color0"/>
+
+                    <RadioButton
+                        android:id="@+id/radio1"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color1" />
+
+                    <RadioButton
+                        android:id="@+id/radio2"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color2" />
+                </RadioGroup>
+
+                <RadioGroup
+                    android:id="@+id/defualtColors2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right" >
+
+                    <RadioButton
+                        android:id="@+id/radio3"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color3" />
+
+                    <RadioButton
+                        android:id="@+id/radio4"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color4" />
+
+                    <RadioButton
+                        android:id="@+id/radio5"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color5" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/defualtColors3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <RadioButton
+                    android:id="@+id/customSelect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/custom_color" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/custom_zone"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <com.larswerkman.holocolorpicker.ColorPicker
+                    android:id="@+id/picker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.larswerkman.holocolorpicker.SaturationBar
+                    android:id="@+id/saturationbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.larswerkman.holocolorpicker.ValueBar
+                    android:id="@+id/valuebar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
         </LinearLayout>
 
         <Button

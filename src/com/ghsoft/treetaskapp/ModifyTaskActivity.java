@@ -12,6 +12,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 
 import com.ghsoft.treetask.R;
 import com.larswerkman.holocolorpicker.ColorPicker;
@@ -23,9 +24,10 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 	private EditText name, description;
 	private Button submit;
 	private CheckBox showPicker;
-	private LinearLayout pickerZone;
+	private LinearLayout pickerZone, customZone;
 	private ColorPicker picker;
 	private boolean changeColor;
+	private RadioGroup rg1, rg2, rg3;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,10 +41,12 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 		picker = (ColorPicker) findViewById(R.id.picker);
 		SaturationBar saturationBar = (SaturationBar) findViewById(R.id.saturationbar);
 		ValueBar valueBar = (ValueBar) findViewById(R.id.valuebar);
+		customZone = (LinearLayout) findViewById(R.id.custom_zone);
 
 		picker.addSaturationBar(saturationBar);
 		picker.addValueBar(valueBar);
-		picker.setOldCenterColor(getResources().getColor(R.color.darkgrey));
+		//picker.setOldCenterColor(getResources().getColor(R.color.darkgrey));
+		picker.setShowOldCenterColor(false);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -69,7 +73,82 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 			}
 		});
 
+		rg1 = (RadioGroup) findViewById(R.id.defualtColors1);
+		rg2 = (RadioGroup) findViewById(R.id.defualtColors2);
+		rg3 = (RadioGroup) findViewById(R.id.defualtColors3);
+
+		rg1.clearCheck();
+		rg2.clearCheck();
+		rg3.clearCheck();
+		rg1.setOnCheckedChangeListener(listener1);
+		rg2.setOnCheckedChangeListener(listener2);
+		rg3.setOnCheckedChangeListener(listener3);
+
 	}
+
+	private RadioGroup.OnCheckedChangeListener listener1 = new RadioGroup.OnCheckedChangeListener() {
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			rg2.setOnCheckedChangeListener(null);
+			rg2.clearCheck();
+			rg2.setOnCheckedChangeListener(listener2);
+			rg3.setOnCheckedChangeListener(null);
+			rg3.clearCheck();
+			rg3.setOnCheckedChangeListener(listener3);
+			customZone.setVisibility(View.GONE);
+
+			if (checkedId == R.id.radio0) {
+				picker.setColor(getResources().getColor(R.color.color0));
+			} else if (checkedId == R.id.radio1) {
+				picker.setColor(getResources().getColor(R.color.color1));
+			} else if (checkedId == R.id.radio2) {
+				picker.setColor(getResources().getColor(R.color.color2));
+			}
+
+		}
+	};
+
+	private RadioGroup.OnCheckedChangeListener listener2 = new RadioGroup.OnCheckedChangeListener() {
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+			rg1.setOnCheckedChangeListener(null);
+			rg1.clearCheck();
+			rg1.setOnCheckedChangeListener(listener1);
+			rg3.setOnCheckedChangeListener(null);
+			rg3.clearCheck();
+			rg3.setOnCheckedChangeListener(listener3);
+			customZone.setVisibility(View.GONE);
+
+			if (checkedId == R.id.radio3) {
+				picker.setColor(getResources().getColor(R.color.color3));
+			} else if (checkedId == R.id.radio4) {
+				picker.setColor(getResources().getColor(R.color.color4));
+			} else if (checkedId == R.id.radio5) {
+				picker.setColor(getResources().getColor(R.color.color5));
+			}
+
+		}
+	};
+
+	private RadioGroup.OnCheckedChangeListener listener3 = new RadioGroup.OnCheckedChangeListener() {
+		@Override
+		public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+			if (customZone.getVisibility() == View.GONE) {
+				customZone.setVisibility(View.VISIBLE);
+			} else {
+				customZone.setVisibility(View.GONE);
+			}
+
+			rg1.setOnCheckedChangeListener(null);
+			rg1.clearCheck();
+			rg1.setOnCheckedChangeListener(listener1);
+			rg2.setOnCheckedChangeListener(null);
+			rg2.clearCheck();
+			rg2.setOnCheckedChangeListener(listener2);
+
+		}
+	};
 
 	public abstract void onSubmit();
 
@@ -97,18 +176,18 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(name.getWindowToken(), 0);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		
+
 		case android.R.id.home:
 			onBackPressed();
 			break;
 		}
 		return true;
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

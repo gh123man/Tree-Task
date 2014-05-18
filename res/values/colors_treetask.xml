@@ -1,21 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- File created by the Android Action Bar Style Generator
-
-     Copyright (C) 2011 The Android Open Source Project
-     Copyright (C) 2012 readyState Software Ltd
-
-     Licensed under the Apache License, Version 2.0 (the "License");
-     you may not use this file except in compliance with the License.
-     You may obtain a copy of the License at
-  
-          http://www.apache.org/licenses/LICENSE-2.0
-  
-     Unless required by applicable law or agreed to in writing, software
-     distributed under the License is distributed on an "AS IS" BASIS,
-     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-     See the License for the specific language governing permissions and
-     limitations under the License.
--->
 
 <resources>
     <color name="pressed_treetask">#CC353535</color>
@@ -26,6 +9,13 @@
     <color name="bgbase">#101010</color>
     <color name="accentColor">#F1F1F1</color>
     <color name="progDefault">#007A00</color>
+    
+    <color name="color0">#333333</color>
+    <color name="color1">#007A00</color>
+    <color name="color2">#007A00</color>
+    <color name="color3">#007A00</color>
+    <color name="color4">#007A00</color>
+    <color name="color5">#007A00</color>
     
     
 </resources>
