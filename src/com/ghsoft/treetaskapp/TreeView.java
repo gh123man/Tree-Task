@@ -4,10 +4,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.ghsoft.treetask.HtmlTreeBuilder;
 import com.ghsoft.treetask.R;
 import com.ghsoft.treetask.TaskNode;
 
@@ -21,6 +21,8 @@ public class TreeView extends ActionBarActivity {
 		setContentView(R.layout.tree_view);
 
 		Object sTask = getIntent().getSerializableExtra("task");
+		
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 		task = (TaskNode) sTask;
 
@@ -29,7 +31,7 @@ public class TreeView extends ActionBarActivity {
 		treeDisplay = (WebView) findViewById(R.id.treeDisplay);
 		treeDisplay.setBackgroundColor(Color.argb(1, 0, 0, 0));
 
-		HtmlTreeBuilder builder = new HtmlTreeBuilder(task.getHead().getTask());
+		HtmlTreeBuilder builder = new HtmlTreeBuilder(task.getHead().getTask(), TreeView.this);
 
 		String data = builder.getHtml();
 
@@ -57,6 +59,17 @@ public class TreeView extends ActionBarActivity {
 			}
 		});
 
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+
+		case android.R.id.home:
+			onBackPressed();
+			break;
+		}
+		return true;
 	}
 
 	@Override

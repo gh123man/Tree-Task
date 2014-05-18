@@ -45,7 +45,6 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 
 		picker.addSaturationBar(saturationBar);
 		picker.addValueBar(valueBar);
-		//picker.setOldCenterColor(getResources().getColor(R.color.darkgrey));
 		picker.setShowOldCenterColor(false);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);

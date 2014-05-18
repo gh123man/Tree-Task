@@ -25,7 +25,7 @@ a {
     max-width: 350px;
     min-height: 40px;
     padding-bottom: 4px;
-    background: #303030;
+    background: #333333;
     padding-right: 5px;
     padding-top: 1px;
     padding-left: 2px;
@@ -93,7 +93,7 @@ a {
 }
 
 .wrapper {
-    border-left: 1px solid #333;
+    border-left: 1px solid #333333;
 }
 
 
