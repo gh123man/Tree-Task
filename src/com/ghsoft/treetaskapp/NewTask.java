@@ -26,6 +26,8 @@ public class NewTask extends ModifyTaskActivity {
 		Object sTask = getIntent().getSerializableExtra("task");
 
 		task = (TaskNode) sTask;
+		
+		setWeightField(1);
 
 	}
 	
@@ -46,6 +48,10 @@ public class NewTask extends ModifyTaskActivity {
 					t.setColor(getPicker().getColor());
 				} else {
 					t.setColor(getResources().getColor(R.color.darkgrey));
+				}
+				
+				if (getChangeWeight()) {
+					t.setWeight(getWeightFieldValue());
 				}
 				
 				if (task.hasChildren()) {
