@@ -4,18 +4,17 @@
     <color name="pressed_treetask">#CC353535</color>
     <color name="select">#336635</color>
     <color name="nselect">#303030</color>
-    <color name="transparent">#00000000</color>
     <color name="darkgrey">#333333</color>
     <color name="bgbase">#101010</color>
     <color name="accentColor">#F1F1F1</color>
     <color name="progDefault">#007A00</color>
     
     <color name="color0">#333333</color>
-    <color name="color1">#007A00</color>
-    <color name="color2">#007A00</color>
-    <color name="color3">#007A00</color>
-    <color name="color4">#007A00</color>
-    <color name="color5">#007A00</color>
+    <color name="color1">#AA4646</color>
+    <color name="color2">#46AA46</color>
+    <color name="color3">#274699</color>
+    <color name="color4">#D17F00</color>
+    <color name="color5">#AA46AA</color>
     
     
 </resources>

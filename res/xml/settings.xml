@@ -3,7 +3,7 @@
 
     <PreferenceCategory
         android:key="general"
-        android:title="@string/color_settings" >
+        android:title="@string/global_color_settings" >
         <net.margaritov.preference.colorpicker.ColorPickerPreference
             android:defaultValue="@color/accentColor"
             android:key="accent_color"
@@ -14,6 +14,30 @@
             android:key="prog_color"
             android:summary="@string/prog_color_des"
             android:title="@string/prog_color" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="general"
+        android:title="@string/default_color_settings" >
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@color/color1"
+            android:key="color1"
+            android:title="@string/color1" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@color/color2"
+            android:key="color2"
+            android:title="@string/color2" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@color/color3"
+            android:key="color3"
+            android:title="@string/color3" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@color/color4"
+            android:key="color4"
+            android:title="@string/color4" />
+        <net.margaritov.preference.colorpicker.ColorPickerPreference
+            android:defaultValue="@color/color5"
+            android:key="color5"
+            android:title="@string/color5" />
     </PreferenceCategory>
 
     <Preference

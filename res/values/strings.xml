@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">Tree Task</string>
-    <string name="action_settings">Settings</string>
     <string name="title_section1">Tasks</string>
     <string name="title_section2">Archive</string>
     <string name="edit_task">Edit task</string>
@@ -24,7 +23,6 @@
     <string name="drag_tab">Drag Tab</string>
     <string name="check">Check</string>
     <string name="add_task">Add a task</string>
-    <string name="tree_name">Tree Name</string>
     <string name="description_opt">Description (optional)</string>
     <string name="create_tree">Create Tree</string>
     <string name="create_task">Create Task</string>
@@ -37,14 +35,15 @@
     <string name="share">Share</string>
     <string name="update">Update</string>
     <string name="delete_tree">Delete Tree</string>
-    <string name="edit_tree">Edit Tree</string>
+    <string name="delete_task">Delete Task</string>
     <string name="tree_view">Tree View</string>
     <string name="export_task">Share/Export Task</string>
     <string name="about">About</string>
     <string name="drag_handle">drag handle</string>
     <string name="color">Change Color</string>
     <string name="settings">Settings</string>
-    <string name="color_settings">Color Settings</string>
+    <string name="global_color_settings">Global Color Settings</string>
+    <string name="default_color_settings">Default Task Color Settings</string>
     <string name="accent_colors">Global Accent Color Setting</string>
     <string name="accent_colors_des">Changes the color of the tab titles and other accents</string>
     <string name="prog_color">Progres bar colors</string>
@@ -52,6 +51,13 @@
     <string name="reset_settings">Reset all settings</string>
     <string name="sure_to_reset">Are you sure you want to reset all settings?</string>
     <string name="custom_color">Custom Color</string>
+    <string name="color1">Color 1</string>
+    <string name="color2">Color 2</string>
+    <string name="color3">Color 3</string>
+    <string name="color4">Color 4</string>
+    <string name="color5">Color 5</string>
+    <string name="add_sub_task">Add Sub-Task</string>
+    
     
     
     

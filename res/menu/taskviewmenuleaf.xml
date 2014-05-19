@@ -6,18 +6,18 @@ xmlns:app="http://schemas.android.com/apk/res-auto" >
         android:orderInCategory="100"
         android:showAsAction="never"
         app:showAsAction="never"
-        android:title="Add Sub-Task"/>
+        android:title="@string/add_sub_task"/>
     <item
         android:id="@+id/editSubTask"
         android:orderInCategory="100"
         android:showAsAction="never"
         app:showAsAction="never"
-        android:title="Edit Task"/>
+        android:title="@string/edit_task"/>
     <item
         android:id="@+id/delete"
         android:orderInCategory="100"
         android:showAsAction="never"
         app:showAsAction="never"
-        android:title="Delete Task"/>
+        android:title="@string/delete_task"/>
 
 </menu>

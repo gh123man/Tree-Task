@@ -26,7 +26,7 @@ public class NewTreeTask extends ModifyTaskActivity {
 		
 		task.setTimeStamp(new Date());
 		
-		getSubmitButton().setText(R.string.new_tree);
+		getSubmitButton().setText(R.string.create_tree);
 		
 	}
 

@@ -1,7 +1,9 @@
 package com.ghsoft.treetaskapp;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,6 +31,7 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 	private ColorPicker picker;
 	private boolean changeColor;
 	private RadioGroup rg1, rg2, rg3;
+	private SharedPreferences prefs; 
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,6 +52,8 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 		picker.setShowOldCenterColor(false);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		
+		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		submit.setOnClickListener(new View.OnClickListener() {
 
@@ -79,9 +85,18 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 		rg1.clearCheck();
 		rg2.clearCheck();
 		rg3.clearCheck();
+		rg1.check(R.id.radio0);
+		picker.setColor(getResources().getColor(R.color.color0));
+		
 		rg1.setOnCheckedChangeListener(listener1);
 		rg2.setOnCheckedChangeListener(listener2);
 		rg3.setOnCheckedChangeListener(listener3);
+		
+		((RadioButton) findViewById(R.id.radio1)).setBackgroundColor(prefs.getInt("color1", getResources().getColor(R.color.color1)));
+		((RadioButton) findViewById(R.id.radio2)).setBackgroundColor(prefs.getInt("color2", getResources().getColor(R.color.color2)));
+		((RadioButton) findViewById(R.id.radio3)).setBackgroundColor(prefs.getInt("color3", getResources().getColor(R.color.color3)));
+		((RadioButton) findViewById(R.id.radio4)).setBackgroundColor(prefs.getInt("color4", getResources().getColor(R.color.color4)));
+		((RadioButton) findViewById(R.id.radio5)).setBackgroundColor(prefs.getInt("color5", getResources().getColor(R.color.color5)));
 
 	}
 
@@ -99,9 +114,9 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 			if (checkedId == R.id.radio0) {
 				picker.setColor(getResources().getColor(R.color.color0));
 			} else if (checkedId == R.id.radio1) {
-				picker.setColor(getResources().getColor(R.color.color1));
+				picker.setColor(prefs.getInt("color1", getResources().getColor(R.color.color1)));
 			} else if (checkedId == R.id.radio2) {
-				picker.setColor(getResources().getColor(R.color.color2));
+				picker.setColor(prefs.getInt("color2", getResources().getColor(R.color.color2)));
 			}
 
 		}
@@ -119,11 +134,11 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 			customZone.setVisibility(View.GONE);
 
 			if (checkedId == R.id.radio3) {
-				picker.setColor(getResources().getColor(R.color.color3));
+				picker.setColor(prefs.getInt("color3", getResources().getColor(R.color.color3)));
 			} else if (checkedId == R.id.radio4) {
-				picker.setColor(getResources().getColor(R.color.color4));
+				picker.setColor(prefs.getInt("color4", getResources().getColor(R.color.color4)));
 			} else if (checkedId == R.id.radio5) {
-				picker.setColor(getResources().getColor(R.color.color5));
+				picker.setColor(prefs.getInt("color5", getResources().getColor(R.color.color5)));
 			}
 
 		}
