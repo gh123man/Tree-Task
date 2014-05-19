@@ -89,8 +89,8 @@ public class TaskViewListItem extends BaseAdapter {
 	    listItemBase = (LinearLayout) convertView.findViewById(R.id.tv_list_item_base);
 		
 		StateListDrawable states = new StateListDrawable();
-		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.select));
-		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.select));
+		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.menu_select));
+		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.menu_select));
 		if (t.getUseColor()) {
 			states.addState(new int[] {}, new ColorDrawable(t.getColor()));
 		} else {
@@ -139,8 +139,8 @@ public class TaskViewListItem extends BaseAdapter {
 		listItemBase = (LinearLayout) convertView.findViewById(R.id.tv_list_item_base);
 		
 		StateListDrawable states = new StateListDrawable();
-		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.select));
-		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.select));
+		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.menu_select));
+		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.menu_select));
 		if (t.getUseColor()) {
 			states.addState(new int[] {}, new ColorDrawable(t.getColor()));
 		} else {

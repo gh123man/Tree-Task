@@ -87,8 +87,8 @@ public class MainListItem extends BaseAdapter {
 		percent.setText(tasks.get(position).getTask().completion() + "%");
 
 		StateListDrawable states = new StateListDrawable();
-		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.select));
-		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.select));
+		states.addState(new int[] { android.R.attr.state_pressed }, convertView.getResources().getDrawable(R.color.menu_select));
+		states.addState(new int[] { android.R.attr.state_focused }, convertView.getResources().getDrawable(R.color.menu_select));
 		if (tasks.get(position).getTask().getUseColor()) {
 			states.addState(new int[] {}, new ColorDrawable(tasks.get(position).getTask().getColor()));
 		} else {
