@@ -56,7 +56,7 @@ public class NewTreeTask extends ModifyTaskActivity {
 				i.putExtra("task", task);
 				finish();
 				startActivity(i);
-				overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
+				overridePendingTransition(R.anim.back_short_zoom, R.anim.slide_down);
 
 			} else {
 				Toast.makeText(NewTreeTask.this, R.string.description_less_than + " " + Task.maxDescriptionLen + " " + R.string.characters, Toast.LENGTH_LONG).show();
@@ -75,7 +75,7 @@ public class NewTreeTask extends ModifyTaskActivity {
 		i = new Intent(NewTreeTask.this, Main.class);
 		finish();
 		startActivity(i);
-		overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
+		overridePendingTransition(R.anim.back_short_zoom, R.anim.slide_down);
 
 	}
 

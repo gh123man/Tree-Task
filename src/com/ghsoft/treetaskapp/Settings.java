@@ -61,7 +61,7 @@ public class Settings extends PreferenceActivity {
 		i = new Intent(Settings.this, Main.class);
 		finish();
 		startActivity(i);
-		overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
+		overridePendingTransition(R.anim.back_short_zoom, R.anim.slide_down);
 
 	}
 }

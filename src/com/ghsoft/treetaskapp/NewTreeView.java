@@ -69,7 +69,7 @@ public class NewTreeView extends ActionBarActivity {
 				i.putExtra("task", task);
 				finish();
 				startActivity(i);
-				overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+				overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 
 				
 			}
@@ -80,7 +80,7 @@ public class NewTreeView extends ActionBarActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.newtreeview, menu);
+		getMenuInflater().inflate(R.menu.new_tree_view, menu);
 		return true;
 	}
 
@@ -94,7 +94,7 @@ public class NewTreeView extends ActionBarActivity {
 			i.putExtra("task", task);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 			break;
 
 		case R.id.newTask:
@@ -102,7 +102,7 @@ public class NewTreeView extends ActionBarActivity {
 			i.putExtra("task", task);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 
 			break;
 
@@ -124,7 +124,7 @@ public class NewTreeView extends ActionBarActivity {
 			i.putExtra("page", 0);
 		finish();
 		startActivity(i);
-		overridePendingTransition(R.anim.backslide, R.anim.backzoom);
+		overridePendingTransition(R.anim.back_slide, R.anim.back_zoom);
 
 	}
 

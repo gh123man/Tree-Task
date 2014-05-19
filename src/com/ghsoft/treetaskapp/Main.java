@@ -88,7 +88,7 @@ public class Main extends ActionBarActivity {
 			Intent i = new Intent(Main.this, NewTreeTask.class);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 
 			break;
 
@@ -96,7 +96,7 @@ public class Main extends ActionBarActivity {
 			Intent s = new Intent(Main.this, Settings.class);
 			finish();
 			startActivity(s);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 
 			break;
 

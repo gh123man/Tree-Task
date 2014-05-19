@@ -104,7 +104,6 @@ public class TaskView extends ActionBarActivity {
 			parentCount = getIntent().getExtras().getInt("parentCount");
 		}
 		
-		//htimestamp
 		Object sTask = getIntent().getSerializableExtra("task");
 
 		task = (TaskNode) sTask;
@@ -179,7 +178,7 @@ public class TaskView extends ActionBarActivity {
 					i.putExtra("task", t);
 					finish();
 					startActivity(i);
-					overridePendingTransition(R.anim.slidefrom, R.anim.shortzoom);
+					overridePendingTransition(R.anim.slide_from, R.anim.short_zoom);
 
 				} else {
 
@@ -383,7 +382,7 @@ public class TaskView extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.taskview, menu);
+		getMenuInflater().inflate(R.menu.task_view, menu);
 		return true;
 	}
 
@@ -402,7 +401,7 @@ public class TaskView extends ActionBarActivity {
 			i.putExtra("task", task);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 			break;
 
 		case R.id.newTask:
@@ -410,7 +409,7 @@ public class TaskView extends ActionBarActivity {
 			i.putExtra("task", task);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 
 			break;
 
@@ -419,7 +418,7 @@ public class TaskView extends ActionBarActivity {
 			i.putExtra("task", task);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.slidedownto, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_down_to, R.anim.short_zoom);
 
 			break;
 
@@ -428,7 +427,7 @@ public class TaskView extends ActionBarActivity {
 			i = new Intent(TaskView.this, ExportView.class);
 			i.putExtra("task", task);
 			startActivity(i);
-			overridePendingTransition(R.anim.slidedownto, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_down_to, R.anim.short_zoom);
 			break;
 
 		default:
@@ -444,9 +443,9 @@ public class TaskView extends ActionBarActivity {
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
 		info.position--;
 		if (task.getChild(info.position) instanceof TaskNode) {
-			inflater.inflate(R.menu.taskviewmenunode, menu);
+			inflater.inflate(R.menu.task_view_menu_node, menu);
 		} else {
-			inflater.inflate(R.menu.taskviewmenuleaf, menu);
+			inflater.inflate(R.menu.task_view_menu_leaf, menu);
 		}
 
 	}
@@ -466,7 +465,7 @@ public class TaskView extends ActionBarActivity {
 			i.putExtra("task", tn);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 			return true;
 
 		case R.id.editSubTask:
@@ -479,7 +478,7 @@ public class TaskView extends ActionBarActivity {
 			i1.putExtra("fromListView", true);
 			finish();
 			startActivity(i1);
-			overridePendingTransition(R.anim.slideup, R.anim.shortzoom);
+			overridePendingTransition(R.anim.slide_up, R.anim.short_zoom);
 
 			return true;
 
@@ -499,7 +498,7 @@ public class TaskView extends ActionBarActivity {
 							i.putExtra("task", task.getParent());
 							finish();
 							startActivity(i);
-							overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+							overridePendingTransition(R.anim.back_short_zoom, R.anim.slide_to);
 
 						} else {
 
@@ -510,7 +509,7 @@ public class TaskView extends ActionBarActivity {
 							i.putExtra("task", task);
 							finish();
 							startActivity(i);
-							overridePendingTransition(R.anim.backshortzoom, R.anim.slidedown);
+							overridePendingTransition(R.anim.back_short_zoom, R.anim.slide_down);
 						}
 
 					} else {
@@ -552,7 +551,7 @@ public class TaskView extends ActionBarActivity {
 			i.putExtra("task", t);
 			finish();
 			startActivity(i);
-			overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+			overridePendingTransition(R.anim.back_short_zoom, R.anim.slide_to);
 
 		} else {
 			if (task.isHead()) {
@@ -561,7 +560,7 @@ public class TaskView extends ActionBarActivity {
 				i.putExtra("page", 0);	//let always go to tasks for now
 				finish();
 				startActivity(i);
-				overridePendingTransition(R.anim.backslide, R.anim.backzoom);
+				overridePendingTransition(R.anim.back_slide, R.anim.back_zoom);
 
 			} else {
 
@@ -569,7 +568,7 @@ public class TaskView extends ActionBarActivity {
 				i.putExtra("task", task.getParent());
 				finish();
 				startActivity(i);
-				overridePendingTransition(R.anim.backshortzoom, R.anim.slideto);
+				overridePendingTransition(R.anim.back_short_zoom, R.anim.slide_to);
 
 			}
 		}

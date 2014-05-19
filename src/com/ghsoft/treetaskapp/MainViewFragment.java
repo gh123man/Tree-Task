@@ -137,9 +137,9 @@ public class MainViewFragment extends Fragment {
 		MenuInflater inflater = getActivity().getMenuInflater();
 
 		if (a.getCurrentItem() == 0)
-			inflater.inflate(R.menu.mainviewmenu, menu);
+			inflater.inflate(R.menu.main_view_menu, menu);
 		else
-			inflater.inflate(R.menu.mainviewmenuarchive, menu);
+			inflater.inflate(R.menu.main_view_menu_archive, menu);
 
 	}
 

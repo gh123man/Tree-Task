@@ -53,7 +53,7 @@ public class TreeView extends ActionBarActivity {
 				i.putExtra("parentCount", parts.length - 1);
 				finish();
 				startActivity(i);
-				overridePendingTransition(R.anim.slidefrom, R.anim.shortzoom);
+				overridePendingTransition(R.anim.slide_from, R.anim.short_zoom);
 
 				return true;
 			}
@@ -79,7 +79,7 @@ public class TreeView extends ActionBarActivity {
 		i.putExtra("task", task);
 		finish();
 		startActivity(i);
-		overridePendingTransition(R.anim.backshortzoom, R.anim.slideupfrom);
+		overridePendingTransition(R.anim.back_short_zoom, R.anim.slide_up_from);
 
 	}
 
