@@ -31,7 +31,7 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 	private ColorPicker picker;
 	private boolean changeColor;
 	private RadioGroup rg1, rg2, rg3;
-	private SharedPreferences prefs; 
+	private SharedPreferences prefs;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,7 +52,7 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 		picker.setShowOldCenterColor(false);
 
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
+
 		prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
 		submit.setOnClickListener(new View.OnClickListener() {
@@ -87,11 +87,11 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 		rg3.clearCheck();
 		rg1.check(R.id.radio0);
 		picker.setColor(getResources().getColor(R.color.color0));
-		
+
 		rg1.setOnCheckedChangeListener(listener1);
 		rg2.setOnCheckedChangeListener(listener2);
 		rg3.setOnCheckedChangeListener(listener3);
-		
+
 		((RadioButton) findViewById(R.id.radio1)).setBackgroundColor(prefs.getInt("color1", getResources().getColor(R.color.color1)));
 		((RadioButton) findViewById(R.id.radio2)).setBackgroundColor(prefs.getInt("color2", getResources().getColor(R.color.color2)));
 		((RadioButton) findViewById(R.id.radio3)).setBackgroundColor(prefs.getInt("color3", getResources().getColor(R.color.color3)));
@@ -103,12 +103,10 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 	private RadioGroup.OnCheckedChangeListener listener1 = new RadioGroup.OnCheckedChangeListener() {
 		@Override
 		public void onCheckedChanged(RadioGroup group, int checkedId) {
-			rg2.setOnCheckedChangeListener(null);
-			rg2.clearCheck();
-			rg2.setOnCheckedChangeListener(listener2);
-			rg3.setOnCheckedChangeListener(null);
-			rg3.clearCheck();
-			rg3.setOnCheckedChangeListener(listener3);
+
+			resetRadioGroup(rg2, listener2);
+			resetRadioGroup(rg3, listener3);
+
 			customZone.setVisibility(View.GONE);
 
 			if (checkedId == R.id.radio0) {
@@ -125,12 +123,10 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 	private RadioGroup.OnCheckedChangeListener listener2 = new RadioGroup.OnCheckedChangeListener() {
 		@Override
 		public void onCheckedChanged(RadioGroup group, int checkedId) {
-			rg1.setOnCheckedChangeListener(null);
-			rg1.clearCheck();
-			rg1.setOnCheckedChangeListener(listener1);
-			rg3.setOnCheckedChangeListener(null);
-			rg3.clearCheck();
-			rg3.setOnCheckedChangeListener(listener3);
+
+			resetRadioGroup(rg1, listener1);
+			resetRadioGroup(rg3, listener3);
+
 			customZone.setVisibility(View.GONE);
 
 			if (checkedId == R.id.radio3) {
@@ -154,15 +150,17 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 				customZone.setVisibility(View.GONE);
 			}
 
-			rg1.setOnCheckedChangeListener(null);
-			rg1.clearCheck();
-			rg1.setOnCheckedChangeListener(listener1);
-			rg2.setOnCheckedChangeListener(null);
-			rg2.clearCheck();
-			rg2.setOnCheckedChangeListener(listener2);
+			resetRadioGroup(rg1, listener1);
+			resetRadioGroup(rg2, listener2);
 
 		}
 	};
+
+	private void resetRadioGroup(RadioGroup rg, RadioGroup.OnCheckedChangeListener listener) {
+		rg.setOnCheckedChangeListener(null);
+		rg.clearCheck();
+		rg.setOnCheckedChangeListener(listener);
+	}
 
 	public abstract void onSubmit();
 
