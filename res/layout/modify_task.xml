@@ -51,6 +51,38 @@
             android:textColor="#ffffff" />
 
         <CheckBox
+            android:id="@+id/show_weight_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/change_weight" />
+        
+        <LinearLayout
+            android:id="@+id/weight_zone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:text="@string/task_weight" />
+
+            <EditText
+                android:id="@+id/task_weight"
+                android:layout_width="50dp"
+                android:textColor="#ffffff"
+                android:layout_height="wrap_content"
+                android:background="@drawable/apptheme_edit_text_holo_dark"
+                android:inputType="number" />
+           
+        </LinearLayout>
+        
+        <CheckBox
             android:id="@+id/show_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

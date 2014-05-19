@@ -14,6 +14,7 @@ public abstract class Task implements Serializable {
 	private TaskHead head;
 	private int color;
 	private boolean useColor;
+	private int weight;
 
 	public Task(Task parent) {
 		this.parent = parent;
@@ -23,6 +24,7 @@ public abstract class Task implements Serializable {
 	public Task(TaskHead head) {
 		this.parent = null;
 		this.head = head;
+		this.weight = 1;
 	}
 
 	public abstract int completion();
@@ -67,6 +69,17 @@ public abstract class Task implements Serializable {
 	
 	public boolean getUseColor() {
 		return useColor;
+	}
+	
+	public int getWeight() {
+		if (this.weight < 1) {
+			this.weight = 1;
+		}
+		return this.weight;
+	}
+	
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
 	public String getName() {

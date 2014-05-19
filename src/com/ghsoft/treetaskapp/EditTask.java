@@ -30,6 +30,12 @@ public class EditTask extends ModifyTaskActivity {
 		getdescriptionField().setText(task.getDescription());
 		
 		getPicker().setOldCenterColor(task.getColor());
+		
+		if (task.isHead()) {
+			hideChangeWeightOption(true);
+		} else {
+			setWeightField(task.getWeight());
+		}
 
 	}
 
@@ -46,6 +52,10 @@ public class EditTask extends ModifyTaskActivity {
 				
 				if (getChangeColor()) {
 					task.setColor(getPicker().getColor());
+				}
+				
+				if (getChangeWeight()) {
+					task.setWeight(getWeightFieldValue());
 				}
 				
 				TaskManager.save(task.getHead());

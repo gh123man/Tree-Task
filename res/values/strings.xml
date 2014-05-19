@@ -57,6 +57,8 @@
     <string name="color4">Color 4</string>
     <string name="color5">Color 5</string>
     <string name="add_sub_task">Add Sub-Task</string>
+    <string name="change_weight">Change task weight</string>
+    <string name="task_weight">Task weight</string>
     
     
     

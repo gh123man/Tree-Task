@@ -27,6 +27,7 @@ public class TaskNode extends Task implements Serializable {
 		tn.setDescription(from.getDescription());
 		tn.setColor(from.getColor());
 		tn.setTimeStamp(from.getTimeStamp());
+		tn.setWeight(from.getWeight());
 		return tn;
 	}
 
@@ -48,8 +49,8 @@ public class TaskNode extends Task implements Serializable {
 		int sum = 0;
 
 		for (int i = 0; i < this.numChildren(); i++) {
-			sum += getChild(i).completion();
-			count++;
+			sum += getChild(i).completion() * getChild(i).getWeight();
+			count += getChild(i).getWeight();
 		}
 
 		return Math.round(sum / count);

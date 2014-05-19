@@ -24,12 +24,12 @@ import com.larswerkman.holocolorpicker.ValueBar;
 
 public abstract class ModifyTaskActivity extends ActionBarActivity {
 
-	private EditText name, description;
+	private EditText name, description, weight;
 	private Button submit;
-	private CheckBox showPicker;
-	private LinearLayout pickerZone, customZone;
+	private CheckBox showPicker, showWeight;
+	private LinearLayout pickerZone, customZone, weightZone;
 	private ColorPicker picker;
-	private boolean changeColor;
+	private boolean changeColor, changeWeight;
 	private RadioGroup rg1, rg2, rg3;
 	private SharedPreferences prefs;
 
@@ -41,12 +41,15 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 		description = (EditText) findViewById(R.id.description);
 		submit = (Button) findViewById(R.id.submit);
 		showPicker = (CheckBox) findViewById(R.id.show_picker);
+		showWeight = (CheckBox) findViewById(R.id.show_weight_change);
 		pickerZone = (LinearLayout) findViewById(R.id.picker_zone);
 		picker = (ColorPicker) findViewById(R.id.picker);
 		SaturationBar saturationBar = (SaturationBar) findViewById(R.id.saturationbar);
 		ValueBar valueBar = (ValueBar) findViewById(R.id.valuebar);
 		customZone = (LinearLayout) findViewById(R.id.custom_zone);
-
+		weightZone = (LinearLayout) findViewById(R.id.weight_zone);
+		weight = (EditText) findViewById(R.id.task_weight);
+		
 		picker.addSaturationBar(saturationBar);
 		picker.addValueBar(valueBar);
 		picker.setShowOldCenterColor(false);
@@ -74,6 +77,21 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 				} else {
 					pickerZone.setVisibility(View.GONE);
 					changeColor = false;
+				}
+			}
+		});
+		
+		showWeight.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				hideInput();
+				if (isChecked) {
+					weightZone.setVisibility(View.VISIBLE);
+					changeWeight = true;
+				} else {
+					weightZone.setVisibility(View.GONE);
+					changeWeight = false;
 				}
 			}
 		});
@@ -183,10 +201,30 @@ public abstract class ModifyTaskActivity extends ActionBarActivity {
 	public boolean getChangeColor() {
 		return changeColor;
 	}
+	
+	public boolean getChangeWeight() {
+		return changeWeight;
+	}
 
 	private void hideInput() {
 		InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		imm.hideSoftInputFromWindow(name.getWindowToken(), 0);
+	}
+	
+	public void hideChangeWeightOption(boolean hide) {
+		if (hide) {
+			showWeight.setVisibility(View.GONE);
+		} else {
+			showWeight.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	public void setWeightField(int value) {
+		weight.setText(String.valueOf(value));
+	}
+	
+	public int getWeightFieldValue() {
+		return Integer.parseInt(weight.getText().toString());
 	}
 
 	@Override
