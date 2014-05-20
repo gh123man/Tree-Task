@@ -46,7 +46,7 @@
     <string name="default_color_settings">Default Task Color Settings</string>
     <string name="accent_colors">Global Accent Color Setting</string>
     <string name="accent_colors_des">Changes the color of the tab titles and other accents</string>
-    <string name="prog_color">Progres bar colors</string>
+    <string name="prog_color">Progress bar colors</string>
     <string name="prog_color_des">Changes the color of the task progress bars</string>
     <string name="reset_settings">Reset all settings</string>
     <string name="sure_to_reset">Are you sure you want to reset all settings?</string>
