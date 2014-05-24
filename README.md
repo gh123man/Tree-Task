@@ -16,7 +16,7 @@ Your progress on tasks/projects is tracked by calculating the completion of each
 - archive for finished tasks
 - progress tracking by calculating completion of all sub-tasks.
 - full tree view mode - visualize the entire tree and jump to any task (see screenshots)
- 
+ - added color changing
 
 
 ### How to compile
