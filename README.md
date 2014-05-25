@@ -16,7 +16,8 @@ Your progress on tasks/projects is tracked by calculating the completion of each
 - archive for finished tasks
 - progress tracking by calculating completion of all sub-tasks.
 - full tree view mode - visualize the entire tree and jump to any task (see screenshots)
- - added color changing
+- Color changing of tasks
+- base app color customizations
 
 
 ### How to compile
@@ -25,7 +26,12 @@ Clone this repo.
 Import it into eclipse with android development tools installed.
 Have android API level 17 downloaded and ready.
 Have android support v4, v7-appcompat, and v13 installed (all can be accessed via the adt package manager)
-install this library as a project named "library" https://github.com/bauerca/drag-sort-listview#installation
+import drag-sort-listview and link it to the project https://github.com/bauerca/drag-sort-listview#installation
+import android-ColorPickerPreference and link it to the project https://github.com/attenzione/android-ColorPickerPreference
+import HoloColorPicker and link it to the project https://github.com/LarsWerkman/HoloColorPicker
+
+
+
 
 Compile and run!
 
