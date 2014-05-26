@@ -19,6 +19,7 @@ public class TaskLeaf extends Task implements Serializable {
 		tl.setColor(from.getColor());
 		tl.setTimeStamp(from.getTimeStamp());
 		tl.setWeight(from.getWeight());
+		tl.setDeadline(from.getDeadline());
 		return tl;
 	}
 

@@ -15,6 +15,7 @@ public abstract class Task implements Serializable {
 	private int color;
 	private boolean useColor;
 	private int weight;
+	private Date deadline;
 
 	public Task(Task parent) {
 		this.parent = parent;
@@ -59,9 +60,6 @@ public abstract class Task implements Serializable {
 	public int getColor() {
 		return this.color;
 	}
-	public void setTimeStamp(Date timeStamp) {
-		this.timeStamp = timeStamp;
-	}
 	
 	public void setUseColor(boolean useColor) {
 		this.useColor = useColor;
@@ -69,6 +67,14 @@ public abstract class Task implements Serializable {
 	
 	public boolean getUseColor() {
 		return useColor;
+	}
+	
+	public Date getDeadline() {
+		return deadline;
+	}
+	
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
 	}
 	
 	public int getWeight() {
@@ -98,6 +104,10 @@ public abstract class Task implements Serializable {
 	
 	public Date getTimeStamp() {
 		return timeStamp;
+	}
+	
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
 	}
 
 	public Task getParent() {

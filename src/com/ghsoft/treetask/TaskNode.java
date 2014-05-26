@@ -28,6 +28,7 @@ public class TaskNode extends Task implements Serializable {
 		tn.setColor(from.getColor());
 		tn.setTimeStamp(from.getTimeStamp());
 		tn.setWeight(from.getWeight());
+		tn.setDeadline(from.getDeadline());
 		return tn;
 	}
 
